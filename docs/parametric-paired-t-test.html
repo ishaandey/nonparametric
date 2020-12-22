@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Nonparametric Statistics</title>
+  <title>Chapter 5 Parametric Paired T-Test | Nonparametric Statistics</title>
   <meta name="description" content="A handbook for applying statistical testing to big data." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Nonparametric Statistics" />
+  <meta property="og:title" content="Chapter 5 Parametric Paired T-Test | Nonparametric Statistics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ishaandey.com/nonparametric" />
   <meta property="og:image" content="https://ishaandey.com/nonparametricimages/logo/logo-banner.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ishaandey/nonparametric" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Nonparametric Statistics" />
+  <meta name="twitter:title" content="Chapter 5 Parametric Paired T-Test | Nonparametric Statistics" />
   
   <meta name="twitter:description" content="A handbook for applying statistical testing to big data." />
   <meta name="twitter:image" content="https://ishaandey.com/nonparametricimages/logo/logo-banner.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="summary.html"/>
+<link rel="prev" href="summary-1.html"/>
+<link rel="next" href="paired-permutation-test.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -305,33 +305,62 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container"> 
   <img class= "hero-image" src="images/books.jpg">
 </div>
-<div id="header">
-<h1 class="title">Nonparametric Statistics</h1>
-<h2 class="subtitle"><em>A Beginner’s Guide to Nonparametric Statistics</em></h2>
-<p class="author"><em>Ishaan Dey<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date"><em>December 2020</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<div id="why-this-book" class="section level2 unnumbered">
-<h2>Why This Book?</h2>
-</div>
-<div id="who-are-you" class="section level2 unnumbered">
-<h2>Who Are You?</h2>
-</div>
-<div id="who-are-we" class="section level2 unnumbered">
-<h2>Who Are We?</h2>
-
-</div>
-</div>
-
-
-
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>University of Virginia, <a href="https://www.ishaandey.com">ishaandey.com</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<div id="parametric-paired-t-test" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Parametric Paired T-Test</h1>
+<div id="usage-4" class="section level2">
+<h2><span class="header-section-number">5.1</span> Usage</h2>
+<div id="assumptions-4" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Assumptions</h3>
+<ol style="list-style-type: decimal">
+<li>Paired observations are a random sample (independent) from population of all possible pairs</li>
+<li>The <em>differences</em> are normally distributed</li>
 </ol>
+<p>Note: We can assume the sample mean will approach a normal distribution when <span class="math inline">\(n_d \geq 40\)</span></p>
+</div>
+</div>
+<div id="procedure" class="section level2">
+<h2><span class="header-section-number">5.2</span> Procedure</h2>
+<p>Paired t-test statistic:
+<span class="math display">\[
+t=\frac{\bar{x}_{d}}{S_{d} / \sqrt{n_{d}}} \sim t\left(n_{d}-1\right)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\bar{x}_{d}\)</span> is the sample mean difference.</li>
+<li><span class="math inline">\(s_{d}\)</span> is the sample standard deviation of the differences.</li>
+<li><span class="math inline">\(n_{d}\)</span> is the number of pairs.</li>
+</ul>
+<p>We’re trying to test the hypothesis:
+<span class="math display">\[
+\begin{aligned}
+H_0&amp;: \mu_d = 0 \\
+H_a&amp;: \mu_d &gt; 0,~&lt;0,~\text{or}~\neq 0
+\end{aligned}
+\]</span></p>
+</div>
+<div id="code-4" class="section level2">
+<h2><span class="header-section-number">5.3</span> Code</h2>
+<div class="panelset">
+<div class="panel">
+<h3 id="r" class="panel-name"><span class="header-section-number">5.3</span> R</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="parametric-paired-t-test.html#cb12-1"></a><span class="kw">library</span>(stats)</span>
+<span id="cb12-2"><a href="parametric-paired-t-test.html#cb12-2"></a></span>
+<span id="cb12-3"><a href="parametric-paired-t-test.html#cb12-3"></a>samp.before &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.1</span>, <span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.2</span>, <span class="fl">1.7</span>, <span class="fl">2.2</span>, <span class="fl">2.7</span>)</span>
+<span id="cb12-4"><a href="parametric-paired-t-test.html#cb12-4"></a>samp.after  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.9</span>, <span class="fl">2.9</span>, <span class="fl">3.8</span>, <span class="fl">1.8</span>, <span class="fl">3.3</span>, <span class="fl">2.8</span>, <span class="fl">2.3</span>)</span>
+<span id="cb12-5"><a href="parametric-paired-t-test.html#cb12-5"></a></span>
+<span id="cb12-6"><a href="parametric-paired-t-test.html#cb12-6"></a><span class="kw">t.test</span>(<span class="dt">x=</span>samp.before, <span class="dt">y=</span>samp.after, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>, <span class="dt">paired=</span>T)</span></code></pre></div>
+</div>
+<div class="panel">
+<h3 id="python" class="panel-name"><span class="header-section-number">5.3</span> Python</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="parametric-paired-t-test.html#cb13-1"></a><span class="im">from</span> scipi.stats <span class="im">import</span> ttest_rel</span>
+<span id="cb13-2"><a href="parametric-paired-t-test.html#cb13-2"></a></span>
+<span id="cb13-3"><a href="parametric-paired-t-test.html#cb13-3"></a>samp_before <span class="op">=</span> [<span class="fl">1.1</span>, <span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.2</span>, <span class="fl">1.7</span>, <span class="fl">2.2</span>, <span class="fl">2.7</span>]</span>
+<span id="cb13-4"><a href="parametric-paired-t-test.html#cb13-4"></a>samp_after <span class="op">=</span> [<span class="fl">3.9</span>, <span class="fl">2.9</span>, <span class="fl">3.8</span>, <span class="fl">1.8</span>, <span class="fl">3.3</span>, <span class="fl">2.8</span>, <span class="fl">2.3</span>]</span>
+<span id="cb13-5"><a href="parametric-paired-t-test.html#cb13-5"></a></span>
+<span id="cb13-6"><a href="parametric-paired-t-test.html#cb13-6"></a>ttest_rel(samp_before, samp_after)</span></code></pre></div>
+</div>
+</div>
+<hr />
+</div>
 </div>
 <hr>
 <center> 
@@ -346,8 +375,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="summary.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="summary-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="paired-permutation-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +407,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ishaandey/nonparametric/edit/master/index.Rmd",
+"link": "https://github.com/ishaandey/nonparametric/edit/master/content-matched-pairs.Rmd",
 "text": "Contribute"
 },
 "history": {
@@ -389,7 +418,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/ishaandey/nonparametric/raw/master/index.Rmd"],
+"download": ["https://github.com/ishaandey/nonparametric/raw/master/content-matched-pairs.Rmd"],
 "toc": {
 "collapse": "section",
 "toc_depth": 2

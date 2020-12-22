@@ -1,8 +1,16 @@
 book_filename: "nonparametric"
+repo: "https://github.com/ishaandey/nonparametric/"
+output_dir: "docs"
 delete_merged_file: true
-output_dir: docs
 language:
   ui:
-    chapter_name: "Chapter "
-new_session: true    
-
+    chapter_name: 'Chapter '
+new_session: yes 
+#rmd_subdir: ["", "",""]
+rmd_files: [
+  "index.Rmd",
+  
+  "content-two-sample-inference.Rmd",
+  "content-matched-pairs.Rmd",
+  "content-correlation.Rmd"
+  ]

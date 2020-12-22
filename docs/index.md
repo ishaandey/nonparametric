@@ -1,30 +1,27 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
-date: "2020-12-19"
+title: "Nonparametric Statistics"
+subtitle: "A Beginner's Guide to Nonparametric Statistics"
+author: 
+- Ishaan Dey^[University of Virginia, [ishaandey.com](https://www.ishaandey.com)]
+date: "December 2020"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+cover-image: images/logo/logo-banner.png
+github-repo: "ishaandey/nonparametric"
+description: "A handbook for applying statistical testing to big data."
+favicon: "images/favicon/favicon.ico"
+always_allow_html: yes
+url: 'https\://ishaandey.com/nonparametric'
 ---
 
-# Prerequisites
+# Preface {-}
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+## Why This Book? {-} 
 
-The **bookdown** package can be installed from CRAN or Github:
+## Who Are You? {-}
 
-
-```r
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
-
+## Who Are We? {-}
 

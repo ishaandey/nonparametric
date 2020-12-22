@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Nonparametric Statistics</title>
+  <title>Chapter 4 Mann-Whitney | Nonparametric Statistics</title>
   <meta name="description" content="A handbook for applying statistical testing to big data." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Nonparametric Statistics" />
+  <meta property="og:title" content="Chapter 4 Mann-Whitney | Nonparametric Statistics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ishaandey.com/nonparametric" />
   <meta property="og:image" content="https://ishaandey.com/nonparametricimages/logo/logo-banner.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ishaandey/nonparametric" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Nonparametric Statistics" />
+  <meta name="twitter:title" content="Chapter 4 Mann-Whitney | Nonparametric Statistics" />
   
   <meta name="twitter:description" content="A handbook for applying statistical testing to big data." />
   <meta name="twitter:image" content="https://ishaandey.com/nonparametricimages/logo/logo-banner.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="summary.html"/>
+<link rel="prev" href="wilcoxon-rank-sum.html"/>
+<link rel="next" href="summary-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -305,34 +305,88 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container"> 
   <img class= "hero-image" src="images/books.jpg">
 </div>
-<div id="header">
-<h1 class="title">Nonparametric Statistics</h1>
-<h2 class="subtitle"><em>A Beginner’s Guide to Nonparametric Statistics</em></h2>
-<p class="author"><em>Ishaan Dey<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date"><em>December 2020</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<div id="why-this-book" class="section level2 unnumbered">
-<h2>Why This Book?</h2>
-</div>
-<div id="who-are-you" class="section level2 unnumbered">
-<h2>Who Are You?</h2>
-</div>
-<div id="who-are-we" class="section level2 unnumbered">
-<h2>Who Are We?</h2>
-
-</div>
-</div>
-
-
-
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>University of Virginia, <a href="https://www.ishaandey.com">ishaandey.com</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<div id="mann-whitney" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Mann-Whitney</h1>
+<div id="usage-3" class="section level2">
+<h2><span class="header-section-number">4.1</span> Usage</h2>
+<div id="assumptions-3" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Assumptions</h3>
+<ol style="list-style-type: decimal">
+<li>Both pop. dist are continuous (not categorical / discrete)</li>
 </ol>
 </div>
+</div>
+<div id="how-it-works-3" class="section level2">
+<h2><span class="header-section-number">4.2</span> How It Works</h2>
+<p>In a sample of <span class="math inline">\(m\)</span> observations in sample <span class="math inline">\(X\)</span>, and <span class="math inline">\(n\)</span> observations in sample <span class="math inline">\(Y\)</span>, we want to focus on <em>each possible pair</em> of observations. The test statistic is quite simply <span class="math inline">\(U = \text{# pairs for which } X_i &lt; Y_j\)</span>. The minimum <span class="math inline">\(U\)</span> can be is <span class="math inline">\(0\)</span>, while the max is every possible pair, or <span class="math inline">\(m*n\)</span>.</p>
+<p>For example, let’s say we have two samples, and want to see if sample 1 has a lower location than sample 2. Here’s our raw data:</p>
+<pre><code>##         Obs 1 Obs 2 Obs 3 Obs 4
+## Sample1    31    33    46    40
+## Sample2    39    49    55    57</code></pre>
+<p>We then look at every possible combination of the two samples.</p>
+<pre><code>##    31 33 40 46
+## 39 NA NA NA NA
+## 49 NA NA NA NA
+## 55 NA NA NA NA
+## 57 NA NA NA NA</code></pre>
+<p>Now we can compare the values, and check if the values of the first sample (the columns) are greater than the values of the second sample (rows):</p>
+<pre><code>##    31 33 40 46
+## 39  0  0  1  1
+## 49  0  0  0  0
+## 55  0  0  0  0
+## 57  0  0  0  0</code></pre>
+<p>Our test statistic <span class="math inline">\(U\)</span> is the sum of the matrix, <span class="math inline">\(2\)</span>.</p>
+<p>Under the null hypothesis, we’d expect our test statistic not to be that extreme. That is, if we were to randomly permute our values under different label, we’d need to see that our observed test statistic is far more extreme that the rest of the U statistics before concluding that the null hypothesis doesn’t apply.</p>
+<details>
+<summary> Formal Hypothesis Test </summary>
+<p>
+<p>Hypothesis Test:
+<span class="math display">\[
+\begin{aligned}
+H_0 &amp;: F_1(x) = F_2(x) \\
+H_a &amp;: F_1(x) \geq F_2(x) \\
+&amp; \text{with a strict inequality for at least one }x
+\end{aligned}
+\]</span></p>
+<p>P-Value:
+<span class="math display">\[
+\begin{aligned}
+p\text{-value}_{two\ sided} &amp;= \frac{\text{# of U&#39;s farther from  } \frac{mn}{2}}{\binom {m+n}{m}} \\
+p\text{-value}_{lower} &amp;= \frac{\text{# of }U\geq U_{obs}}{\binom {m+n}{m}} \\
+p\text{-value}_{upper} &amp;= \frac{\text{# of }U\leq U_{obs}}{\binom {m+n}{m}}
+\end{aligned}
+\]</span></p>
+</p>
+</details>
+</div>
+<div id="code-3" class="section level2">
+<h2><span class="header-section-number">4.3</span> Code</h2>
+</div>
+<div id="note" class="section level2">
+<h2><span class="header-section-number">4.4</span> Note</h2>
+<p>The Wilcoxon <span class="math inline">\(W\)</span> is linearly related to Mann Whitney <span class="math inline">\(U\)</span>, and <strong>results in the same p-value</strong>.</p>
+<details>
+<summary> Proof </summary>
+<p>
+<p><span class="math display">\[
+\begin{array}{l}
+W_{2} \\
+=\sum_{j=1}^{n} R\left(Y_{j}\right) \\
+=R\left(Y_{1}\right)+R\left(Y_{2}\right)+\cdots+R\left(Y_{n}\right) \\
+=\left[1+\left(\text {number of } X^{\prime} s \leq Y_{1}\right)\right]+\left[2+\left(\text {number of } X^{\prime} s \leq Y_{2}\right)\right]+\cdots \\
+=[1+\cdots+n]+\left[\left(\text {number of } X^{\prime} s \leq Y_{1}\right)+\cdots+\left(\text {number of } X^{\prime} s \leq Y_{n}\right)\right] \\
+=[1+\cdots+n]+U \\
+=\frac{n(n+1)}{2}+U
+\end{array}
+\]</span></p>
+</p>
+</details>
+
+</div>
+</div>
+
+
+
 <hr>
 <center> 
   <div class="footer">
@@ -346,8 +400,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="summary.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="wilcoxon-rank-sum.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +432,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ishaandey/nonparametric/edit/master/index.Rmd",
+"link": "https://github.com/ishaandey/nonparametric/edit/master/content-two-sample-inference.Rmd",
 "text": "Contribute"
 },
 "history": {
@@ -389,7 +443,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/ishaandey/nonparametric/raw/master/index.Rmd"],
+"download": ["https://github.com/ishaandey/nonparametric/raw/master/content-two-sample-inference.Rmd"],
 "toc": {
 "collapse": "section",
 "toc_depth": 2

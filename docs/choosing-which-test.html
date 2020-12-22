@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Nonparametric Statistics</title>
+  <title>Chapter 9 Choosing Which Test | Nonparametric Statistics</title>
   <meta name="description" content="A handbook for applying statistical testing to big data." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Nonparametric Statistics" />
+  <meta property="og:title" content="Chapter 9 Choosing Which Test | Nonparametric Statistics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ishaandey.com/nonparametric" />
   <meta property="og:image" content="https://ishaandey.com/nonparametricimages/logo/logo-banner.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ishaandey/nonparametric" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Nonparametric Statistics" />
+  <meta name="twitter:title" content="Chapter 9 Choosing Which Test | Nonparametric Statistics" />
   
   <meta name="twitter:description" content="A handbook for applying statistical testing to big data." />
   <meta name="twitter:image" content="https://ishaandey.com/nonparametricimages/logo/logo-banner.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="summary.html"/>
+<link rel="prev" href="sign-test.html"/>
+<link rel="next" href="summary-sheet.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -305,34 +305,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container"> 
   <img class= "hero-image" src="images/books.jpg">
 </div>
-<div id="header">
-<h1 class="title">Nonparametric Statistics</h1>
-<h2 class="subtitle"><em>A Beginner’s Guide to Nonparametric Statistics</em></h2>
-<p class="author"><em>Ishaan Dey<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date"><em>December 2020</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<div id="why-this-book" class="section level2 unnumbered">
-<h2>Why This Book?</h2>
-</div>
-<div id="who-are-you" class="section level2 unnumbered">
-<h2>Who Are You?</h2>
-</div>
-<div id="who-are-we" class="section level2 unnumbered">
-<h2>Who Are We?</h2>
+<div id="choosing-which-test" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Choosing Which Test</h1>
+<p>Look at <strong>distribution of differences</strong>:</p>
+<ul>
+<li>If <em>light-tailed and symmetric</em> <span class="math inline">\(\implies\)</span> Use paired permutation test</li>
+<li>If <em>skewed or heavy tailed</em> <span class="math inline">\(\implies\)</span> Use wilcoxon signed-rank test
+<ul>
+<li>Sign test also is efficient, but generally has low power for smaller <span class="math inline">\(n\)</span></li>
+</ul></li>
+<li>If <em>normal looking</em> <span class="math inline">\(\implies\)</span> Use sign test</li>
+</ul>
 
-</div>
 </div>
 
 
 
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>University of Virginia, <a href="https://www.ishaandey.com">ishaandey.com</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
 <hr>
 <center> 
   <div class="footer">
@@ -346,8 +334,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="summary.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sign-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-sheet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +366,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ishaandey/nonparametric/edit/master/index.Rmd",
+"link": "https://github.com/ishaandey/nonparametric/edit/master/content-matched-pairs.Rmd",
 "text": "Contribute"
 },
 "history": {
@@ -389,7 +377,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/ishaandey/nonparametric/raw/master/index.Rmd"],
+"download": ["https://github.com/ishaandey/nonparametric/raw/master/content-matched-pairs.Rmd"],
 "toc": {
 "collapse": "section",
 "toc_depth": 2
