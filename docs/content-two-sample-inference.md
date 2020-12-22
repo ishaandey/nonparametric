@@ -1,9 +1,6 @@
 # (PART) Two Sample Inference {-}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
-                      warning=F, message=F)
-```
+
 
 
 # Summary {-}
@@ -24,18 +21,21 @@ Do you care about the magnitude of the difference? Consider the **Permutation Te
 
 If you're instead just looking to determine if one sample is greater than the other, use the Wilcoxon Rank-Sum, particularly with skewed distributions or heavy outliers. If we're interested in generating a confidence interval for the difference, we can use the **Mann-Whitney** test. It works similarly to the Wilcoxon Rank-Sum, and results in the same p-value.
 
+
 # Parametric t-Test {#two-sample-t-test}
 
 ## Usage 
 
 Use the t-test if the following 4 assumptions are met:
 
+### Assumptions {-}
+
 1. Random sample from each population
 2. Both samples are independent
 3. Both population distributions are normal
 4. Both population variances are equal
 
-Note: By the Central Limit Theorem, we can assume that the sample means will start looking normal at large sample sizes ($n \geq 40$).
+Note: By the Central Limit Theorem, we can assume that the sample means will start looking normal at large sample sizes ($n \geq 30$).
 
 ## How It Works 
 
@@ -50,16 +50,44 @@ Note: By the Central Limit Theorem, we can assume that the sample means will sta
 
 ::: {#R1 .tabcontent}
 
-```{r}
-t.test()
+
+```r
+abcd123
 ```
 
 :::
 
 ::: {#Python1 .tabcontent}
 
-```{r engine='python'}
+
+```python
 abcd123
+```
+
+:::
+:::
+
+
+<hr>
+
+::: {.tab}
+<button class="tablinks" onclick="unrolltab(event, 'R1')">R</button>
+<button class="tablinks" onclick="unrolltab(event, 'Python1')">Python</button>
+
+::: {#R1 .tabcontent}
+
+
+```r
+xyz12314
+```
+
+:::
+
+::: {#Python1 .tabcontent}
+
+
+```python
+xyz12341
 ```
 
 :::
@@ -71,29 +99,25 @@ abcd123
 
 Use the permutation test if the normality assumption is violated, and you're interested in quantifying the difference in some location parameter: mean, trimmed mean, or median. This works well for smaller sample sizes. 
 
-#### Assumptions {-}
+### Assumptions {-}
 1. Random sample from each population
 2. Both are sampled independently
-3. Both population distributions are *continuous* (not categorical / discrete)
+3. Both population dists are *continuous* (not categorical / discrete)
 
-We no longer need the assumption of normality, nor equal variances
+*Note*: No longer assumption of normality, nor equal variances
 
 ## How It Works 
 
-We'll use $D_{obs}$ to represent the difference in means that we observe between our samples.
+Let $D_{observed}$ represent the difference in means between our samples.
 
-Under the null hypothesis, we'd expect that there is no difference in means. In other words, we could randomly switch around the values across the samples, and each time expect to get a test statistic $D^*$ close to $D_{obs}$. If the null hypothesis is false, and the difference we observe can't be explained by random chance, we'd see that only a few $D^*$'s are more extreme than $D_{obs}$.
+Under the null hypothesis, we'd expect that our observations have no difference in means. So, if we were to randomly switch around (permute) the observations across the samples, we'd expect our test statistic $D$ to stay quite close to $D_{obs}$.
 
-More on those permutations: If sample 1 has $m$ observations, and sample 2 has $n$ observations, there are $\binom {m+n}{m} = \frac {(m+n)!}{m!n!}$ permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic $D^*$ for each one of these permutations.
+If sample 1 has $m$ observations, and sample 2 has $n$ observations, there are $\binom {m+n}{m} = \frac {(m+n)!}{m!n!}$ permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic $D$ for each one of these permutations.
 
-So, our p-value is then just the *fraction of permutations* that have a test statistic $D^*$ as or more extreme than what was observed $D_{obs}$.
+Our p-value is then just the *fraction of permutations* that have a test statistic $D$ as or more extreme than what was observed $D_{obs}$.
 
-<details><summary> Formal Definitions </summary>
+<details><summary> P-value Formula </summary>
 <p>
-$$
-H_0: 
-$$
-Two Sided Alternative
 $p\text{-value}_{two\ sided} = \frac{\text{# of |D's|}~\geq~|D_{obs}|}{\binom {m+n}{m}}$
 <br>    $p\text{-value}_{lower} = \frac{\text{# of }D\leq D_{obs}}{\binom {m+n}{m}}$
 <br>    $p\text{-value}_{upper} = \frac{\text{# of }D\geq D_{obs}}{\binom {m+n}{m}}$
@@ -111,7 +135,8 @@ Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a dif
 
 ::: {#R2 .tabcontent}
 
-```{r}
+
+```r
 # Content
 ```
 
@@ -119,7 +144,8 @@ Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a dif
 
 ::: {#Python2 .tabcontent}
 
-```{r engine='python'}
+
+```python
 # Content
 ```
 
@@ -157,24 +183,20 @@ Why use this instead of the mean of the ranks between the two? Turns out, the su
 
 As a quick example:
 
-```{r, echo=F, eval=T, results=T}
-library(dplyr)
-sample1 <- c(39, 49, 55, 57)
-sample2 <- c(31, 33, 46)
 
-df <- tibble(sample1, sample2=c(sample2, NA)) %>% t()
-colnames(df) <- paste('Obs', 1:4)
-df 
+```
+##         Obs 1 Obs 2 Obs 3 Obs 4
+## sample1    39    49    55    57
+## sample2    31    33    46    NA
 ```
 
 becomes 
 
-```{r, echo=F, eval=T, results=T}
-pooled <- c(sample1, sample2)
-ranks <- rank(pooled,ties.method = 'average')
-df2 <- tibble(pooled, ranks) %>% t()
-colnames(df2) <- c(rep('Sample1', 4), rep('Sample2', 3))
-df2 
+
+```
+##        Sample1 Sample1 Sample1 Sample1 Sample2 Sample2 Sample2
+## pooled      39      49      55      57      31      33      46
+## ranks        3       5       6       7       1       2       4
 ```
 
 Under the null hypothesis, we'd expect our observations to have no difference in means. So, if we were to randomly switch around (permute) the observations across the samples, we'd expect our test statistic $W^*$ of the particular permutation to remain close to $W_{obs}$.
@@ -215,39 +237,33 @@ In a sample of $m$ observations in sample $X$, and $n$ observations in sample $Y
 
 For example, let's say we have two samples, and want to see if sample 1 has a lower location than sample 2. Here's our raw data:
 
-```{r, echo=F, eval=T, results=T}
-library(dplyr)
-sample2 <- c(39, 49, 55, 57)
-sample1 <- c(31, 33, 46, 40)
 
-df <- tibble(Sample1 = sample1, Sample2 = sample2) %>% t()
-colnames(df) <- paste('Obs', 1:4)
-df 
+```
+##         Obs 1 Obs 2 Obs 3 Obs 4
+## Sample1    31    33    46    40
+## Sample2    39    49    55    57
 ```
 
 We then look at every possible combination of the two samples.
 
-```{r, echo=F, eval=T, results=T}
-comp.mat <- matrix(nrow=length(sample2), ncol=length(sample1))
-rownames(comp.mat) <- sort(sample2) %>% as.character()
-colnames(comp.mat) <- sort(sample1) %>% as.character()
-comp.mat
+
+```
+##    31 33 40 46
+## 39 NA NA NA NA
+## 49 NA NA NA NA
+## 55 NA NA NA NA
+## 57 NA NA NA NA
 ```
 
 Now we can compare the values, and check if the values of the first sample (the columns) are greater than the values of the second sample (rows):
 
-```{r, echo=F, eval=T, results=T}
-for (i in sample1){
-  for (j in sample2) {
-    if (i > j) {
-      comp <- 1
-    } 
-    else {comp <- 0}
-    comp.mat[as.character(j),as.character(i)] <- comp
-  }
-}
 
-comp.mat
+```
+##    31 33 40 46
+## 39  0  0  1  1
+## 49  0  0  0  0
+## 55  0  0  0  0
+## 57  0  0  0  0
 ```
 
 Our test statistic $U$ is the sum of the matrix, $2$.

@@ -180,6 +180,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-you"><i class="fa fa-check"></i>Who Are You?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i>Quick Start</a></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a><ul>
 <li class="chapter" data-level="" data-path="summary.html"><a href="summary.html#background"><i class="fa fa-check"></i>Background</a></li>
@@ -246,7 +247,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>III Correlation</b></span></li>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html"><i class="fa fa-check"></i>Summary Sheet</a><ul>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#background-1"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#when-to-use-what"><i class="fa fa-check"></i>When To Use What</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="parametric-ols.html"><a href="parametric-ols.html"><i class="fa fa-check"></i><b>10</b> Parametric OLS</a><ul>
 <li class="chapter" data-level="10.1" data-path="parametric-ols.html"><a href="parametric-ols.html#usage-8"><i class="fa fa-check"></i><b>10.1</b> Usage</a><ul>
@@ -327,7 +327,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-6"><a href="parametric-ols.html#cb25-6"></a><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log</span>(disp), <span class="dt">y =</span> <span class="kw">log</span>(mpg))) <span class="op">+</span></span>
 <span id="cb25-7"><a href="parametric-ols.html#cb25-7"></a><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">fill =</span> <span class="ot">NA</span>)</span></code></pre></div>
 <p><img src="content-correlation_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>The equation of this line tells us some important information. Given in the form <span class="math inline">\(Y_i = \beta_0 + \beta_1X_i+\varepsilon_i\)</span>, we can estimate coefficients from our linear model as $=$5.381 and <span class="math inline">\(\hat{\beta_1}\)</span> -0.459.</p>
+<p>The equation of this line tells us some important information. Given in the form <span class="math inline">\(Y_i = \beta_0 + \beta_1X_i+\varepsilon_i\)</span>, we can estimate coefficients from our linear model as <span class="math inline">\(\hat{\beta_0}=\)</span> 5.381 and <span class="math inline">\(\hat{\beta_1}=\)</span> -0.459.</p>
 <p><strong>Crucially</strong>: If <span class="math inline">\(\beta_1=0\)</span>, <span class="math inline">\(Y\)</span> <em>doesn’t depend on</em> <span class="math inline">\(X_1\)</span>.</p>
 <p>So naturally, we ask the question: “How well does my <em>estimate</em> of the slope, or <span class="math inline">\(\hat{\beta_1}\)</span>, actually represent <span class="math inline">\(\beta_1\)</span>”? In other words, we want to test if <span class="math inline">\(\hat{\beta_1}\)</span> is <em>significantly different</em> from <span class="math inline">\(0\)</span>.</p>
 How? We’ll use the t statistic

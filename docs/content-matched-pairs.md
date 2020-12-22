@@ -1,0 +1,304 @@
+# (PART) Matched Pairs {-}
+
+
+
+
+# Summary {-}
+
+> Goal: some
+
+
+# Parametric Paired T-Test
+
+## Usage
+
+### Assumptions
+1. Paired observations are a random sample (independent) from population of all possible pairs
+2. The *differences* are normally distributed
+
+Note: We can assume the sample mean will approach a normal distribution when $n_d \geq 40$  
+
+## Procedure
+
+Paired t-test statistic: 
+$$
+t=\frac{\bar{x}_{d}}{S_{d} / \sqrt{n_{d}}} \sim t\left(n_{d}-1\right)
+$$
+
+- $\bar{x}_{d}$ is the sample mean difference.
+- $s_{d}$ is the sample standard deviation of the differences.
+- $n_{d}$ is the number of pairs.
+
+We're trying to test the hypothesis: 
+$$
+\begin{aligned}
+H_0&: \mu_d = 0 \\
+H_a&: \mu_d > 0,~<0,~\text{or}~\neq 0
+\end{aligned}
+$$
+
+
+## Code 
+
+:::: {.panelset}
+::: {.panel}
+### R {.panel-name}
+
+
+```r
+library(stats)
+
+samp.before <- c(1.1, 2.1, 4.2, 3.2, 1.7, 2.2, 2.7)
+samp.after  <- c(3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3)
+
+t.test(x=samp.before, y=samp.after, alternative='two.sided', paired=T)
+```
+:::
+
+::: {.panel}
+### Python {.panel-name}
+
+
+```python
+from scipi.stats import ttest_rel
+
+samp_before = [1.1, 2.1, 4.2, 3.2, 1.7, 2.2, 2.7]
+samp_after = [3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3]
+
+ttest_rel(samp_before, samp_after)
+```
+
+:::
+::::
+
+--------
+
+# Paired Permutation Test
+
+## Usage
+By convention, differences are defined as $\text{treatment} - \text{control}$.
+
+We can use this test if we violate the normality assumption of the paired t-test. However, as we're still using an average of differences, our test statistic is still subject to outliers.
+
+
+## Procedure
+
+We'll define $D_{obs}$ as the average of differences between our samples
+$$
+\bar{D}_{obs}=\frac{\sum_{i=1}^{n} D_{i}}{n}
+$$
+
+Under the null hypothesis, we'd expect that if we were to randomly switch around (permute) the observed within the pair, we'd see the same test statistic.
+
+Since we have $n$ pairs, there are $2^n$ possible arrangements where we swap around the values across the treatment and control group. For each permutation, we'll find $\bar{D}^*$, the mean of differences for that particular permutation.
+
+More visually:
+
+
+```
+##        Obs 1 Obs 2 Obs 3 Obs 4 Obs 5
+## before    31    38    46    54    43
+## after     39    49    55    57    44
+```
+
+can be permuted within pairs, with one permutation looking like:  
+
+
+```
+##         Obs * Obs 2 Obs * Obs 4 Obs 5
+## before*    39    38    55    54    43
+## after*     31    49    46    57    44
+```
+
+but not across pairs, because we're using a *matched pairs* design.
+
+So, our p-value is then just the *fraction of permutations* that have a test statistic $D$ as or more extreme than what was observed $D_{obs}$.
+
+<details><summary> P-value Formula </summary>
+<p>
+
+$$
+\begin{aligned}
+P_{\text {upper tail}} &= \frac{\text {number of } \bar{D}^{\prime} s \geq \bar{D}_{obs}}{2^{n}} \\ 
+P_{\text {lower tail}} &= \frac{\text {number of } \bar{D}^{\prime} s \leq \bar{D}_{obs}}{2^{n}}
+\end{aligned}
+$$ 
+</p>
+</details>
+
+## Code 
+
+:::: {.panelset}
+::: {.panel}
+### R {.panel-name}
+
+
+```r
+library(stats)
+
+samp.before <- c(1.1, 2.1, 4.2, 3.2, 1.7, 2.2, 2.7)
+samp.after  <- c(3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3)
+
+t.test(x=samp.before, y=samp.after, alternative='two.sided', paired=T)
+```
+:::
+
+::: {.panel}
+### Python {.panel-name}
+
+
+```python
+# under construction
+```
+
+:::
+::::
+
+-----
+
+# Wilcoxon Signed-Rank Test
+
+## Usage
+
+**Signed Ranks** are a method of ranking matched pairs data while accounting for the positive or negative nature of the differences. In other words, we can take into account if the treatment or control was higher, without caring about *how much higher* it was. 
+
+## Procedure
+
+For each pair of observations, we'll take the difference as after - before. We'll then rank these differences by *absolute value*, smallest to largest, but retain the sign of the rank from the actual difference. Our test statistic, $SR_+$, is the sum of *positive* signed ranks. 
+
+More visually:
+
+
+```
+##        Obs 1 Obs 2 Obs 3 Obs 4 Obs 5
+## before    31    38    46    54    45
+## after     39    49    55    57    43
+```
+
+becomes
+
+
+```
+##           Obs 1 Obs 2 Obs 1 Obs 4 Obs 5
+## before       31    38    46    54    45
+## after        39    49    55    57    43
+## diff          8    11     9     3    -2
+## sign.rank     3     5     4     2    -1
+```
+
+Here the the test statistic is found as $SR_+ = 3+5+4+2 \implies SR_+=14$.  
+In order to find the p-value, we want to ask *how likely is it that we found this test statistic just by random chance, assuming the null to be true?* In other words, we'll find every possible permutation of the sign-ranks, and calculate $SR_+^*$ for each one. The p-value is just the fraction of ranks sums as or more extreme than what we observed.
+
+<details><summary> P-value Formula </summary>
+<p>
+
+$$
+\begin{aligned}
+P_{\text {upper tail}} &=\frac{\text {number of } SR_+ \text{'s} \geq SR_+}{2^{n}} \\
+P_{\text {lower tail}} &=\frac{\text {number of } SR_+ \text{'s} \leq SR_+}{2^{n}}
+\end{aligned}
+$$ 
+
+</p>
+</details>
+
+
+A brief comment on ties: <details><summary> Details </summary>
+<p>
+Note: When we have multiple pairs with the same difference, we can apply the average rank to the tied observations.
+
+Note: If the difference between a pair is 0, we either omit them from the sample, or ignore them (as they don't count towards $SR_+$). You'd typically keep them since it gives similar results, and if there many zeros, you'd lose plenty of power from the lower sample size.   
+
+</p>
+</details>
+
+:::: {.panelset}
+::: {.panel}
+### R {.panel-name}
+
+
+```r
+library(stats)
+
+pre  <- c(1180, 1210, 1300, 1080, 1120, 1240, 1360, 980)
+post <- c(1230, 1280, 1310, 1140, 1150, 1200, 1340, 1100)
+diff <- post-pre
+
+wilcox.test(diff, alternative="greater")
+```
+:::
+
+::: {.panel}
+### Python {.panel-name}
+
+
+```python
+# under construction
+```
+
+:::
+::::
+
+# Sign Test
+
+## Usage
+
+
+## Procedure
+### Hypothesis
+$H_{o}: F(x)=1-F(-x)$
+$H_{a}: F(x) \leq 1-F(-x)$ or $H_{a}: F(x) \geq 1-F(-x)$
+
+### Test statistic
+- $\mathrm{SN}_{+}$ is the number of observations greater than 0
+- If $\mathrm{H}_{\mathrm{o}}$ is true, then the distribution of     $\mathrm{SN}_{+}$ is:
+  - $SN_+ \sim \text{Binom}(n, 0.5)$ or
+  - $SN_+ \sim N(0.5 n, \sqrt{0.25 n})$ for large enough samples
+
+### p value
+$$
+P_{\text {upper tail}}=P(SN_+ \geq SN_{+,obs})\\
+P_{\text {lower tail}}=P(SN_+ \leq SN_{+,obs})
+$$ 
+
+## Code
+:::: {.panelset}
+::: {.panel}
+### R {.panel-name}
+
+
+```r
+library(stats)
+
+before  <- c(1180, 1210, 1300, 1080, 1120, 1240, 1360, 980)
+after <- c(1230, 1280, 1310, 1140, 1150, 1200, 1340, 1100)
+
+diff <- after - before
+n <- length(diff)
+SN <- length(diff[diff > 0])
+
+1 - pbinom(SN, n, 0.5)
+```
+:::
+
+::: {.panel}
+### Python {.panel-name}
+
+
+```python
+# under construction
+```
+
+:::
+::::
+
+
+
+# Choosing Which Test
+
+Look at **distribution of differences**:
+
+- If *light-tailed and symmetric* $\implies$ Use paired permutation test
+- If *skewed or heavy tailed* $\implies$ Use wilcoxon signed-rank test
+  - Sign test also is efficient, but generally has low power for smaller $n$
+- If *normal looking* $\implies$ Use sign test

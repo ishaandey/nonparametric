@@ -1,12 +1,6 @@
 # (PART) Correlation {-}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
-                      warning=F, message=F)
 
-library(dplyr)
-library(ggplot2)
-```
 
 # Summary Sheet {-}
 > How do we test for non-linear association?
@@ -14,18 +8,13 @@ library(ggplot2)
 ## Background {-}
 Sometimes the data is strongly correlated, but there is a *non-linear* pattern. Take the following example:
 
-```{r, eval=T, echo=F}
-library(dplyr)
-x <- 1:6
-y <- x^4
 
-df <- matrix(y, nrow=1)
-colnames(df) <- x
-rownames(df) <- ''
-df
+```
+##  1  2  3   4   5    6
+##  1 16 81 256 625 1296
 ```
 
-There is a perfect relationship between the data: $y=x^4$. Yet the correlation, calculated from a linear fit, doesn't quite reflect that: $\rho=$ `r cor(x,y) %>% round(3)`.
+There is a perfect relationship between the data: $y=x^4$. Yet the correlation, calculated from a linear fit, doesn't quite reflect that: $\rho=$ 0.896.
 
 What we're in need of is an improvement of Pearson's correlation. We'd still like it to describe what happens to $Y$ when $X$ increases, but relax the assumption that the relationship needs to be linear. 
 
@@ -47,7 +36,8 @@ What we're in need of is an improvement of Pearson's correlation. We'd still lik
 
 When we fit a line to a slope, we can extract coefficients from our data. Let's take oft-used `mtcars` dataset as an example, regressing `log(mpg)` against `log(disp)`. We can fit a line through this, shown in blue.
 
-```{r, eval=T}
+
+```r
 data(mtcars)
 
 model = lm(log(mtcars$mpg)~log(mtcars$disp))
@@ -57,7 +47,9 @@ mtcars %>%
  geom_point() + geom_smooth(method = "lm", fill = NA)
 ```
 
-The equation of this line tells us some important information. Given in the form $Y_i = \beta_0 + \beta_1X_i+\varepsilon_i$, we can estimate coefficients from our linear model as $\hat{\beta_0}=$ `r model$coefficients[[1]] %>% round(3)` and $\hat{\beta_1}=$ `r model$coefficients[[2]] %>% round(3)`.
+<img src="content-correlation_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+
+The equation of this line tells us some important information. Given in the form $Y_i = \beta_0 + \beta_1X_i+\varepsilon_i$, we can estimate coefficients from our linear model as $\hat{\beta_0}=$ 5.381 and $\hat{\beta_1}=$ -0.459.
 
 **Crucially**: If $\beta_1=0$, $Y$ *doesn't depend on* $X_1$. 
 

@@ -25,3 +25,20 @@ url: 'https\://ishaandey.com/nonparametric'
 
 ## Who Are We? {-}
 
+# Quick Start {-}
+
+# Foundations {-}
+
+## Note on Notation {-}
+In this section, you'll may across some notation rooted in probability. For the large part, *don't be intimidated*. Everyone has their own comfort level with math. Instead of omitting it entirely, we've kept in the formulas as expandable details for the curious. Here's some basic pointers, but if there's something you don't understand, you can probably skip it without too many repercussions.
+
+**Indices**. Counters like $i$ or $j$ just refer to a particular observation in a set. For example, $(x_i,y_j)$ can be read as "some pair from two sets", where $x_i$ is a part of $X$, and $y_j$ is a part of $Y$.
+
+**Sums**. Super simple, same idea as with indices $(x_i,y_j)$ can be read as "some pair from two sets", where $x_i$ is a part of $X$, and $y_j$ is a part of $Y$.
+
+**Binomial**. Something like $\binom{5}{2}$ is read as "Five choose two", or the probability of selecting a combination of 2 items out of 5 possibilities. More generally: $\binom{n}{k} = \frac{n!}{k!(n-k)!}$
+
+****.
+
+# Statistics in Your Workflow {-} 
+

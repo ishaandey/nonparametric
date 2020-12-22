@@ -409,9 +409,9 @@ iframe {
   visibility: hidden;
 }
 
-.hasCopyButton:hover button.btn-copy-ex {
-  visibility: visible;
-}
+/* .hasCopyButton:hover button.btn-copy-ex {
+  visibility: hidden;
+} */
 
 
 
