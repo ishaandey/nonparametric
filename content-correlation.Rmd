@@ -32,9 +32,6 @@ What we're in need of is an improvement of Pearson's correlation. We'd still lik
 ## When To Use What {-}
 
 
-
-
-
 # Parametric OLS 
 
 
@@ -57,7 +54,7 @@ mtcars %>%
  geom_point() + geom_smooth(method = "lm", fill = NA)
 ```
 
-The equation of this line tells us some important information. Given in the form $Y_i = \beta_0 + \beta_1X_i+\varepsilon_i$, we can estimate coefficients from our linear model as $\hat{\beta_0}=$`r model$coefficients[[1]] %>% round(3)` and $\hat{\beta_1}$`r model$coefficients[[2]] %>% round(3)`.
+The equation of this line tells us some important information. Given in the form $Y_i = \beta_0 + \beta_1X_i+\varepsilon_i$, we can estimate coefficients from our linear model as $\hat{\beta_0}=$`r model$coefficients[[1]] %>% round(3)` and $\hat{\beta_1}$ `r model$coefficients[[2]] %>% round(3)`.
 
 **Crucially**: If $\beta_1=0$, $Y$ *doesn't depend on* $X_1$. 
 

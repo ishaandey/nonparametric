@@ -21,9 +21,6 @@ What we're in need of is an improvement of Pearson's correlation. We'd still lik
 ## When To Use What {-}
 
 
-
-
-
 # Parametric OLS 
 
 
@@ -49,7 +46,7 @@ mtcars %>%
 
 <img src="content-correlation_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-The equation of this line tells us some important information. Given in the form $Y_i = \beta_0 + \beta_1X_i+\varepsilon_i$, we can estimate coefficients from our linear model as $\hat{\beta_0}=$5.381 and $\hat{\beta_1}$-0.459.
+The equation of this line tells us some important information. Given in the form $Y_i = \beta_0 + \beta_1X_i+\varepsilon_i$, we can estimate coefficients from our linear model as $\hat{\beta_0}=$5.381 and $\hat{\beta_1}$ -0.459.
 
 **Crucially**: If $\beta_1=0$, $Y$ *doesn't depend on* $X_1$. 
 
@@ -129,8 +126,7 @@ We can't measure the association of dependent data (i.e. time series).
 
 By comparing ranks of $X_i$'s to ranks of $Y_i$'s, we can see the extent to which $Y$ increases or decreases with $X$.
 
-
-We can test strength of correlation with $H_0:\rho_s=0$ and $H_a: \rho_s \geq 0, \rho_s \leq 0, \text{ or } \rho_s \neq 0$
+The p-value follows a similar permutation pattern as before. We can reshuffle the obser
 
 ### p-value
 1. Reshuffle the $Y_i$’s to get new pairs $(X_i,Y^*_i)$
@@ -149,7 +145,7 @@ H_a &: \rho_s \geq 0, \rho_s \leq 0, \text{ or } \rho_s \neq 0
 \end{aligned}
 $$
 
-Note: $\rho$ refers to the population measure, while $r$ refers to the observed correlation measure.
+Note: $\rho_s$ refers to the population measure, while $r_s$ refers to the observed correlation measure.
 
 P-Value:
 $$
@@ -213,7 +209,7 @@ $$
 r_{\tau} = 2 * \frac{\sum_{i=1}^{n-1} V_i}{\binom{n}{2}} - 1
 $$ 
 
-We can test if there is significant concordance or discorance with $H_0:\tau=0$ and $H_a: \tau \geq 0, \tau \leq 0, \text{ or } \tau \neq 0$
+We can test if there is significant concordance or discordance with $H_0:\tau=0$ and $H_a: \tau \geq 0, \tau \leq 0, \text{ or } \tau \neq 0$
 
 
 ### p-value

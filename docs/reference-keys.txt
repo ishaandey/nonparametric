@@ -37,7 +37,6 @@ test-statistic
 p-value
 code-6
 choosing-which-test
-when-to-use-what
 parametric-ols
 usage-8
 assumption
@@ -57,11 +56,3 @@ kendalls-tau
 method
 p-value-3
 limitations
-r
-python
-r-1
-python-1
-r-2
-python-2
-r-3
-python-3

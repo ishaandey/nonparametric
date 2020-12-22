@@ -181,7 +181,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
 </ul></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
-<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a><ul>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html#background"><i class="fa fa-check"></i>Background</a></li>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html#choosing-a-test"><i class="fa fa-check"></i>Choosing a Test</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html"><i class="fa fa-check"></i><b>1</b> Parametric t-Test</a><ul>
 <li class="chapter" data-level="1.1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a><ul>
 <li class="chapter" data-level="" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
@@ -242,8 +245,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="choosing-which-test.html"><a href="choosing-which-test.html"><i class="fa fa-check"></i><b>9</b> Choosing Which Test</a></li>
 <li class="part"><span><b>III Correlation</b></span></li>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html"><i class="fa fa-check"></i>Summary Sheet</a><ul>
-<li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="9.1" data-path="summary-sheet.html"><a href="summary-sheet.html#when-to-use-what"><i class="fa fa-check"></i><b>9.1</b> When To Use What</a></li>
+<li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#background-1"><i class="fa fa-check"></i>Background</a></li>
+<li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#when-to-use-what"><i class="fa fa-check"></i>When To Use What</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="parametric-ols.html"><a href="parametric-ols.html"><i class="fa fa-check"></i><b>10</b> Parametric OLS</a><ul>
 <li class="chapter" data-level="10.1" data-path="parametric-ols.html"><a href="parametric-ols.html#usage-8"><i class="fa fa-check"></i><b>10.1</b> Usage</a><ul>
@@ -310,6 +313,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Goal: We’ve got two samples, and want to see if there’s the significance difference in means.</p>
 </blockquote>
+<div id="background" class="section level2 unnumbered">
+<h2>Background</h2>
+<p>Comparing differences in means is one of the most commonly used procedures in statistics. Are guys taller than girls? Does this product have better ratings than than other? From introductory statistics, you may remember a two-sample t-test, but that may not always apply.</p>
+</div>
+<div id="choosing-a-test" class="section level2 unnumbered">
+<h2>Choosing a Test</h2>
 <p>Ask yourself the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Are my observations randomly sampled from the population?</li>
@@ -318,9 +327,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>Are my population variances equal?</li>
 </ol>
 <p>If you said <em>yes</em> to all of the above, choose the <strong>Parametric t-Test</strong>.</p>
-<p>If you said no to only <em>3</em> or <em>4</em>, consider the <strong>Permutation Test</strong>. Check the distribution and number of outliers. If the data is skewed, use the <em>median</em> variant, and if there are outliers on both tails, consider using trimmed means.</p>
+<p>If you said no only to options (3) or (4), consider the <strong>Permutation Test</strong>. Check the distribution and number of outliers. If the data is skewed, use the <em>median</em> variant, and if there are outliers on both tails, consider using trimmed means.</p>
 <p>Otherwise, we’ll use the <strong>Wilcoxon Rank-Sum</strong>, a powerful rank-based test to compare two samples.</p>
 <p>If we’re interested in generating a confidence interval for the difference, we can use the <strong>Mann-Whitney</strong> test. It works similarly to the Wilcoxon Rank-Sum, and results in the same p-value.</p>
+</div>
 </div>
 <hr>
 <center> 

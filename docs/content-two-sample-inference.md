@@ -7,6 +7,12 @@
 
 > Goal: We've got two samples, and want to see if there's the significance difference in means.
 
+## Background {-}
+
+Comparing differences in means is one of the most commonly used procedures in statistics. Are guys taller than girls? Does this product have better ratings than than other? From introductory statistics, you may remember a two-sample t-test, but that may not always apply.
+
+## Choosing a Test {-}
+
 Ask yourself the following questions:
 
 1. Are my observations randomly sampled from the population?
@@ -16,7 +22,7 @@ Ask yourself the following questions:
 
 If you said *yes* to all of the above, choose the **Parametric t-Test**.
 
-If you said no to only *3* or *4*, consider the **Permutation Test**. Check the distribution and number of outliers. If the data is skewed, use the *median* variant, and if there are outliers on both tails, consider using trimmed means. 
+If you said no only to options (3) or (4), consider the **Permutation Test**. Check the distribution and number of outliers. If the data is skewed, use the *median* variant, and if there are outliers on both tails, consider using trimmed means. 
 
 Otherwise, we'll use the **Wilcoxon Rank-Sum**, a powerful rank-based test to compare two samples.
 
