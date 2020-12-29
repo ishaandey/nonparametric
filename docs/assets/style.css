@@ -86,17 +86,16 @@ h1, h2, h3, h4 {
 /* Style the tab */
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
   background-color: inherit;
-  float: left;
-  border: none;
+  float: top;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   outline: none;
-  cursor: pointer;
+  cursor: pointer;  
   padding: 14px 16px;
   transition: 0.3s;
   font-size: 17px;
@@ -104,7 +103,9 @@ h1, h2, h3, h4 {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+  background-color: #a4a2bd;
+  transition: 0.2s;
+  border-color: #a4a2bd;
 }
 
 /* Create an active/current tablink class */
@@ -116,10 +117,8 @@ h1, h2, h3, h4 {
 .tabcontent {
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
+  border-top: 1px solid #ccc; 
 }
-
 
 /*----------DROP CAPS--------------*/
 

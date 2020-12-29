@@ -9,11 +9,11 @@
 
 Comparing differences in means is one of the most commonly used procedures in statistics. Take the following use case: Does Product A have better ratings than than Product B? Sure, we could compare averages (i.e. Product A's mean is $4.83$, better than Product B's  $4.79$), but it fails to answer the question: Are the *population* ratings for A better than B? We only have data from a sample of reviews, so we've got to somehow *estimate* the population differences in ratings.
 
-Any student of introductory statistics knows the remedy: the two-sample t-test. But the t-test makes a few strong assumptions about the data, mainly the assumption of normality. This chapter describes alternative tests we can use instead. 
+Any student of introductory statistics knows the remedy: take into account the spread of the data using a two-sample t-test. But the t-test makes a few strong assumptions about the data, mainly the assumption of normality. This chapter describes alternative tests we can use instead. 
 
 ## Notation {-}
 
-Say you're expecting population 1 to be *lower* that population 2. You'll use a *lower-tail* test, and use a set of hypotheses like so: 
+Say you're expecting population 1 to be *lower* than population 2. You'll use a *lower-tail* test, and use a set of hypotheses like so: 
 $$
 H_0: \mu_1 = \mu_2 \\
 H_a: \mu_1 \leq \mu_2
@@ -29,7 +29,7 @@ H_a: F_1(x) \geq F_2(x) \\
 \text{ with a strict inequality for at least one }x
 $$
 
-$F_(x)$ here refers to the empirical CDF of the function, or *probability of seeing a value less than or below* $x$.
+$F(x)$ here refers to the empirical CDF, or the *probability of seeing a value less than or below* $x$.
 
 If the location of population 1 is below population 2, we'd expect that at a certain point $x$, the probability of seeing a value at or below $x$ should be higher for population 1 than  it is for population 2. Here's a visual:
 
@@ -46,27 +46,29 @@ cdf.2 <- pnorm(x,1,1)
 df <- data.frame(x, pdf.1, pdf.2, cdf.1, cdf.2)
 
 pdfs <- ggplot(data=df, aes(x=x)) + 
-  geom_line(aes(y = pdf.1, color = "Mean = 0")) + 
-  geom_line(aes(y = pdf.2, color = "Mean = 1"), linetype='dashed') +
+  geom_line(aes(y = pdf.1, color = "Mean = 0"), size=1) + 
+  geom_line(aes(y = pdf.2, color = "Mean = 1"), size=1) +
    theme(axis.title.x = element_blank(),
         panel.grid.minor = element_blank(),
         plot.title = element_text(hjust = 0.5),
         legend.position = c(0.15,0.75)) +
   ylab('Probability Density') + ggtitle('Comparing Distributions') +
-  scale_color_manual(values = c("Mean = 0" = "blue", "Mean = 1" = "red")) +
+  scale_color_manual(values = c("Mean = 0" = col1, "Mean = 1" = col2)) +
   labs(colour = "Location Parameter") +
   scale_y_continuous(breaks=c(0))
 
   
 cdfs <- ggplot(data=df, aes(x=x)) + 
-  geom_line(aes(y = cdf.1), color = "blue") + 
-  geom_line(aes(y = cdf.2), color = "red", linetype='dashed') +
+  geom_line(aes(y = cdf.1), color = col1, size=1) + 
+  geom_line(aes(y = cdf.2), color = col2, size=1) +
   theme(panel.grid.minor = element_blank()) + 
   ylab('Cumulative Probability') +
   scale_y_continuous(breaks=c(0,1))
   
 gridExtra::grid.arrange(pdfs,cdfs,ncol=1)
 ```
+
+From the first plot we see $\mu_1 < \mu_2$, and from the second, $F_1(x) \geq F_2(x)$.
 
 ## Diagnostics {-}
 
@@ -87,11 +89,11 @@ Do you care about the magnitude of the difference? Consider the **Permutation Te
 
 If you're instead just looking to determine if one sample is greater than the other, use the Wilcoxon Rank-Sum, particularly with skewed distributions or heavy outliers. If we're interested in generating a confidence interval for the difference, we can use the **Mann-Whitney** test. It works similarly to the Wilcoxon Rank-Sum, and results in the same p-value.
 
-# Parametric t-Test {#two-sample-t-test}
+# Two Sample t-Test {#two-sample-t-test}
 
-## Usage 
+The two-sample t-test is by far the most powerful test when the assumptions are met for comparing means between two samples.
 
-Use the t-test if the following 4 assumptions are met:
+**Assumptions**:
 
 1. Random sample from each population
 2. Both samples are independent
@@ -108,21 +110,31 @@ Note: By the Central Limit Theorem, we can assume that the sample means will sta
 ## Code
 
 ::: {.tab}
-<button class="tablinks" onclick="unrolltab(event, 'R1')">R</button>
-<button class="tablinks" onclick="unrolltab(event, 'Python1')">Python</button>
+<button class="tablinks" onclick="unrolltab(event, 'R')">R</button>
+<button class="tablinks" onclick="unrolltab(event, 'Python')">Python</button>
 
-::: {#R1 .tabcontent}
+::: {#R .tabcontent}
 
 ```{r}
-t.test()
+library(stats)
+
+sample1 <- c(1.1, 2.1, 4.2, 3.2, 1.7, 2.2, 2.7)
+sample2 <- c(3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3)
+
+t.test(x=sample1, y=sample2, alternative='two.sided', paired=F)
 ```
 
 :::
 
-::: {#Python1 .tabcontent}
+::: {#Python .tabcontent}
 
 ```{r engine='python'}
-abcd123
+from scipi.stats import ttest_ind
+
+sample1 = [1.1, 2.1, 4.2, 3.2, 1.7, 2.2, 2.7]
+sample2 = [3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3]
+
+ttest_ind(a=sample1, b=sample2)
 ```
 
 :::
@@ -130,11 +142,10 @@ abcd123
 
 # Permutation Test {#two-sample-permutation}
 
-## Usage 
-
 Use the permutation test if the normality assumption is violated, and you're interested in quantifying the difference in some location parameter: mean, trimmed mean, or median. This works well for smaller sample sizes. 
 
-#### Assumptions {-}
+**Assumptions**: 
+
 1. Random sample from each population
 2. Both are sampled independently
 3. Both population distributions are *continuous* (not categorical / discrete)
@@ -184,23 +195,34 @@ $$
 Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.
 
 ## Code 
-
 ::: {.tab}
-<button class="tablinks" onclick="unrolltab(event, 'R2')">R</button>
-<button class="tablinks" onclick="unrolltab(event, 'Python2')">Python</button>
+<button class="tablinks" onclick="unrolltab(event, 'R')">R</button>
+<button class="tablinks" onclick="unrolltab(event, 'Python')">Python</button>
 
-::: {#R2 .tabcontent}
+::: {#R .tabcontent}
 
 ```{r}
-# Content
+source('https://raw.githubusercontent.com/ishaandey/nonparametric/main/helper.R')
+
+sample1 <- c(37, 49, 55, 57)
+sample2 <- c(23, 31, 39, 46)
+
+permutation_test(sample1, sample2, method='mean')
+
+# Could also use method='median'
 ```
 
 :::
 
-::: {#Python2 .tabcontent}
+::: {#Python .tabcontent}
 
 ```{r engine='python'}
-# Content
+# Function defined at 'https://raw.githubusercontent.com/ishaandey/nonparametric/main/helper.py'
+
+sample1 = [37, 49, 55, 57]
+sample2 = [23, 31, 39, 46]
+
+permutation_test(sample1, sample2, method='mean')
 ```
 
 :::
@@ -218,51 +240,58 @@ Instead of difference in means, we could use either (1) sums, (2) trimmed means,
 
 # Wilcoxon Rank-Sum
 
-## Usage
-
 Wilcoxon Rank-Sum is great for testing with low sample sizes and outliers, since it uses the rank of the observation as opposed to the value itself.
 
-### Assumptions {-}
-1. Both population distribution are continuous (not categorical / discrete)
+There's only one **assumption**, that both population distribution are continuous (not categorical / discrete)
 
 ## How It Works
 
 The goal here is to use *ranks*, as opposed to the actual values, to identify differences in location between the two parameters. Why? Ranks are much more resistant to outliers, since a singly high observation is now just ranked at the max, doesn't matter how far above in absolute value it is.
 
-We'll first calculate $W_{obs}$, our test statistic. To do so, we'll first pool both samples together and rank them, assigning a value of `1` to the smallest observation, and `m+n` to the largest (since there are now $m+n$ observations in the pooled group).
+We can pool the observations and compare the ranks that were assigned to sample 1 against those assigned to sample 2. We can compare the average rank of sample 1 against sample 2, and if it's lower by a particular margin, we can conclude that the values of sample 1 are below sample 2.
 
-$W_{observed}$ is simply the *sum of ranks* of sample 1 observations. 
-
-Why use this instead of the mean of the ranks between the two? Turns out, the sum of ranks of one sample is a linear function of the mean, so there's a 1:1 correspondence between the two. The sum of ranks is just more consistent and easy to calculate. 
-
-As a quick example:
+As an example:
 
 ```{r, echo=F, eval=T, results=T}
-library(dplyr)
-library(knitr)
-sample1 <- c(39, 49, 55, 57)
-sample2 <- c(31, 33, 46)
+sample2 <- c(46, 48, 49, 51)
+sample1 <- c(31, 32, 33, 47)
 
-df <- tibble(sample1, sample2=c(sample2, NA)) %>% t()
-colnames(df) <- paste('Obs', 1:4)
-kable(df) 
+df <- tibble('Sample 1'=sample1, 'Sample 2'=sample2) %>% t()
+kbl(df) %>% 
+  column_spec(1, bold = T, border_right = T) %>%
+  row_spec(1, color=col1) %>%
+  row_spec(2, color=col3)
 ```
 
-becomes 
+We'll first calculate $W_{obs}$, our test statistic. To do so, we'll first pool both samples together and rank them, assigning a value of `1` to the smallest observation, and `m+n` to the largest (since there are now $m+n$ observations in the pooled group).
 
 ```{r, echo=F, eval=T, results=T}
 pooled <- c(sample1, sample2)
 ranks <- rank(pooled,ties.method = 'average')
-df2 <- tibble(pooled, ranks) %>% t()
-colnames(df2) <- c(rep('Sample1', 4), rep('Sample2', 3))
-kable(df2) 
+df2 <- tibble('Values'=pooled, 'Ranks'=ranks, 'Sample'=c(rep('Sample1', 4), rep('Sample2', 4))) 
+row.names(df2) <- NULL
+df2$Values <- cell_spec(df2$Values, color = ifelse(df2$Sample == 'Sample1', col1, col3))
+df2$Ranks <- cell_spec(df2$Ranks, color = ifelse(df2$Sample == 'Sample1', col1, col3), bold = ifelse(df2$Sample == 'Sample1', T, F))
+
+kbl(df2[c('Values','Ranks')] %>% t(), 
+    escape=F, align='c') 
 ```
 
-Under the null hypothesis, we'd expect our observations to have no difference in means. So, if we were to randomly switch around (permute) the observations across the samples, we'd expect our test statistic $W^*$ of the particular permutation to remain close to $W_{obs}$.
+$W_{obs}$ is simply the *sum of ranks* of sample 1 observations: $W_{obs}=$ <span style="color: #79759d;">1+2+3+5</span> $=11$.
 
-If sample 1 has $m$ observations, and sample 2 has $n$ observations, there are $\binom {m+n}{m} = \frac {(m+n)!}{m!n!}$ permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic $W^*$ for each one of these permutations.
+Why use this instead of the mean of the ranks between the two? Turns out, the sum of ranks of one sample is a linear function of the mean, so there's a 1:1 correspondence between the two. The sum of ranks is just more consistent and easy to calculate. 
+
+<hr style="height:1px; width:60%;"></hr>
+
+Under the null hypothesis, we'd expect our observations to have no difference in ranks. So, if we were to randomly switch around (permute) the observations across the samples, we'd expect our observed test statistic $W_{obs}$ to not be anything unusual, according to $H_0$. In otherwords, random chance could have just as easily produced $W_{obs}$ as the treatment we gave.
+
+Let's make that idea a little more quantitative: If sample 1 has $m$ observations, and sample 2 has $n$ observations, there are $\binom {m+n}{m} = \frac {(m+n)!}{m!n!}$ permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic $W^*$ for each one of these permutations.
 
 Our p-value is then just the *fraction of permutations* that have a test statistic $W$ as or more extreme than what was observed $W_{obs}$:
+
+Going back to our example,
+
+Here are 
 
 <details><summary> P-value Formula </summary>
 <p>
@@ -274,17 +303,47 @@ $p-val_{two\ sided} = \frac{\text{# of W's more extreme than } W_{obs} \text{ ac
 </p>
 </details>
 
-Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.
+In our example, there are $\binom {8}{4}=70$ possible ways we could've obtained the four observations in sample 1 from a total of eight values. We could lookup the significance from a table, or read off the p-value from the test output
 
+**Interpretation**: Given a p-value of 0.028, there is a 2.8% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution. 
+
+Because it's less than our confidence threshold $\alpha$ of $0.05$, we reject the null hypothesis that $F_1(x) = F_2(x)$, and conclude that the location of population 1 is lower than population 2.
 
 ## Code 
 
+::: {.tab}
+<button class="tablinks" onclick="unrolltab(event, 'R')">R</button>
+<button class="tablinks" onclick="unrolltab(event, 'Python')">Python</button>
 
+::: {#R .tabcontent}
+
+```{r, eval=T, include=T}
+library(stats)
+
+sample1 <- c(31, 32, 33, 47)
+sample2 <- c(46, 48, 49, 51)
+
+wilcox.test(sample1, sample2, alternative="less")
+```
+
+:::
+
+::: {#Python .tabcontent}
+
+```{r engine='python'}
+from scipy.stats import ranksums
+
+sample1 = [31, 32, 33, 47]
+sample2 = [46, 48, 49, 51]
+
+ranksums(sample1, sample2, alternative='less')
+```
+
+:::
+:::
 
 
 # Mann-Whitney 
-
-## Usage
 
 
 ### Assumptions {-}
@@ -301,9 +360,11 @@ library(dplyr)
 sample2 <- c(39, 49, 55, 57)
 sample1 <- c(31, 33, 46, 40)
 
-df <- tibble(Sample1 = sample1, Sample2 = sample2) %>% t()
-colnames(df) <- paste('Obs', 1:4)
-kable(df) 
+df <- tibble('Sample 1' = sample1, 'Sample 2' = sample2) %>% t()
+kbl(df) %>% 
+  column_spec(1, bold=T, border_right = T) %>%
+  row_spec(1, color=col1) %>%
+  row_spec(2, color=col2)
 ```
 
 We then look at every possible combination of the two samples and compare the values. We check if the values of the first sample (the columns) are greater than the values of the second sample (rows):
@@ -316,19 +377,38 @@ colnames(comp.mat) <- sort(sample1) %>% as.character()
 for (i in sample1){
   for (j in sample2) {
     if (i > j) {
-      comp <- 1
+      comp <- 'Y'
     } 
-    else {comp <- 0}
+    else {comp <- 'N'}
     comp.mat[as.character(j),as.character(i)] <- comp
   }
 }
 
-kable(comp.mat)
+df = data.frame(comp.mat)
+colnames(df) <- colnames(comp.mat)
+rownames(df) <- rownames(comp.mat)
+
+
+df2 = apply(df, 2, 
+            function(x) {
+              cell_spec(x, color = "white", align = "c", 
+                        background = factor(x, c('N','Y'), c("#BBBBBB", colX)))
+              }
+            )
+rownames(df2) <- rownames(comp.mat)
+
+kbl(df2, format='html', escape=F) %>%
+  kable_paper(full_width = F, html_font = '"Karla", calibri, sans-serif') %>%
+  row_spec(0, bold=T, color=col2) %>%
+  column_spec(1, bold=T, color = col1) %>%
+  add_header_above(c("Is Sample 1 > Sample 2?" = 5))
 ```
 
-Our test statistic $U$ is the sum of the matrix, $2$.
+Our test statistic $U_{obs}$ is the number of **Y**'s we found in the matrix, $=2$.
 
 Under the null hypothesis, we'd expect our test statistic not to be that extreme. That is, if we were to randomly permute our values under different label, we'd need to see that our observed test statistic is far more extreme that the rest of the U statistics before concluding that the null hypothesis doesn't apply.
+
+### Formal Hypothesis Tests {-}
 
 <details><summary> Formal Hypothesis Test </summary>
 <p>

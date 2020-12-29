@@ -2,6 +2,8 @@ $(document).ready(function() {
   
   
   // Copy Button
+  /*
+  
   $chunks = $('pre.sourceCode > code.sourceCode');
   $chunks.each(function(i, val) {
     $(this).prepend("<button class=\"button copy\"><i class=\"fa fa-copy fa-2x\"></i></button>").click(function() {
@@ -14,6 +16,8 @@ $(document).ready(function() {
     });
   });
   
+  */
+  
   
   // Section anchors
   $('.section h1, .section h2, .section h3, .section h4, .section h5').each(function() {
@@ -22,8 +26,6 @@ $(document).ready(function() {
   });
 });
   
-
-
 /* New Clipboard copy 
 function changeTooltipMessage(element, msg) {
   var tooltipOriginalTitle=element.getAttribute('data-original-title');

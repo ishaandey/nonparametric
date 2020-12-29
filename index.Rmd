@@ -1,8 +1,8 @@
 --- 
 title: "Nonparametric Handbook"
-subtitle: "A Beginner's Guide to Nonparametric Statistics"
+subtitle: "A Data Analyst's Guide to Statistical Testing"
 author: 
-- Ishaan Dey^[University of Virginia, [ishaandey.com](https://www.ishaandey.com)]
+- Ishaan Dey
 date: "January 2021"
 site: bookdown::bookdown_site
 documentclass: book
@@ -10,7 +10,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: ishaandey/nonparametric
-description: "A handbook for applying statistical testing to big data."
+description: "Data Analyst's Guide to Statistical Testing"
 cover-image: images/favicon/android-chrome-512x512.png
 favicon: images/favicon/favicon.ico
 always_allow_html: yes
@@ -23,6 +23,13 @@ knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
 library(ggplot2)
 library(dplyr)
 library(knitr)
+library(kableExtra)
+
+col1 <- '#14366e' #royalblue
+col2 <- '#6e1f14' #olivegreen
+col3 <- '#636e14' #crimsonred
+colX <- '#79759d' #themepurple
+
 ```
 
 
@@ -38,14 +45,15 @@ library(knitr)
 
 # Quick Start {-}
 
-# Foundations {-}
+# Statistical Foundations {-}
 
-## Statistics Basics {-}
+## The Basics {-}
 
 This book assumes knowledge of basic statistical testing, ideas such as p-values and simple probability distributions (i.e. Normal, Binomial). 
 
+**Resources**:
 
-## Note on Notation {-}
+## Notation {-}
 In this section, you'll may across some notation rooted in probability. For the large part, *don't be intimidated*. Everyone has their own comfort level with math. Instead of omitting it entirely, we've kept in the formulas as expandable details for the curious. Here's some basic pointers, but if there's something you don't understand, you can probably skip it without too many issues
 
 **Indices**. Counters like $i$ or $j$ just refer to a particular observation in a set. For example, $(x_i,y_j)$ can be read as "some pair from two sets", where $x_i$ is a part of $X$, and $y_j$ is a part of $Y$.
@@ -56,7 +64,7 @@ In this section, you'll may across some notation rooted in probability. For the 
 
 **Probability Distribution Function (PDF)**. $f_x(x)$ describes the relative likelihood (*not probability*) of seeing the value $x$, when $x$ is continuous. It is always $\geq0$, and the integral across all values $\int_{-\infty}^{\infty}f_x(x)dx$ must $=1$.
 
-**Cumulative Distribution Function (CDF)**. $F_x(x)$ describes the *probability* of seeing a value less than or equal to $x$. In other words, $F_x(x) = \int_{-\infty}^{x}f_t(t)dt=Pr(X\leq x)$. More visually:
+**Cumulative Distribution Function (CDF)**. $F_x(x)$ describes the *probability* of seeing a value less than or equal to $x$. In other words, $F_x(x) = Pr(X\leq x)$. Mathematically, it is the integral of the pdf $f_x(x)$ for each point $x$: $F_x(x) = \int_{-\infty}^{x}f_t(t)dt$. To visualize that relationship:
 
 ```{r,  fig.align='center', eval=T, echo=F}
 library(ggplot2)
@@ -98,9 +106,4 @@ cdf <- ggplot(data=df, aes(x=x)) +
   xlim(-4,4)
 
 gridExtra::grid.arrange(pdf,cdf,ncol=1)
-
 ```
-
-
-# Statistics in Your Workflow {-} 
-

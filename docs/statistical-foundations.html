@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Paired Permutation Test | Nonparametric Handbook</title>
+  <title>Statistical Foundations | Nonparametric Handbook</title>
   <meta name="description" content="Data Analyst’s Guide to Statistical Testing" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Paired Permutation Test | Nonparametric Handbook" />
+  <meta property="og:title" content="Statistical Foundations | Nonparametric Handbook" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ishaandey.com/nonparametric/" />
   <meta property="og:image" content="https://ishaandey.com/nonparametric/images/favicon/android-chrome-512x512.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ishaandey/nonparametric" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Paired Permutation Test | Nonparametric Handbook" />
+  <meta name="twitter:title" content="Statistical Foundations | Nonparametric Handbook" />
   
   <meta name="twitter:description" content="Data Analyst’s Guide to Statistical Testing" />
   <meta name="twitter:image" content="https://ishaandey.com/nonparametric/images/favicon/android-chrome-512x512.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="parametric-paired-t-test.html"/>
-<link rel="next" href="wilcoxon-signed-rank-test.html"/>
+<link rel="prev" href="quick-start.html"/>
+<link rel="next" href="summary.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -307,63 +307,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <script src="assets/hideOutput.js"></script>
   <link href="assets/style.css" rel="stylesheet">
 </head>
-<div id="paired-permutation-test" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> Paired Permutation Test</h1>
-<div id="usage-2" class="section level2">
-<h2><span class="header-section-number">6.1</span> Usage</h2>
-<p>By convention, differences are defined as <span class="math inline">\(\text{treatment} - \text{control}\)</span>.</p>
-<p>We can use this test if we violate the normality assumption of the paired t-test. However, as we’re still using an average of differences, our test statistic is still subject to outliers.</p>
+<div id="statistical-foundations" class="section level1 unnumbered">
+<h1>Statistical Foundations</h1>
+<div id="the-basics" class="section level2 unnumbered">
+<h2>The Basics</h2>
+<p>This book assumes knowledge of basic statistical testing, ideas such as p-values and simple probability distributions (i.e. Normal, Binomial).</p>
+<p><strong>Resources</strong>:</p>
 </div>
-<div id="procedure-1" class="section level2">
-<h2><span class="header-section-number">6.2</span> Procedure</h2>
-<p>We’ll define <span class="math inline">\(D_{obs}\)</span> as the average of differences between our samples
-<span class="math display">\[
-\bar{D}_{obs}=\frac{\sum_{i=1}^{n} D_{i}}{n}
-\]</span></p>
-<p>Under the null hypothesis, we’d expect that if we were to randomly switch around (permute) the observed within the pair, we’d see the same test statistic.</p>
-<p>Since we have <span class="math inline">\(n\)</span> pairs, there are <span class="math inline">\(2^n\)</span> possible arrangements where we swap around the values across the treatment and control group. For each permutation, we’ll find <span class="math inline">\(\bar{D}^*\)</span>, the mean of differences for that particular permutation.</p>
-<p>More visually:</p>
-<pre><code>##        Obs 1 Obs 2 Obs 3 Obs 4 Obs 5
-## before    31    38    46    54    43
-## after     39    49    55    57    44</code></pre>
-<p>can be permuted within pairs, with one permutation looking like:</p>
-<pre><code>##         Obs * Obs 2 Obs * Obs 4 Obs 5
-## before*    39    38    55    54    43
-## after*     31    49    46    57    44</code></pre>
-<p>but not across pairs, because we’re using a <em>matched pairs</em> design.</p>
-<p>So, our p-value is then just the <em>fraction of permutations</em> that have a test statistic <span class="math inline">\(D\)</span> as or more extreme than what was observed <span class="math inline">\(D_{obs}\)</span>.</p>
-<details>
-<summary> P-value Formula </summary>
-<p>
-<span class="math display">\[
-\begin{aligned}
-P_{\text {upper tail}} &amp;= \frac{\text {number of } \bar{D}^{\prime} s \geq \bar{D}_{obs}}{2^{n}} \\ 
-P_{\text {lower tail}} &amp;= \frac{\text {number of } \bar{D}^{\prime} s \leq \bar{D}_{obs}}{2^{n}}
-\end{aligned}
-\]</span>
-</p>
-</details>
-</div>
-<div id="code-5" class="section level2">
-<h2><span class="header-section-number">6.3</span> Code</h2>
-<div class="panelset">
-<div class="panel">
-<h3 id="r-1" class="panel-name"><span class="header-section-number">6.3</span> R</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="paired-permutation-test.html#cb13-1"></a><span class="kw">library</span>(stats)</span>
-<span id="cb13-2"><a href="paired-permutation-test.html#cb13-2"></a></span>
-<span id="cb13-3"><a href="paired-permutation-test.html#cb13-3"></a>samp.before &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.1</span>, <span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.2</span>, <span class="fl">1.7</span>, <span class="fl">2.2</span>, <span class="fl">2.7</span>)</span>
-<span id="cb13-4"><a href="paired-permutation-test.html#cb13-4"></a>samp.after  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.9</span>, <span class="fl">2.9</span>, <span class="fl">3.8</span>, <span class="fl">1.8</span>, <span class="fl">3.3</span>, <span class="fl">2.8</span>, <span class="fl">2.3</span>)</span>
-<span id="cb13-5"><a href="paired-permutation-test.html#cb13-5"></a></span>
-<span id="cb13-6"><a href="paired-permutation-test.html#cb13-6"></a><span class="kw">t.test</span>(<span class="dt">x=</span>samp.before, <span class="dt">y=</span>samp.after, <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>, <span class="dt">paired=</span>T)</span></code></pre></div>
-</div>
-<div class="panel">
-<h3 id="python-1" class="panel-name"><span class="header-section-number">6.3</span> Python</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="paired-permutation-test.html#cb14-1"></a><span class="co"># under construction</span></span></code></pre></div>
+<div id="notation" class="section level2 unnumbered">
+<h2>Notation</h2>
+<p>In this section, you’ll may across some notation rooted in probability. For the large part, <em>don’t be intimidated</em>. Everyone has their own comfort level with math. Instead of omitting it entirely, we’ve kept in the formulas as expandable details for the curious. Here’s some basic pointers, but if there’s something you don’t understand, you can probably skip it without too many issues</p>
+<p><strong>Indices</strong>. Counters like <span class="math inline">\(i\)</span> or <span class="math inline">\(j\)</span> just refer to a particular observation in a set. For example, <span class="math inline">\((x_i,y_j)\)</span> can be read as “some pair from two sets”, where <span class="math inline">\(x_i\)</span> is a part of <span class="math inline">\(X\)</span>, and <span class="math inline">\(y_j\)</span> is a part of <span class="math inline">\(Y\)</span>.</p>
+<p><strong>Sums</strong>. Something like <span class="math inline">\(\sum_{i=1}^n x_i\)</span> can be read as “add together each observation <span class="math inline">\(x_i\)</span> in the set <span class="math inline">\(X\)</span>”.</p>
+<p><strong>Combinations</strong>. Something like <span class="math inline">\(\binom{5}{2}\)</span> is read as “Five choose two”, or the probability of selecting a combination of 2 items out of 5 possibilities. More generally: <span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span></p>
+<p><strong>Probability Distribution Function (PDF)</strong>. <span class="math inline">\(f_x(x)\)</span> describes the relative likelihood (<em>not probability</em>) of seeing the value <span class="math inline">\(x\)</span>, when <span class="math inline">\(x\)</span> is continuous. It is always <span class="math inline">\(\geq0\)</span>, and the integral across all values <span class="math inline">\(\int_{-\infty}^{\infty}f_x(x)dx\)</span> must <span class="math inline">\(=1\)</span>.</p>
+<p><strong>Cumulative Distribution Function (CDF)</strong>. <span class="math inline">\(F_x(x)\)</span> describes the <em>probability</em> of seeing a value less than or equal to <span class="math inline">\(x\)</span>. In other words, <span class="math inline">\(F_x(x) = Pr(X\leq x)\)</span>. Mathematically, it is the integral of the pdf <span class="math inline">\(f_x(x)\)</span> for each point <span class="math inline">\(x\)</span>: <span class="math inline">\(F_x(x) = \int_{-\infty}^{x}f_t(t)dt\)</span>. To visualize that relationship:</p>
+<p><img src="nonparametric_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+
 </div>
 </div>
-<hr />
-</div>
-</div>
+
+
+
 <hr>
 <center> 
   <div class="footer">
@@ -377,8 +342,8 @@ P_{\text {lower tail}} &amp;= \frac{\text {number of } \bar{D}^{\prime} s \leq \
           </div>
         </div>
       </div>
-<a href="parametric-paired-t-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="wilcoxon-signed-rank-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="quick-start.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -409,7 +374,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ishaandey/nonparametric/edit/master/content-matched-pairs.Rmd",
+"link": "https://github.com/ishaandey/nonparametric/edit/master/index.Rmd",
 "text": "Suggest An Edit"
 },
 "history": {
@@ -420,7 +385,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/ishaandey/nonparametric/raw/master/content-matched-pairs.Rmd"],
+"download": ["https://github.com/ishaandey/nonparametric/raw/master/index.Rmd"],
 "toc": {
 "collapse": "section",
 "toc_depth": 2

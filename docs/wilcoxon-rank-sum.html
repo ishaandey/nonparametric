@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Wilcoxon Rank-Sum | Nonparametric Handbook</title>
-  <meta name="description" content="A handbook for applying statistical testing to big data." />
+  <meta name="description" content="Data Analyst’s Guide to Statistical Testing" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Wilcoxon Rank-Sum | Nonparametric Handbook" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ishaandey.com/nonparametric/" />
   <meta property="og:image" content="https://ishaandey.com/nonparametric/images/favicon/android-chrome-512x512.png" />
-  <meta property="og:description" content="A handbook for applying statistical testing to big data." />
+  <meta property="og:description" content="Data Analyst’s Guide to Statistical Testing" />
   <meta name="github-repo" content="ishaandey/nonparametric" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Wilcoxon Rank-Sum | Nonparametric Handbook" />
   
-  <meta name="twitter:description" content="A handbook for applying statistical testing to big data." />
+  <meta name="twitter:description" content="Data Analyst’s Guide to Statistical Testing" />
   <meta name="twitter:image" content="https://ishaandey.com/nonparametric/images/favicon/android-chrome-512x512.png" />
 
 <meta name="author" content="Ishaan Dey" />
@@ -50,6 +50,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <!-- 
 Header 
   - included at the top (head) of every page
@@ -62,6 +64,8 @@ Header
 
 <!-- JS -->
 <script>
+document.getElementsByClassName('tablinks')[0].click()
+
 function hover(element) {
   element.setAttribute('src', 'images/icons/edav_resource_url.png');
 }
@@ -181,107 +185,94 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-you"><i class="fa fa-check"></i>Who Are You?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i>Notation</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="quick-start.html"><a href="quick-start.html"><i class="fa fa-check"></i>Quick Start</a></li>
-<li class="chapter" data-level="" data-path="foundations.html"><a href="foundations.html"><i class="fa fa-check"></i>Foundations</a><ul>
-<li class="chapter" data-level="" data-path="foundations.html"><a href="foundations.html#statistics-basics"><i class="fa fa-check"></i>Statistics Basics</a></li>
-<li class="chapter" data-level="" data-path="foundations.html"><a href="foundations.html#note-on-notation"><i class="fa fa-check"></i>Note on Notation</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="statistics-in-your-workflow.html"><a href="statistics-in-your-workflow.html"><i class="fa fa-check"></i>Statistics in Your Workflow</a></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a><ul>
 <li class="chapter" data-level="" data-path="summary.html"><a href="summary.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
 <li class="chapter" data-level="" data-path="summary.html"><a href="summary.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a></li>
-<li class="chapter" data-level="1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html"><i class="fa fa-check"></i><b>1</b> Parametric t-Test</a><ul>
-<li class="chapter" data-level="1.1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
-<li class="chapter" data-level="1.2" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#how-it-works"><i class="fa fa-check"></i><b>1.2</b> How It Works</a></li>
-<li class="chapter" data-level="1.3" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#code"><i class="fa fa-check"></i><b>1.3</b> Code</a></li>
+<li class="chapter" data-level="1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html"><i class="fa fa-check"></i><b>1</b> Two Sample t-Test</a><ul>
+<li class="chapter" data-level="1.1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#how-it-works"><i class="fa fa-check"></i><b>1.1</b> How It Works</a></li>
+<li class="chapter" data-level="1.2" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#code"><i class="fa fa-check"></i><b>1.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html"><i class="fa fa-check"></i><b>2</b> Permutation Test</a><ul>
-<li class="chapter" data-level="2.1" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#usage-1"><i class="fa fa-check"></i><b>2.1</b> Usage</a></li>
-<li class="chapter" data-level="2.2" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#how-it-works-1"><i class="fa fa-check"></i><b>2.2</b> How It Works</a></li>
-<li class="chapter" data-level="2.3" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#code-1"><i class="fa fa-check"></i><b>2.3</b> Code</a></li>
-<li class="chapter" data-level="2.4" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#variants"><i class="fa fa-check"></i><b>2.4</b> Variants</a></li>
+<li class="chapter" data-level="2.1" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#how-it-works-1"><i class="fa fa-check"></i><b>2.1</b> How It Works</a></li>
+<li class="chapter" data-level="2.2" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#code-1"><i class="fa fa-check"></i><b>2.2</b> Code</a></li>
+<li class="chapter" data-level="2.3" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#variants"><i class="fa fa-check"></i><b>2.3</b> Variants</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html"><i class="fa fa-check"></i><b>3</b> Wilcoxon Rank-Sum</a><ul>
-<li class="chapter" data-level="3.1" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#usage-2"><i class="fa fa-check"></i><b>3.1</b> Usage</a><ul>
-<li class="chapter" data-level="" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#assumptions-1"><i class="fa fa-check"></i>Assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#how-it-works-2"><i class="fa fa-check"></i><b>3.2</b> How It Works</a></li>
-<li class="chapter" data-level="3.3" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.3</b> Code</a></li>
+<li class="chapter" data-level="3.1" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#how-it-works-2"><i class="fa fa-check"></i><b>3.1</b> How It Works</a></li>
+<li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#usage-3"><i class="fa fa-check"></i><b>4.1</b> Usage</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#assumptions-2"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#assumptions"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
+<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.2</b> How It Works</a></li>
-<li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.3</b> Code</a></li>
-<li class="chapter" data-level="4.4" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.4</b> Note</a></li>
+<li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
+<li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
 </ul></li>
 <li class="part"><span><b>II Matched Pairs</b></span></li>
-<li class="chapter" data-level="" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i>Summary</a></li>
-<li class="chapter" data-level="5" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html"><i class="fa fa-check"></i><b>5</b> Parametric Paired T-Test</a><ul>
-<li class="chapter" data-level="5.1" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#usage-4"><i class="fa fa-check"></i><b>5.1</b> Usage</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#assumptions-3"><i class="fa fa-check"></i><b>5.1.1</b> Assumptions</a></li>
+<li class="chapter" data-level="" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i>Summary</a><ul>
+<li class="chapter" data-level="4.4" data-path="summary-1.html"><a href="summary-1.html#usage"><i class="fa fa-check"></i><b>4.4</b> Usage</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="summary-1.html"><a href="summary-1.html#assumptions-1"><i class="fa fa-check"></i><b>4.4.1</b> Assumptions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#procedure"><i class="fa fa-check"></i><b>5.2</b> Procedure</a></li>
-<li class="chapter" data-level="5.3" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#code-4"><i class="fa fa-check"></i><b>5.3</b> Code</a></li>
+<li class="chapter" data-level="4.5" data-path="summary-1.html"><a href="summary-1.html#procedure"><i class="fa fa-check"></i><b>4.5</b> Procedure</a></li>
+<li class="chapter" data-level="4.6" data-path="summary-1.html"><a href="summary-1.html#code-4"><i class="fa fa-check"></i><b>4.6</b> Code</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="summary-1.html"><a href="summary-1.html#r"><i class="fa fa-check"></i><b>4.6.1</b> R</a></li>
+<li class="chapter" data-level="4.6.2" data-path="summary-1.html"><a href="summary-1.html#python"><i class="fa fa-check"></i><b>4.6.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html"><i class="fa fa-check"></i><b>6</b> Paired Permutation Test</a><ul>
-<li class="chapter" data-level="6.1" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html#usage-5"><i class="fa fa-check"></i><b>6.1</b> Usage</a></li>
-<li class="chapter" data-level="6.2" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html#procedure-1"><i class="fa fa-check"></i><b>6.2</b> Procedure</a></li>
-<li class="chapter" data-level="6.3" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html#code-5"><i class="fa fa-check"></i><b>6.3</b> Code</a></li>
+<li class="chapter" data-level="4.7" data-path="summary-1.html"><a href="summary-1.html#usage-1"><i class="fa fa-check"></i><b>4.7</b> Usage</a></li>
+<li class="chapter" data-level="4.8" data-path="summary-1.html"><a href="summary-1.html#procedure-1"><i class="fa fa-check"></i><b>4.8</b> Procedure</a></li>
+<li class="chapter" data-level="4.9" data-path="summary-1.html"><a href="summary-1.html#code-5"><i class="fa fa-check"></i><b>4.9</b> Code</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="summary-1.html"><a href="summary-1.html#r-1"><i class="fa fa-check"></i><b>4.9.1</b> R</a></li>
+<li class="chapter" data-level="4.9.2" data-path="summary-1.html"><a href="summary-1.html#python-1"><i class="fa fa-check"></i><b>4.9.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html"><i class="fa fa-check"></i><b>7</b> Wilcoxon Signed-Rank Test</a><ul>
-<li class="chapter" data-level="7.1" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html#usage-6"><i class="fa fa-check"></i><b>7.1</b> Usage</a></li>
-<li class="chapter" data-level="7.2" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html#procedure-2"><i class="fa fa-check"></i><b>7.2</b> Procedure</a></li>
+<li class="chapter" data-level="4.10" data-path="summary-1.html"><a href="summary-1.html#usage-2"><i class="fa fa-check"></i><b>4.10</b> Usage</a></li>
+<li class="chapter" data-level="4.11" data-path="summary-1.html"><a href="summary-1.html#procedure-2"><i class="fa fa-check"></i><b>4.11</b> Procedure</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="summary-1.html"><a href="summary-1.html#r-2"><i class="fa fa-check"></i><b>4.11.1</b> R</a></li>
+<li class="chapter" data-level="4.11.2" data-path="summary-1.html"><a href="summary-1.html#python-2"><i class="fa fa-check"></i><b>4.11.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sign-test.html"><a href="sign-test.html"><i class="fa fa-check"></i><b>8</b> Sign Test</a><ul>
-<li class="chapter" data-level="8.1" data-path="sign-test.html"><a href="sign-test.html#usage-7"><i class="fa fa-check"></i><b>8.1</b> Usage</a></li>
-<li class="chapter" data-level="8.2" data-path="sign-test.html"><a href="sign-test.html#procedure-3"><i class="fa fa-check"></i><b>8.2</b> Procedure</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="sign-test.html"><a href="sign-test.html#hypothesis"><i class="fa fa-check"></i><b>8.2.1</b> Hypothesis</a></li>
-<li class="chapter" data-level="8.2.2" data-path="sign-test.html"><a href="sign-test.html#test-statistic"><i class="fa fa-check"></i><b>8.2.2</b> Test statistic</a></li>
-<li class="chapter" data-level="8.2.3" data-path="sign-test.html"><a href="sign-test.html#p-value"><i class="fa fa-check"></i><b>8.2.3</b> p value</a></li>
+<li class="chapter" data-level="4.12" data-path="summary-1.html"><a href="summary-1.html#usage-3"><i class="fa fa-check"></i><b>4.12</b> Usage</a></li>
+<li class="chapter" data-level="4.13" data-path="summary-1.html"><a href="summary-1.html#procedure-3"><i class="fa fa-check"></i><b>4.13</b> Procedure</a><ul>
+<li class="chapter" data-level="4.13.1" data-path="summary-1.html"><a href="summary-1.html#hypothesis"><i class="fa fa-check"></i><b>4.13.1</b> Hypothesis</a></li>
+<li class="chapter" data-level="4.13.2" data-path="summary-1.html"><a href="summary-1.html#test-statistic"><i class="fa fa-check"></i><b>4.13.2</b> Test statistic</a></li>
+<li class="chapter" data-level="4.13.3" data-path="summary-1.html"><a href="summary-1.html#p-value"><i class="fa fa-check"></i><b>4.13.3</b> p value</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="sign-test.html"><a href="sign-test.html#code-6"><i class="fa fa-check"></i><b>8.3</b> Code</a></li>
+<li class="chapter" data-level="4.14" data-path="summary-1.html"><a href="summary-1.html#code-6"><i class="fa fa-check"></i><b>4.14</b> Code</a><ul>
+<li class="chapter" data-level="4.14.1" data-path="summary-1.html"><a href="summary-1.html#r-3"><i class="fa fa-check"></i><b>4.14.1</b> R</a></li>
+<li class="chapter" data-level="4.14.2" data-path="summary-1.html"><a href="summary-1.html#python-3"><i class="fa fa-check"></i><b>4.14.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="choosing-which-test.html"><a href="choosing-which-test.html"><i class="fa fa-check"></i><b>9</b> Choosing Which Test</a></li>
+</ul></li>
 <li class="part"><span><b>III Correlation</b></span></li>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html"><i class="fa fa-check"></i>Summary Sheet</a><ul>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#background-1"><i class="fa fa-check"></i>Background</a></li>
+<li class="chapter" data-level="4.15" data-path="summary-sheet.html"><a href="summary-sheet.html#usage-4"><i class="fa fa-check"></i><b>4.15</b> Usage</a><ul>
+<li class="chapter" data-level="4.15.1" data-path="summary-sheet.html"><a href="summary-sheet.html#assumption"><i class="fa fa-check"></i><b>4.15.1</b> Assumption</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="parametric-ols.html"><a href="parametric-ols.html"><i class="fa fa-check"></i><b>10</b> Parametric OLS</a><ul>
-<li class="chapter" data-level="10.1" data-path="parametric-ols.html"><a href="parametric-ols.html#usage-8"><i class="fa fa-check"></i><b>10.1</b> Usage</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="parametric-ols.html"><a href="parametric-ols.html#assumption"><i class="fa fa-check"></i><b>10.1.1</b> Assumption</a></li>
+<li class="chapter" data-level="4.16" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-4"><i class="fa fa-check"></i><b>4.16</b> How It Works</a></li>
+<li class="chapter" data-level="4.17" data-path="summary-sheet.html"><a href="summary-sheet.html#code-7"><i class="fa fa-check"></i><b>4.17</b> Code</a></li>
+<li class="chapter" data-level="4.18" data-path="summary-sheet.html"><a href="summary-sheet.html#note-1"><i class="fa fa-check"></i><b>4.18</b> Note</a></li>
+<li class="chapter" data-level="4.19" data-path="summary-sheet.html"><a href="summary-sheet.html#usage-5"><i class="fa fa-check"></i><b>4.19</b> Usage</a><ul>
+<li class="chapter" data-level="4.19.1" data-path="summary-sheet.html"><a href="summary-sheet.html#assumptions-2"><i class="fa fa-check"></i><b>4.19.1</b> Assumptions</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="parametric-ols.html"><a href="parametric-ols.html#how-it-works-4"><i class="fa fa-check"></i><b>10.2</b> How It Works</a></li>
-<li class="chapter" data-level="10.3" data-path="parametric-ols.html"><a href="parametric-ols.html#code-7"><i class="fa fa-check"></i><b>10.3</b> Code</a></li>
-<li class="chapter" data-level="10.4" data-path="parametric-ols.html"><a href="parametric-ols.html#note-1"><i class="fa fa-check"></i><b>10.4</b> Note</a></li>
+<li class="chapter" data-level="4.20" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-5"><i class="fa fa-check"></i><b>4.20</b> How it Works</a><ul>
+<li class="chapter" data-level="4.20.1" data-path="summary-sheet.html"><a href="summary-sheet.html#p-value-1"><i class="fa fa-check"></i><b>4.20.1</b> p-value</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html"><i class="fa fa-check"></i><b>11</b> Permutation Test for Slope</a><ul>
-<li class="chapter" data-level="11.1" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#usage-9"><i class="fa fa-check"></i><b>11.1</b> Usage</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#assumptions-4"><i class="fa fa-check"></i><b>11.1.1</b> Assumptions</a></li>
+<li class="chapter" data-level="4.21" data-path="summary-sheet.html"><a href="summary-sheet.html#usage-6"><i class="fa fa-check"></i><b>4.21</b> Usage</a><ul>
+<li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#assumptions-3"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="4.21.1" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-6"><i class="fa fa-check"></i><b>4.21.1</b> How it Works</a></li>
+<li class="chapter" data-level="4.21.2" data-path="summary-sheet.html"><a href="summary-sheet.html#p-value-2"><i class="fa fa-check"></i><b>4.21.2</b> p-value</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#how-it-works-5"><i class="fa fa-check"></i><b>11.2</b> How it Works</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#p-value-1"><i class="fa fa-check"></i><b>11.2.1</b> p-value</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html"><i class="fa fa-check"></i><b>12</b> Spearman’s Rank Correlation</a><ul>
-<li class="chapter" data-level="12.1" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#usage-10"><i class="fa fa-check"></i><b>12.1</b> Usage</a><ul>
-<li class="chapter" data-level="" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#assumptions-5"><i class="fa fa-check"></i>Assumptions</a></li>
-<li class="chapter" data-level="12.1.1" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#how-it-works-6"><i class="fa fa-check"></i><b>12.1.1</b> How it Works</a></li>
-<li class="chapter" data-level="12.1.2" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#p-value-2"><i class="fa fa-check"></i><b>12.1.2</b> p-value</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="kendalls-tau.html"><a href="kendalls-tau.html"><i class="fa fa-check"></i><b>13</b> Kendall’s Tau</a><ul>
-<li class="chapter" data-level="13.1" data-path="kendalls-tau.html"><a href="kendalls-tau.html#how-it-works-7"><i class="fa fa-check"></i><b>13.1</b> How it Works</a></li>
-<li class="chapter" data-level="13.2" data-path="kendalls-tau.html"><a href="kendalls-tau.html#limitations"><i class="fa fa-check"></i><b>13.2</b> Limitations</a></li>
+<li class="chapter" data-level="4.22" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-7"><i class="fa fa-check"></i><b>4.22</b> How it Works</a></li>
+<li class="chapter" data-level="4.23" data-path="summary-sheet.html"><a href="summary-sheet.html#limitations"><i class="fa fa-check"></i><b>4.23</b> Limitations</a></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/ishaandey/nonparametric" target="blank">GitHub Source</a></li>
+<li><a href="https://github.com/ishaandey/nonparametric" target="blank">Published with Bookdown on GitHub</a></li>
 
 </ul>
 
@@ -308,90 +299,123 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </head>
 <div id="wilcoxon-rank-sum" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Wilcoxon Rank-Sum</h1>
-<div id="usage-2" class="section level2">
-<h2><span class="header-section-number">3.1</span> Usage</h2>
 <p>Wilcoxon Rank-Sum is great for testing with low sample sizes and outliers, since it uses the rank of the observation as opposed to the value itself.</p>
-<div id="assumptions-1" class="section level3 unnumbered">
-<h3>Assumptions</h3>
-<ol style="list-style-type: decimal">
-<li>Both population distribution are continuous (not categorical / discrete)</li>
-</ol>
-</div>
-</div>
+<p>There’s only one <strong>assumption</strong>, that both population distribution are continuous (not categorical / discrete)</p>
 <div id="how-it-works-2" class="section level2">
-<h2><span class="header-section-number">3.2</span> How It Works</h2>
+<h2><span class="header-section-number">3.1</span> How It Works</h2>
 <p>The goal here is to use <em>ranks</em>, as opposed to the actual values, to identify differences in location between the two parameters. Why? Ranks are much more resistant to outliers, since a singly high observation is now just ranked at the max, doesn’t matter how far above in absolute value it is.</p>
+<p>We can pool the observations and compare the ranks that were assigned to sample 1 against those assigned to sample 2. We can compare the average rank of sample 1 against sample 2, and if it’s lower by a particular margin, we can conclude that the values of sample 1 are below sample 2.</p>
+<p>As an example:</p>
+<table>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;border-right:1px solid;color: #14366e !important;">
+Sample 1
+</td>
+<td style="text-align:right;color: #14366e !important;">
+31
+</td>
+<td style="text-align:right;color: #14366e !important;">
+32
+</td>
+<td style="text-align:right;color: #14366e !important;">
+33
+</td>
+<td style="text-align:right;color: #14366e !important;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;border-right:1px solid;color: #636e14 !important;">
+Sample 2
+</td>
+<td style="text-align:right;color: #636e14 !important;">
+46
+</td>
+<td style="text-align:right;color: #636e14 !important;">
+48
+</td>
+<td style="text-align:right;color: #636e14 !important;">
+49
+</td>
+<td style="text-align:right;color: #636e14 !important;">
+51
+</td>
+</tr>
+</tbody>
+</table>
 <p>We’ll first calculate <span class="math inline">\(W_{obs}\)</span>, our test statistic. To do so, we’ll first pool both samples together and rank them, assigning a value of <code>1</code> to the smallest observation, and <code>m+n</code> to the largest (since there are now <span class="math inline">\(m+n\)</span> observations in the pooled group).</p>
-<p><span class="math inline">\(W_{observed}\)</span> is simply the <em>sum of ranks</em> of sample 1 observations.</p>
+<table>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Values
+</td>
+<td style="text-align:center;">
+<span style="     color: #14366e !important;">31</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #14366e !important;">32</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #14366e !important;">33</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #14366e !important;">47</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">46</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">48</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">49</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">51</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ranks
+</td>
+<td style="text-align:center;">
+<span style=" font-weight: bold;    color: #14366e !important;">1</span>
+</td>
+<td style="text-align:center;">
+<span style=" font-weight: bold;    color: #14366e !important;">2</span>
+</td>
+<td style="text-align:center;">
+<span style=" font-weight: bold;    color: #14366e !important;">3</span>
+</td>
+<td style="text-align:center;">
+<span style=" font-weight: bold;    color: #14366e !important;">5</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">4</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">6</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">7</span>
+</td>
+<td style="text-align:center;">
+<span style="     color: #636e14 !important;">8</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(W_{obs}\)</span> is simply the <em>sum of ranks</em> of sample 1 observations: <span class="math inline">\(W_{obs}=\)</span> <span style="color: #79759d;">1+2+3+5</span> <span class="math inline">\(=11\)</span>.</p>
 <p>Why use this instead of the mean of the ranks between the two? Turns out, the sum of ranks of one sample is a linear function of the mean, so there’s a 1:1 correspondence between the two. The sum of ranks is just more consistent and easy to calculate.</p>
-<p>As a quick example:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">Obs 1</th>
-<th align="right">Obs 2</th>
-<th align="right">Obs 3</th>
-<th align="right">Obs 4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">sample1</td>
-<td align="right">39</td>
-<td align="right">49</td>
-<td align="right">55</td>
-<td align="right">57</td>
-</tr>
-<tr class="even">
-<td align="left">sample2</td>
-<td align="right">31</td>
-<td align="right">33</td>
-<td align="right">46</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
-<p>becomes</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">Sample1</th>
-<th align="right">Sample1</th>
-<th align="right">Sample1</th>
-<th align="right">Sample1</th>
-<th align="right">Sample2</th>
-<th align="right">Sample2</th>
-<th align="right">Sample2</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">pooled</td>
-<td align="right">39</td>
-<td align="right">49</td>
-<td align="right">55</td>
-<td align="right">57</td>
-<td align="right">31</td>
-<td align="right">33</td>
-<td align="right">46</td>
-</tr>
-<tr class="even">
-<td align="left">ranks</td>
-<td align="right">3</td>
-<td align="right">5</td>
-<td align="right">6</td>
-<td align="right">7</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">4</td>
-</tr>
-</tbody>
-</table>
-<p>Under the null hypothesis, we’d expect our observations to have no difference in means. So, if we were to randomly switch around (permute) the observations across the samples, we’d expect our test statistic <span class="math inline">\(W^*\)</span> of the particular permutation to remain close to <span class="math inline">\(W_{obs}\)</span>.</p>
-<p>If sample 1 has <span class="math inline">\(m\)</span> observations, and sample 2 has <span class="math inline">\(n\)</span> observations, there are <span class="math inline">\(\binom {m+n}{m} = \frac {(m+n)!}{m!n!}\)</span> permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic <span class="math inline">\(W^*\)</span> for each one of these permutations.</p>
+<hr style="height:1px; width:60%;">
+</hr>
+<p>Under the null hypothesis, we’d expect our observations to have no difference in ranks. So, if we were to randomly switch around (permute) the observations across the samples, we’d expect our observed test statistic <span class="math inline">\(W_{obs}\)</span> to not be anything unusual, according to <span class="math inline">\(H_0\)</span>. In otherwords, random chance could have just as easily produced <span class="math inline">\(W_{obs}\)</span> as the treatment we gave.</p>
+<p>Let’s make that idea a little more quantitative: If sample 1 has <span class="math inline">\(m\)</span> observations, and sample 2 has <span class="math inline">\(n\)</span> observations, there are <span class="math inline">\(\binom {m+n}{m} = \frac {(m+n)!}{m!n!}\)</span> permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic <span class="math inline">\(W^*\)</span> for each one of these permutations.</p>
 <p>Our p-value is then just the <em>fraction of permutations</em> that have a test statistic <span class="math inline">\(W\)</span> as or more extreme than what was observed <span class="math inline">\(W_{obs}\)</span>:</p>
+<p>Going back to our example,</p>
+<p>Here are</p>
 <details>
 <summary> P-value Formula </summary>
 <p>
@@ -400,10 +424,42 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <br> <span class="math inline">\(p-val_{upper} = \frac{\text{# of }W\leq W_{obs}}{\binom {m+n}{m}}\)</span></p>
 </p>
 </details>
-<p>Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.</p>
+<p>In our example, there are <span class="math inline">\(\binom {8}{4}=70\)</span> possible ways we could’ve obtained the four observations in sample 1 from a total of eight values. We could lookup the significance from a table, or read off the p-value from the test output</p>
+<p><strong>Interpretation</strong>: Given a p-value of 0.028, there is a 2.8% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.</p>
+<p>Because it’s less than our confidence threshold <span class="math inline">\(\alpha\)</span> of <span class="math inline">\(0.05\)</span>, we reject the null hypothesis that <span class="math inline">\(F_1(x) = F_2(x)\)</span>, and conclude that the location of population 1 is lower than population 2.</p>
 </div>
 <div id="code-2" class="section level2">
-<h2><span class="header-section-number">3.3</span> Code</h2>
+<h2><span class="header-section-number">3.2</span> Code</h2>
+<div class="tab">
+<button class="tablinks" onclick="unrolltab(event, &#39;R&#39;)">
+R
+</button>
+<button class="tablinks" onclick="unrolltab(event, &#39;Python&#39;)">
+Python
+</button>
+<div id="R" class="tabcontent">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="wilcoxon-rank-sum.html#cb5-1"></a><span class="kw">library</span>(stats)</span>
+<span id="cb5-2"><a href="wilcoxon-rank-sum.html#cb5-2"></a></span>
+<span id="cb5-3"><a href="wilcoxon-rank-sum.html#cb5-3"></a>sample1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">33</span>, <span class="dv">47</span>)</span>
+<span id="cb5-4"><a href="wilcoxon-rank-sum.html#cb5-4"></a>sample2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">46</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">51</span>)</span>
+<span id="cb5-5"><a href="wilcoxon-rank-sum.html#cb5-5"></a></span>
+<span id="cb5-6"><a href="wilcoxon-rank-sum.html#cb5-6"></a><span class="kw">wilcox.test</span>(sample1, sample2, <span class="dt">alternative=</span><span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum exact test
+## 
+## data:  sample1 and sample2
+## W = 1, p-value = 0.02857
+## alternative hypothesis: true location shift is less than 0</code></pre>
+</div>
+<div id="Python" class="tabcontent">
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="wilcoxon-rank-sum.html#cb7-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ranksums</span>
+<span id="cb7-2"><a href="wilcoxon-rank-sum.html#cb7-2"></a></span>
+<span id="cb7-3"><a href="wilcoxon-rank-sum.html#cb7-3"></a>sample1 <span class="op">=</span> [<span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">33</span>, <span class="dv">47</span>]</span>
+<span id="cb7-4"><a href="wilcoxon-rank-sum.html#cb7-4"></a>sample2 <span class="op">=</span> [<span class="dv">46</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">51</span>]</span>
+<span id="cb7-5"><a href="wilcoxon-rank-sum.html#cb7-5"></a></span>
+<span id="cb7-6"><a href="wilcoxon-rank-sum.html#cb7-6"></a>ranksums(sample1, sample2, alternative<span class="op">=</span><span class="st">&#39;less&#39;</span>)</span></code></pre></div>
+</div>
+</div>
 </div>
 </div>
 <hr>

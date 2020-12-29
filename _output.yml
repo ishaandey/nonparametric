@@ -16,7 +16,7 @@ bookdown::gitbook:
       before: |
         <li class="toc-logo"><a href="./"><img src="images/favicon/android-chrome-512x512.png"></a></li>
       after: |
-        <li><a href="https://github.com/ishaandey/nonparametric" target="blank">GitHub Source</a></li>
+        <li><a href="https://github.com/ishaandey/nonparametric" target="blank">Published with Bookdown on GitHub</a></li>
     download: ["rmd"]
     sharing:
       github: yes
