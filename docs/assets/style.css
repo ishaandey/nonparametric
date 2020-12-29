@@ -25,7 +25,6 @@ pre code {
   left: 0;
   right: 0;
   height: 390px;
-  /*background-image: url("images/books.jpg");*/
   background-color: #555273;
 }
 
@@ -34,11 +33,12 @@ pre code {
   height: 390px;
   object-fit: cover;
 }
-
+/*
 .page-inner {
   padding-top: 440px !important;
 }
-
+ 
+*/
 
 /* ------------Links------------------ */
 
@@ -135,9 +135,9 @@ h1, h2, h3, h4 {
   padding-left: 3px;
   margin-bottom: 9px;
 }
-*/
 
-.section.level1 > p:first-of-type:first-letter { /*drop cap for first p beneath level 1 headers only within class .section*/
+
+.section.level1 > p:first-of-type:first-letter { 
   color: #555273;
   float: left;
   font-family: 'Abril Fatface', serif;
@@ -148,6 +148,8 @@ h1, h2, h3, h4 {
   padding-left: 3px;
   margin-bottom: 9px;
 }
+
+*/ 
 
 /* add drop cap to first paragraph that follows the first 2nd level header*/
 /*
@@ -206,9 +208,12 @@ li.appendix span, li.part span { /* for TOC part names */
   text-transform: uppercase;
 }
 
-.part + li[data-level=""] { /* grabs first .chapter immediately after .part...but only those ch without numbers */
+/* grabs first .chapter immediately after .part...but only those ch without numbers */
+/*
+.part + li[data-level=""] { 
  text-transform: uppercase;
 }
+*/
 
 
 /* The next two rules make the horizontal line go straight across in top navbar */
@@ -409,11 +414,9 @@ iframe {
   visibility: hidden;
 }
 
-/* .hasCopyButton:hover button.btn-copy-ex {
+.hasCopyButton:hover button.btn-copy-ex {
   visibility: hidden;
-} */
-
-
+} 
 
 /* -----------Section anchors -------------*/
 

@@ -1,25 +1,36 @@
 --- 
-title: "Nonparametric Statistics"
+title: "Nonparametric Handbook"
 subtitle: "A Beginner's Guide to Nonparametric Statistics"
 author: 
 - Ishaan Dey^[University of Virginia, [ishaandey.com](https://www.ishaandey.com)]
-date: "December 2020"
+date: "January 2021"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-cover-image: images/logo/logo-banner.png
-github-repo: "ishaandey/nonparametric"
+github-repo: ishaandey/nonparametric
 description: "A handbook for applying statistical testing to big data."
-favicon: "images/favicon/favicon.ico"
+cover-image: images/favicon/android-chrome-512x512.png
+favicon: images/favicon/favicon.ico
 always_allow_html: yes
-url: 'https\://ishaandey.com/nonparametric'
+url: https\://ishaandey.com/nonparametric/
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
+                      warning=F, message=F)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+```
+
 
 # Preface {-}
 
 ## Why This Book? {-} 
+
+### What Does It Cover {-}
 
 ## Who Are You? {-}
 
@@ -29,16 +40,67 @@ url: 'https\://ishaandey.com/nonparametric'
 
 # Foundations {-}
 
+## Statistics Basics {-}
+
+This book assumes knowledge of basic statistical testing, ideas such as p-values and simple probability distributions (i.e. Normal, Binomial). 
+
+
 ## Note on Notation {-}
-In this section, you'll may across some notation rooted in probability. For the large part, *don't be intimidated*. Everyone has their own comfort level with math. Instead of omitting it entirely, we've kept in the formulas as expandable details for the curious. Here's some basic pointers, but if there's something you don't understand, you can probably skip it without too many repercussions.
+In this section, you'll may across some notation rooted in probability. For the large part, *don't be intimidated*. Everyone has their own comfort level with math. Instead of omitting it entirely, we've kept in the formulas as expandable details for the curious. Here's some basic pointers, but if there's something you don't understand, you can probably skip it without too many issues
 
 **Indices**. Counters like $i$ or $j$ just refer to a particular observation in a set. For example, $(x_i,y_j)$ can be read as "some pair from two sets", where $x_i$ is a part of $X$, and $y_j$ is a part of $Y$.
 
-**Sums**. Super simple, same idea as with indices $(x_i,y_j)$ can be read as "some pair from two sets", where $x_i$ is a part of $X$, and $y_j$ is a part of $Y$.
+**Sums**. Something like $\sum_{i=1}^n x_i$ can be read as "add together each observation $x_i$ in the set $X$".
 
-**Binomial**. Something like $\binom{5}{2}$ is read as "Five choose two", or the probability of selecting a combination of 2 items out of 5 possibilities. More generally: $\binom{n}{k} = \frac{n!}{k!(n-k)!}$
+**Combinations**. Something like $\binom{5}{2}$ is read as "Five choose two", or the probability of selecting a combination of 2 items out of 5 possibilities. More generally: $\binom{n}{k} = \frac{n!}{k!(n-k)!}$
 
-****.
+**Probability Distribution Function (PDF)**. $f_x(x)$ describes the relative likelihood (*not probability*) of seeing the value $x$, when $x$ is continuous. It is always $\geq0$, and the integral across all values $\int_{-\infty}^{\infty}f_x(x)dx$ must $=1$.
+
+**Cumulative Distribution Function (CDF)**. $F_x(x)$ describes the *probability* of seeing a value less than or equal to $x$. In other words, $F_x(x) = \int_{-\infty}^{x}f_t(t)dt=Pr(X\leq x)$. More visually:
+
+```{r,  fig.align='center', eval=T, echo=F}
+library(ggplot2)
+x <- seq(-4,4,length=200)
+y <- dnorm(x,0,1)
+y2 <- pnorm(x,0,1)
+df <- data.frame(x=x,y=y)
+
+tval = 0.4
+
+pdf <- ggplot(data=df, aes(x=x)) +
+  geom_line(aes(y=y)) +
+  geom_ribbon(data=subset(df ,x > -4 & x < tval), aes(ymax=y), ymin=0,
+              fill="#79759d",colour=NA,alpha=0.7)+
+  theme(panel.grid.minor = element_blank(),
+        axis.title.x = element_blank()) +  
+  scale_y_continuous(limits=c(0, .4)) +
+  annotate("text", x= -2, y=0.1, hjust= -0.7,
+           label = paste0("Area= ",round(pnorm(tval,0,1),2))) +
+  annotate("text", x= tval, y=0.05, hjust=-0.2,
+           label = paste0("x= ",tval)) +
+  annotate("segment", x = tval, xend = tval, y = 0, yend = dnorm(tval,0,1), 
+         colour = "black", linetype='dashed') + 
+  labs(y='PDF') +  xlim(-4,4) 
+
+cdf <- ggplot(data=df, aes(x=x)) + 
+  geom_line(aes(y = y2)) +
+  theme(panel.grid.minor = element_blank()) + 
+  ylab('CDF') +
+  scale_y_continuous(breaks=c(0,0.5,1)) +
+  annotate("segment", x = tval, xend = tval, y = 0, yend = 1, 
+           colour = "black", linetype='dashed') + 
+  annotate("segment", x = -4, xend = tval, y = pnorm(tval,0,1), yend = pnorm(tval,0,1), 
+           colour = "#79759d", linetype='dashed') +
+  annotate("text", x= tval, y=0.1, hjust=-0.2,
+           label = paste0("x= ",tval)) +
+  annotate("text", x= -4, y=pnorm(tval,0,1)+.08, hjust= -0.05,
+           label = paste0("F(x) = ",round(pnorm(tval,0,1),2))) + 
+  xlim(-4,4)
+
+gridExtra::grid.arrange(pdf,cdf,ncol=1)
+
+```
+
 
 # Statistics in Your Workflow {-} 
 

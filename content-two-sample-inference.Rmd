@@ -1,10 +1,5 @@
 # (PART) Two Sample Inference {-}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
-                      warning=F, message=F)
-```
-
 
 # Summary {-}
 
@@ -16,7 +11,75 @@ Comparing differences in means is one of the most commonly used procedures in st
 
 Any student of introductory statistics knows the remedy: the two-sample t-test. But the t-test makes a few strong assumptions about the data, mainly the assumption of normality. This chapter describes alternative tests we can use instead. 
 
-## Choosing a Test {-}
+## Notation {-}
+
+Say you're expecting population 1 to be *lower* that population 2. You'll use a *lower-tail* test, and use a set of hypotheses like so: 
+$$
+H_0: \mu_1 = \mu_2 \\
+H_a: \mu_1 \leq \mu_2
+$$
+
+In this section, we don't necessarily know the distribution of our data, but we're testing that the *distributions*, not necessarily means, are equal.
+
+As such, our hypotheses will look something like:
+
+$$
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \geq F_2(x) \\
+\text{ with a strict inequality for at least one }x
+$$
+
+$F_(x)$ here refers to the empirical CDF of the function, or *probability of seeing a value less than or below* $x$.
+
+If the location of population 1 is below population 2, we'd expect that at a certain point $x$, the probability of seeing a value at or below $x$ should be higher for population 1 than  it is for population 2. Here's a visual:
+
+```{r, fig.align='center', eval=T, echo=F}
+library(ggplot2)
+
+x <- seq(-4, 4, length=100)
+pdf.1 <- dnorm(x,0,1)
+pdf.2 <- dnorm(x,1,1)
+
+cdf.1 <- pnorm(x,0,1)
+cdf.2 <- pnorm(x,1,1)
+
+df <- data.frame(x, pdf.1, pdf.2, cdf.1, cdf.2)
+
+pdfs <- ggplot(data=df, aes(x=x)) + 
+  geom_line(aes(y = pdf.1, color = "Mean = 0")) + 
+  geom_line(aes(y = pdf.2, color = "Mean = 1"), linetype='dashed') +
+   theme(axis.title.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.title = element_text(hjust = 0.5),
+        legend.position = c(0.15,0.75)) +
+  ylab('Probability Density') + ggtitle('Comparing Distributions') +
+  scale_color_manual(values = c("Mean = 0" = "blue", "Mean = 1" = "red")) +
+  labs(colour = "Location Parameter") +
+  scale_y_continuous(breaks=c(0))
+
+  
+cdfs <- ggplot(data=df, aes(x=x)) + 
+  geom_line(aes(y = cdf.1), color = "blue") + 
+  geom_line(aes(y = cdf.2), color = "red", linetype='dashed') +
+  theme(panel.grid.minor = element_blank()) + 
+  ylab('Cumulative Probability') +
+  scale_y_continuous(breaks=c(0,1))
+  
+gridExtra::grid.arrange(pdfs,cdfs,ncol=1)
+```
+
+## Diagnostics {-}
+
+A big assumption parametric tests take is that the data is normally distributed. There's a few approaches we can take to validate this.
+
+First is the QQ plot:
+
+We could also use a more rigorous test of normality:
+
+But its almost always just worth checking the distribution regardless: 
+
+
+# Choosing a Test {-}
 
 Are your samples independent? Are your population distributions normal, or, are there more than 40 observations in each? If so, choose the **Parametric t-Test**.
 
@@ -90,13 +153,30 @@ So, our p-value is then just the *fraction of permutations* that have a test sta
 
 <details><summary> Formal Definitions </summary>
 <p>
+
+For a double sided  test:
 $$
-H_0: 
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \neq  F_2(x) \\
+~ \\
+p\text{-value}_{two\ sided} = \frac{\text{# of |D's|}~\geq~|D_{obs}|}{\binom {m+n}{m}}
 $$
-Two Sided Alternative
-$p\text{-value}_{two\ sided} = \frac{\text{# of |D's|}~\geq~|D_{obs}|}{\binom {m+n}{m}}$
-<br>    $p\text{-value}_{lower} = \frac{\text{# of }D\leq D_{obs}}{\binom {m+n}{m}}$
-<br>    $p\text{-value}_{upper} = \frac{\text{# of }D\geq D_{obs}}{\binom {m+n}{m}}$
+For an upper tail test:
+$$
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \leq  F_2(x) \\
+~ \\
+p\text{-value}_{upper} = \frac{\text{# of }D\geq D_{obs}}{\binom {m+n}{m}}
+$$
+
+For a lower tail test:
+$$
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \geq  F_2(x) \\
+~ \\
+p\text{-value}_{lower} = \frac{\text{# of }D\leq D_{obs}}{\binom {m+n}{m}}
+$$
+
 </p>
 </details>
 
@@ -159,12 +239,13 @@ As a quick example:
 
 ```{r, echo=F, eval=T, results=T}
 library(dplyr)
+library(knitr)
 sample1 <- c(39, 49, 55, 57)
 sample2 <- c(31, 33, 46)
 
 df <- tibble(sample1, sample2=c(sample2, NA)) %>% t()
 colnames(df) <- paste('Obs', 1:4)
-df 
+kable(df) 
 ```
 
 becomes 
@@ -174,7 +255,7 @@ pooled <- c(sample1, sample2)
 ranks <- rank(pooled,ties.method = 'average')
 df2 <- tibble(pooled, ranks) %>% t()
 colnames(df2) <- c(rep('Sample1', 4), rep('Sample2', 3))
-df2 
+kable(df2) 
 ```
 
 Under the null hypothesis, we'd expect our observations to have no difference in means. So, if we were to randomly switch around (permute) the observations across the samples, we'd expect our test statistic $W^*$ of the particular permutation to remain close to $W_{obs}$.
@@ -206,7 +287,7 @@ Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a dif
 ## Usage
 
 
-### Assumptions
+### Assumptions {-}
 1. Both pop. dist are continuous (not categorical / discrete)
 
 ## How It Works
@@ -222,21 +303,16 @@ sample1 <- c(31, 33, 46, 40)
 
 df <- tibble(Sample1 = sample1, Sample2 = sample2) %>% t()
 colnames(df) <- paste('Obs', 1:4)
-df 
+kable(df) 
 ```
 
-We then look at every possible combination of the two samples.
+We then look at every possible combination of the two samples and compare the values. We check if the values of the first sample (the columns) are greater than the values of the second sample (rows):
 
 ```{r, echo=F, eval=T, results=T}
 comp.mat <- matrix(nrow=length(sample2), ncol=length(sample1))
 rownames(comp.mat) <- sort(sample2) %>% as.character()
 colnames(comp.mat) <- sort(sample1) %>% as.character()
-comp.mat
-```
 
-Now we can compare the values, and check if the values of the first sample (the columns) are greater than the values of the second sample (rows):
-
-```{r, echo=F, eval=T, results=T}
 for (i in sample1){
   for (j in sample2) {
     if (i > j) {
@@ -247,7 +323,7 @@ for (i in sample1){
   }
 }
 
-comp.mat
+kable(comp.mat)
 ```
 
 Our test statistic $U$ is the sum of the matrix, $2$.
@@ -281,6 +357,9 @@ $$
 
 ## Code 
 
+```{r}
+#hello there!
+```
 
 
 ## Note

@@ -5,7 +5,7 @@ delete_merged_file: true
 language:
   ui:
     chapter_name: 'Chapter '
-new_session: yes 
+new_session: no 
 #rmd_subdir: ["", "",""]
 rmd_files: [
   "index.Rmd",

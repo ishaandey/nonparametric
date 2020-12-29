@@ -1,11 +1,5 @@
 # (PART) Matched Pairs {-}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
-                      warning=F, message=F)
-```
-
-
 # Summary {-}
 
 > Goal: some

@@ -1,13 +1,5 @@
 # (PART) Correlation {-}
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
-                      warning=F, message=F)
-
-library(dplyr)
-library(ggplot2)
-```
-
 # Summary Sheet {-}
 > How do we test for non-linear association?
 
@@ -15,14 +7,13 @@ library(ggplot2)
 Sometimes the data is strongly correlated, but there is a *non-linear* pattern. Take the following example:
 
 ```{r, eval=T, echo=F}
-library(dplyr)
 x <- 1:6
 y <- x^4
 
 df <- matrix(y, nrow=1)
 colnames(df) <- x
 rownames(df) <- ''
-df
+kable(df)
 ```
 
 There is a perfect relationship between the data: $y=x^4$. Yet the correlation, calculated from a linear fit, doesn't quite reflect that: $\rho=$ `r cor(x,y) %>% round(3)`.
@@ -171,63 +162,31 @@ $$
 </p>
 </details>
 
-
-
-
-
 # Kendall's Tau
 
 Kendall’s Tau $\tau$ is a measure of association between X and Y based on *concordance.*
 
-We say that a pair of points $\left(X_{i}, Y_{i}\right)$ and $\left(X_{j}, Y_{j}\right)$ are:
+## How it Works
+
+**Concordance** suggests that observations are *consistent* with one another; that they are positively associated.
+
+More formally, we say that a pair of points $\left(X_{i}, Y_{i}\right)$ and $\left(X_{j}, Y_{j}\right)$ are:
+
 - *Concordant* if $X_{i}<X_{j} \Rightarrow Y_{i}<Y_{j}$, or $\left(X_{i}-X_{j}\right)\left(Y_{i}-Y_{j}\right)>0$
   - If pairs are more likely to be concordant $\implies$ *positive* association
 - *Discordant* if $X_{i}<X_{j} \Rightarrow Y_{i}>Y_{j}$, or $\left(X_{i}-X_{j}\right)\left(Y_{i}-Y_{j}\right)<0$
   - If pairs are more likely to be discordant $\implies$ *negative* association
 
-Kendall's Tau definition:
+We define Kendall's Tau as:
 $$
 \begin{aligned}
-\tau &= 2*P[\left(X_{i}-X_{j}\right)\left(Y_{i}-Y_{j}\right)>0]-1 \\
-&= 2*Pr(concordance)-1
+r_{\tau}  &= \frac{(\text{# concordant pairs})-(\text{# discordant pairs})}{\binom{n}{2}}
 \end{aligned}
 $$
 
-This scales the probability of concordance so it falls on the $[-1,1]$ scale
-
-### Method
-
-In order to find $P[\left(X_{i}-X_{j}\right)\left(Y_{i}-Y_{j}\right)>0]$:
-
-We define $U_{ij}$ as an indicator if pairs $i,j$ are concordant:
-$$
-U_{ij} = \begin{cases} 1, & \text{if} \left(X_{i}-X_{j}\right)\left(Y_{i}-Y_{j}\right)>0 \\ 
-0, & \text{if} \left(X_{i}-X_{j}\right)\left(Y_{i}-Y_{j}\right)<0 \end{cases}
-$$
-
-*Note*: If there are ties, i.e $\left(X_{i}-X_{j}\right)\left(Y_{i}-Y_{j}\right)=0$, then $U_{ij}=\frac{1}{2}$
-
-Then define $V_i$, the number of concordant pairs for a pair $i$, for $j>i$:
-$$
-V_i = \sum_{j= i+1}^n U_{ij}
-$$
-The summation $\sum_{i=1}^{n-1} V_i$ is the *total* number of concordant pairs in the entire dataset
-
-To find the fraction of concordant pairs, compute $\frac{\sum_{i=1}^{n-1} V_i}{\binom{n}{2}}$ 
-
-Finally, we plug in to get:
-$$
-r_{\tau} = 2 * \frac{\sum_{i=1}^{n-1} V_i}{\binom{n}{2}} - 1
-$$ 
-
-We can test if there is significant concordance or discordance with $H_0:\tau=0$ and $H_a: \tau \geq 0, \tau \leq 0, \text{ or } \tau \neq 0$
+Why use $\binom{n}{2}$ instead of $n$?
 
 
-### p-value
-1. Reshuffle the $Y_i$’s to get new pairs $(X_i,Y^*_i)$
-2. Calculate $r^*_{\tau}$ for the permuted sample.
-3. Repeat steps 1 and 2, $n!$ times to generate all possible permutations.
-4. p-value is the fraction of ${r}_s^*$'s as or more extreme than observed:
 
 $$
 \begin{array}{l}
