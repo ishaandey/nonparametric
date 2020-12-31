@@ -1,7 +1,7 @@
 # (PART) Two Sample Inference {-}
 
 
-# Summary {-}
+# Introduction {-}
 
 > Goal: We've got two samples, and want to see if there's the significance difference in means.
 
@@ -68,7 +68,7 @@ cdfs <- ggplot(data=df, aes(x=x)) +
 gridExtra::grid.arrange(pdfs,cdfs,ncol=1)
 ```
 
-From the first plot we see $\mu_1 < \mu_2$, and from the second, $F_1(x) \geq F_2(x)$.
+From the first plot we see $\mu_1 < \mu_2$, and from the second, $F_1(x) \geq F_2(x)$. Both correspond to the "less than" hypothesis.
 
 ## Diagnostics {-}
 
@@ -83,17 +83,20 @@ But its almost always just worth checking the distribution regardless:
 
 # Choosing a Test {-}
 
-Are your samples independent? Are your population distributions normal, or, are there more than 40 observations in each? If so, choose the **Parametric t-Test**.
+Are your population distributions normal, or, are there more than 40 observations in each sample? If so, choose the **Two Sample t-Test**. If not, read on:
 
 Do you care about the magnitude of the difference? Consider the **Permutation Test**. Check the distribution and number of outliers. If the data is skewed, use the *median* variant, and if there are outliers on both tails, consider using trimmed means. 
 
-If you're instead just looking to determine if one sample is greater than the other, use the Wilcoxon Rank-Sum, particularly with skewed distributions or heavy outliers. If we're interested in generating a confidence interval for the difference, we can use the **Mann-Whitney** test. It works similarly to the Wilcoxon Rank-Sum, and results in the same p-value.
+If you're instead just looking to determine if one sample is greater than the other, use the **Wilcoxon Rank-Sum**, particularly with skewed distributions or heavy outliers. If we're interested in generating a confidence interval for the difference, we can use the **Mann-Whitney** test. It works similarly to the Wilcoxon Rank-Sum, and results in the same p-value.
+
+## Power {-}
+
+Include a discussion about power here
+
 
 # Two Sample t-Test {#two-sample-t-test}
 
-The two-sample t-test is by far the most powerful test when the assumptions are met for comparing means between two samples.
-
-**Assumptions**:
+The two-sample t-test is by far the most powerful test when the assumptions are met for comparing means between two samples. **Assumptions**:
 
 1. Random sample from each population
 2. Both samples are independent
@@ -150,13 +153,87 @@ Use the permutation test if the normality assumption is violated, and you're int
 2. Both are sampled independently
 3. Both population distributions are *continuous* (not categorical / discrete)
 
-We no longer need the assumption of normality, nor equal variances
+Note: We no longer need the assumption of normality, nor equal variances
 
 ## How It Works 
 
-We'll use $D_{obs}$ to represent the difference in means that we observe between our samples.
+We'll use $D_{obs}$ to represent the difference in means that we observe between our samples. For the following samples, we find $D_{obs}=12.5$.
 
-Under the null hypothesis, we'd expect that there is no difference in means. In other words, we could randomly switch around the values across the samples, and each time expect to get a test statistic $D^*$ close to $D_{obs}$. If the null hypothesis is false, and the difference we observe can't be explained by random chance, we'd see that only a few $D^*$'s are more extreme than $D_{obs}$.
+```{r, echo=F, eval=T, results=T}
+sample2 <- c(46, 48, 49, 51)
+sample1 <- c(31, 32, 34, 47)
+
+df <- tibble('Sample 1'=c(sample1, paste('Mean:',mean(sample1))), 
+             'Sample 2'=c(sample2, paste('Mean:',mean(sample2)))) %>% t()
+kbl(df) %>% 
+  column_spec(1, bold = T, border_right = T) %>%
+  column_spec(5, border_right = T) %>%
+  row_spec(1, color=col1) %>%
+  row_spec(2, color=col3) %>%
+  kable_styling(full_width = F, html_font = '"Karla", calibri, sans-serif')
+```
+
+Under the null hypothesis, we'd expect that there is no difference in means. In other words, we could randomly switch around the values across the samples and generate test statistics $D^*$ for each permutation. If the null hypothesis is false, and the difference we observe can't be explained by random chance, we'd see that only a few $D^*$'s are more extreme than $D_{obs}$.
+
+The way we do this is fairly straightforward. We'll first pool together our observed values.
+
+```{r, echo=F, eval=T, results=T}
+pooled <- c(sample1, sample2)
+
+df = data.frame('Pooled'=pooled)
+kbl(t(df), escape=F, align='c') %>% 
+  kable_styling(full_width = F, position='center', 
+                html_font = '"Karla", calibri, sans-serif') %>%
+  column_spec(1, bold = T, border_right = T)
+```
+
+Now we'll create as many permutations as we can, reassigning the "Sample 1" and "Sample 2" labels across all the observations. There are $\binom {m+n}{m} = \binom {8}{4} = 70$ possible permutations. We'll calculate a distribution of test statistics by finding what $D^*$ is for each permutation:
+
+```{r,  echo=F, eval=T, results=T}
+sample1 <- c(31, 32, 34, 47)
+sample2 <- c(46, 48, 49, 51)
+
+sample1.1 <- c(46, 32, 34, 47)
+sample2.1 <- c(31, 48, 49, 51)
+
+sample1.2 <- c(46, 48, 34, 47)
+sample2.2 <- c(31, 32, 49, 51)
+
+sample1.3 <- c(47, 48, 49, 51)
+sample2.3 <- c(31, 32, 34, 46) 
+
+sample.x <- rep('...', 4)
+
+df <- tibble('S. 1*'=sample1.1, 'S. 2*'=sample2.1,
+             'S. 1**'=sample1.2, 'S. 2**'=sample2.2,
+             'etc'=sample.x, 
+             'S. 1***'=sample1.3, 'S. 2***'=sample2.3,
+             )
+row.names(df) <- NULL
+
+kbl(df, escape=F, align='c') %>% 
+  kable_styling(full_width = F, position='center', 
+                html_font = '"Karla", calibri, sans-serif') %>%
+  column_spec(c(2,4,5,7), border_right = T) %>%
+  column_spec(c(2,4,7), color = col3) %>%
+  column_spec(c(1,3,6), color = col1, border_right = F) %>%
+  column_spec(1, border_left=T) %>%
+  add_header_above(c("Permutation 1" = 2, "Permutation 2" = 2, "..." = 1, "Permutation 70" = 2))
+
+
+d.1 <- mean(sample1.1) - mean(sample2.1)
+d.2 <- mean(sample1.2) - mean(sample2.2)
+d.3 <- mean(sample1.3) - mean(sample2.3)
+
+df2 <- tibble('D*'=d.1,'D**'=d.2,'etc'='...', 'D***'=d.3,)
+row.names(df2) <- NULL
+kbl(df2, escape=F, align='c') %>% 
+  kable_styling(full_width = F, position='center', 
+                html_font = '"Karla", calibri, sans-serif') %>%
+  column_spec(1:4, border_right = T, border_left = T) %>%
+  add_header_above(c("Permutation 1 " = 1, "Permutation 2" = 1, "..." = 1, " Permutation 70" = 1))
+```
+
 
 More on those permutations: If sample 1 has $m$ observations, and sample 2 has $n$ observations, there are $\binom {m+n}{m} = \frac {(m+n)!}{m!n!}$ permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic $D^*$ for each one of these permutations.
 
@@ -165,7 +242,7 @@ So, our p-value is then just the *fraction of permutations* that have a test sta
 <details><summary> Formal Definitions </summary>
 <p>
 
-For a double sided  test:
+For a double sided test:
 $$
 H_0: F_1(x) = F_2(x) \\
 H_a: F_1(x) \neq  F_2(x) \\
@@ -204,8 +281,8 @@ Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a dif
 ```{r}
 source('https://raw.githubusercontent.com/ishaandey/nonparametric/main/helper.R')
 
-sample1 <- c(37, 49, 55, 57)
-sample2 <- c(23, 31, 39, 46)
+sample1 <- c(31, 32, 34, 47)
+sample2 <- c(46, 48, 49, 51)
 
 permutation_test(sample1, sample2, method='mean')
 
@@ -242,15 +319,15 @@ Instead of difference in means, we could use either (1) sums, (2) trimmed means,
 
 Wilcoxon Rank-Sum is great for testing with low sample sizes and outliers, since it uses the rank of the observation as opposed to the value itself.
 
-There's only one **assumption**, that both population distribution are continuous (not categorical / discrete)
+Only one **assumption**: both population distributions should be continuous (not categorical or discrete)
 
 ## How It Works
 
-The goal here is to use *ranks*, as opposed to the actual values, to identify differences in location between the two parameters. Why? Ranks are much more resistant to outliers, since a singly high observation is now just ranked at the max, doesn't matter how far above in absolute value it is.
+The goal here is to use *ranks*, not actual values, to identify differences in location. Why? Ranks are far more resistant to outliers, since a singly high observation is now just ranked at the max, doesn't matter *how far above* in absolute value it is.
 
 We can pool the observations and compare the ranks that were assigned to sample 1 against those assigned to sample 2. We can compare the average rank of sample 1 against sample 2, and if it's lower by a particular margin, we can conclude that the values of sample 1 are below sample 2.
 
-As an example:
+We'll use the following as an example:
 
 ```{r, echo=F, eval=T, results=T}
 sample2 <- c(46, 48, 49, 51)
@@ -260,7 +337,8 @@ df <- tibble('Sample 1'=sample1, 'Sample 2'=sample2) %>% t()
 kbl(df) %>% 
   column_spec(1, bold = T, border_right = T) %>%
   row_spec(1, color=col1) %>%
-  row_spec(2, color=col3)
+  row_spec(2, color=col3) %>%
+  kable_styling(full_width = F, html_font = '"Karla", calibri, sans-serif')
 ```
 
 We'll first calculate $W_{obs}$, our test statistic. To do so, we'll first pool both samples together and rank them, assigning a value of `1` to the smallest observation, and `m+n` to the largest (since there are now $m+n$ observations in the pooled group).
@@ -273,13 +351,13 @@ row.names(df2) <- NULL
 df2$Values <- cell_spec(df2$Values, color = ifelse(df2$Sample == 'Sample1', col1, col3))
 df2$Ranks <- cell_spec(df2$Ranks, color = ifelse(df2$Sample == 'Sample1', col1, col3), bold = ifelse(df2$Sample == 'Sample1', T, F))
 
-kbl(df2[c('Values','Ranks')] %>% t(), 
-    escape=F, align='c') 
+kbl(df2[c('Values','Ranks')] %>% t(), escape=F, align='c') %>%
+  kable_styling(full_width = F, html_font = '"Karla", calibri, sans-serif')
 ```
 
-$W_{obs}$ is simply the *sum of ranks* of sample 1 observations: $W_{obs}=$ <span style="color: #79759d;">1+2+3+5</span> $=11$.
+$W_{obs}$ is simply the *sum of ranks* of sample 1 observations: $W_{obs}=$ <span style="color: #14366e;">1+2+3+5</span> $=11$.
 
-Why use this instead of the mean of the ranks between the two? Turns out, the sum of ranks of one sample is a linear function of the mean, so there's a 1:1 correspondence between the two. The sum of ranks is just more consistent and easy to calculate. 
+Why use this instead of comparing mean ranks? Turns out, the sum of ranks of one sample is a linear function of the mean, so there's a 1:1 correspondence between the two. The sum of ranks just simplifies the computation.
 
 <hr style="height:1px; width:60%;"></hr>
 
@@ -345,15 +423,18 @@ ranksums(sample1, sample2, alternative='less')
 
 # Mann-Whitney 
 
+The Mann-Whitney test is quite similar to the [Wilcoxon Rank-Sum test](wilcoxon-rank-sum.html).
 
-### Assumptions {-}
-1. Both pop. dist are continuous (not categorical / discrete)
+We make the following **assumptions**:
+
+1. Observations from groups are independent 
+2. Both population distributions are continuous (not categorical / discrete)
 
 ## How It Works
 
-In a sample of $m$ observations in sample $X$, and $n$ observations in sample $Y$, we want to focus on *each possible pair* of observations. The test statistic is quite simply $U = \text{# pairs for which } X_i < Y_j$. The minimum $U$ can be is $0$, while the max is every possible pair, or $m*n$.
+In a sample of $m$ observations in sample $X$, and $n$ observations in sample $Y$, we want to focus on *each possible pair* of observations. The test statistic $U$ is simply the number of pairs where $X_i < Y_j$. The minimum $U$ can be is $0$, while the max is every possible pair, or $m*n$.
 
-For example, let's say we have two samples, and want to see if sample 1 has a lower location than sample 2. Here's our raw data:
+Let's say we have two samples, and want to see if sample 1 has a lower location than sample 2. Here's our raw data:
 
 ```{r, echo=F, eval=T, results=T}
 library(dplyr)
@@ -364,10 +445,11 @@ df <- tibble('Sample 1' = sample1, 'Sample 2' = sample2) %>% t()
 kbl(df) %>% 
   column_spec(1, bold=T, border_right = T) %>%
   row_spec(1, color=col1) %>%
-  row_spec(2, color=col2)
+  row_spec(2, color=col2) %>%
+  kable_paper(full_width = F, html_font = '"Karla", calibri, sans-serif')
 ```
 
-We then look at every possible combination of the two samples and compare the values. We check if the values of the first sample (the columns) are greater than the values of the second sample (rows):
+We look at every possible combination of the two samples and compare the values, checking if the values of the first sample are greater than the values of the second sample:
 
 ```{r, echo=F, eval=T, results=T}
 comp.mat <- matrix(nrow=length(sample2), ncol=length(sample1))
@@ -398,15 +480,32 @@ df2 = apply(df, 2,
 rownames(df2) <- rownames(comp.mat)
 
 kbl(df2, format='html', escape=F) %>%
-  kable_paper(full_width = F, html_font = '"Karla", calibri, sans-serif') %>%
-  row_spec(0, bold=T, color=col2) %>%
-  column_spec(1, bold=T, color = col1) %>%
+  kable_styling(full_width = F, html_font = '"Karla", calibri, sans-serif') %>%
+  row_spec(0, bold=T, color=col1) %>%
+  column_spec(1, bold=T, color = col2) %>%
   add_header_above(c("Is Sample 1 > Sample 2?" = 5))
 ```
 
-Our test statistic $U_{obs}$ is the number of **Y**'s we found in the matrix, $=2$.
+Our test statistic $U_{obs}$ is the number of pairs where $X_i < Y_j$, indicated by the **Y**'s in the matrix. So,  $U_{obs}=2$.
 
-Under the null hypothesis, we'd expect our test statistic not to be that extreme. That is, if we were to randomly permute our values under different label, we'd need to see that our observed test statistic is far more extreme that the rest of the U statistics before concluding that the null hypothesis doesn't apply.
+<hr style="height:1px; width:60%;"></hr>
+
+If we were to randomly permute the observations across both labels, we'd need to see that our observed test statistic is far more extreme that the rest of the U statistics before concluding that the null hypothesis doesn't apply. Why? The null hypothesis suggests that the observations from both samples are derived from the same distribution, so we need sufficient evidence that this isn't the case in order to reject it.
+
+Our observed sample assignment is just one of $\binom{8}{4}=70$ possible permutations of the values between the two sample labels. Let's go ahead and find the corresponding test statistic $U^*$ for each of the other permutations:
+
+```{r,echo=F, eval=T, results=T}
+perm.num <- c(1, fa('ellipsis-v', fill='black'), 68:70)
+U.stat <- c(0, fa('ellipsis-v', fill='black'), 15, 15, 16)
+df <- data.frame('Permutation'=perm.num, 'U'=U.stat) 
+kbl(df, format='html', escape=F, align='c') %>% 
+  kable_styling(full_width = F, html_font = '"Karla", calibri, sans-serif',
+                position='float_right')
+```
+
+So, the probability that we observe $U_{obs}=2$ is then the number of $U$'s less than $U_{obs}$. Since there are 4 of 70 possible permutations with $U^* \leq U_{obs}$, we get a p-value of $\frac{4}{70}=0.057$.
+
+The intuition here is fairly straightforward: We expect to see a test statistic $U$ as or more extreme than $2$ 5.7% of the time when we assume that there is no difference in the null hypothesis.
 
 ### Formal Hypothesis Tests {-}
 
@@ -438,7 +537,10 @@ $$
 ## Code 
 
 ```{r}
-#hello there!
+sample1 <- c(31, 33, 46, 40)
+sample2 <- c(39, 49, 55, 57)
+
+wilcox.test(sample1, sample2, alternative='less')
 ```
 
 

@@ -19,17 +19,17 @@ url: https\://ishaandey.com/nonparametric/
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval=F, highlight=TRUE,
-                      warning=F, message=F)
+                      warning=F, message=F, comment = NA)
 library(ggplot2)
 library(dplyr)
 library(knitr)
 library(kableExtra)
+library(fontawesome)
 
 col1 <- '#14366e' #royalblue
 col2 <- '#6e1f14' #olivegreen
 col3 <- '#636e14' #crimsonred
 colX <- '#79759d' #themepurple
-
 ```
 
 
@@ -43,7 +43,7 @@ colX <- '#79759d' #themepurple
 
 ## Who Are We? {-}
 
-# Quick Start {-}
+# Cheat Sheet {-}
 
 # Statistical Foundations {-}
 
