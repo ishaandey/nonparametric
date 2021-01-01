@@ -185,13 +185,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-you"><i class="fa fa-check"></i>Who Are You?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#testing-basics"><i class="fa fa-check"></i>Testing Basics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#math-notation"><i class="fa fa-check"></i>Math Notation</a></li>
 </ul></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation"><i class="fa fa-check"></i>Notation</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a><ul>
@@ -211,9 +211,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a></li>
 <li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
 <li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
 </ul></li>
@@ -315,7 +313,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr>
 <td style="text-align:left;font-weight: bold;border-right:1px solid;color: #14366e !important;">
-Sample 1
+Sample A
 </td>
 <td style="text-align:left;color: #14366e !important;">
 31
@@ -335,7 +333,7 @@ Mean: 36
 </tr>
 <tr>
 <td style="text-align:left;font-weight: bold;border-right:1px solid;color: #636e14 !important;">
-Sample 2
+Sample B
 </td>
 <td style="text-align:left;color: #636e14 !important;">
 46
@@ -390,7 +388,7 @@ Pooled
 </tr>
 </tbody>
 </table>
-<p>Now we’ll create as many permutations as we can, reassigning the “Sample 1” and “Sample 2” labels across all the observations. There are <span class="math inline">\(\binom {m+n}{m} = \binom {8}{4} = 70\)</span> possible permutations. We’ll calculate a distribution of test statistics by finding what <span class="math inline">\(D^*\)</span> is for each permutation:</p>
+<p>Now we’ll create as many permutations as we can, reassigning the “Sample A” and “Sample B” labels across all the observations. There are <span class="math inline">\(\binom {m+n}{m} = \binom {8}{4} = 70\)</span> possible permutations. We’ll calculate a distribution of test statistics by finding what <span class="math inline">\(D^*\)</span> is for each permutation:</p>
 <table class="table" style='font-family: "Karla", calibri, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
 <thead>
 <tr>
@@ -417,25 +415,25 @@ Permutation 70
 </tr>
 <tr>
 <th style="text-align:center;">
-S. 1*
+A*
 </th>
 <th style="text-align:center;">
-S. 2*
+B*
 </th>
 <th style="text-align:center;">
-S. 1**
+A**
 </th>
 <th style="text-align:center;">
-S. 2**
+B**
 </th>
 <th style="text-align:center;">
 etc
 </th>
 <th style="text-align:center;">
-S. 1***
+A***
 </th>
 <th style="text-align:center;">
-S. 2***
+B***
 </th>
 </tr>
 </thead>
@@ -558,40 +556,25 @@ Permutation 70
 </div>
 </th>
 </tr>
-<tr>
-<th style="text-align:center;">
-D*
-</th>
-<th style="text-align:center;">
-D**
-</th>
-<th style="text-align:center;">
-etc
-</th>
-<th style="text-align:center;">
-D***
-</th>
-</tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center;border-left:1px solid;border-right:1px solid;">
--5
+D*= -5
 </td>
 <td style="text-align:center;border-left:1px solid;border-right:1px solid;">
-3
+D*= 3
 </td>
 <td style="text-align:center;border-left:1px solid;border-right:1px solid;">
 …
 </td>
 <td style="text-align:center;border-left:1px solid;border-right:1px solid;">
-13
+D*= 13
 </td>
 </tr>
 </tbody>
 </table>
-<p>More on those permutations: If sample 1 has <span class="math inline">\(m\)</span> observations, and sample 2 has <span class="math inline">\(n\)</span> observations, there are <span class="math inline">\(\binom {m+n}{m} = \frac {(m+n)!}{m!n!}\)</span> permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic <span class="math inline">\(D^*\)</span> for each one of these permutations.</p>
-<p>So, our p-value is then just the <em>fraction of permutations</em> that have a test statistic <span class="math inline">\(D^*\)</span> as or more extreme than what was observed <span class="math inline">\(D_{obs}\)</span>.</p>
+<p>From our calculated <span class="math inline">\(D^*\)</span>’s, we find that there are only 4 permutations that yield a test statistic greater than <span class="math inline">\(D_{obs}\)</span>. So, our p-value is simply <span class="math inline">\(\frac{4}{70}= 0.057\)</span>.</p>
 <details>
 <summary> Formal Definitions </summary>
 <p>
@@ -618,7 +601,7 @@ p\text{-value}_{lower} = \frac{\text{# of }D\leq D_{obs}}{\binom {m+n}{m}}
 \]</span></p>
 </p>
 </details>
-<p>Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.</p>
+<p><strong>Interpretation</strong>: Given a p-value of 0.057, there is a 5.7% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.</p>
 </div>
 <div id="code-1" class="section level2">
 <h2><span class="header-section-number">2.2</span> Code</h2>
@@ -630,10 +613,10 @@ R
 Python
 </button>
 <div id="R" class="tabcontent">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="two-sample-permutation.html#cb3-1"></a><span class="kw">source</span>(<span class="st">&#39;https://raw.githubusercontent.com/ishaandey/nonparametric/main/helper.R&#39;</span>)</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="two-sample-permutation.html#cb3-1"></a><span class="kw">source</span>(<span class="st">&#39;https://raw.githubusercontent.com/ishaandey/nonparametric/master/helper.R&#39;</span>)</span>
 <span id="cb3-2"><a href="two-sample-permutation.html#cb3-2"></a></span>
-<span id="cb3-3"><a href="two-sample-permutation.html#cb3-3"></a>sample1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">34</span>, <span class="dv">47</span>)</span>
-<span id="cb3-4"><a href="two-sample-permutation.html#cb3-4"></a>sample2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">46</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">51</span>)</span>
+<span id="cb3-3"><a href="two-sample-permutation.html#cb3-3"></a>sample1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">46</span>, <span class="dv">48</span>, <span class="dv">49</span>, <span class="dv">51</span>)</span>
+<span id="cb3-4"><a href="two-sample-permutation.html#cb3-4"></a>sample2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">34</span>, <span class="dv">47</span>)</span>
 <span id="cb3-5"><a href="two-sample-permutation.html#cb3-5"></a></span>
 <span id="cb3-6"><a href="two-sample-permutation.html#cb3-6"></a><span class="kw">permutation_test</span>(sample1, sample2, <span class="dt">method=</span><span class="st">&#39;mean&#39;</span>)</span>
 <span id="cb3-7"><a href="two-sample-permutation.html#cb3-7"></a></span>
@@ -662,9 +645,7 @@ Python
 <hr>
 <center> 
   <div class="footer">
-      All illustrations <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>: You can download them by <a href="shared-illos.zip">clicking here</a>
-      <br>
-      All other materials <a href= "https://creativecommons.org/licenses/by/2.0/"> CC-BY </a> unless noted otherwise.
+      All content here is licensed by l <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>.
   </div>
 </center>
             </section>

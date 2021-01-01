@@ -15,8 +15,8 @@ Any student of introductory statistics knows the remedy: take into account the s
 
 Say you're expecting population 1 to be *lower* than population 2. You'll use a *lower-tail* test, and use a set of hypotheses like so: 
 $$
-H_0: \mu_1 = \mu_2 \\
-H_a: \mu_1 \leq \mu_2
+Null Hypothesis H_0: \mu_1 = \mu_2 \\
+Alternate Hypothesis H_a: \mu_1 \leq \mu_2
 $$
 
 In this section, we don't necessarily know the distribution of our data, but we're testing that the *distributions*, not necessarily means, are equal.
@@ -107,8 +107,9 @@ Note: By the Central Limit Theorem, we can assume that the sample means will sta
 
 ## How It Works 
 
-- Do we know the population variance $\sigma^2$? If so, we'll use the $z$ distribution: $z\sim N(0,1)$
-- Is the population variance $\sigma^2$ unknown? If not, we'll then use the $t$ distribution, $t\sim t(df)$, where $df$ is the minimum of the two sample sizes - 1.
+Do we know the population variance $\sigma^2$? 
+- If so, we'll use the $z$ distribution: $z\sim N(0,1)$
+- Otherwise, we'll use the $t$ distribution, $t\sim t(df)$, where $df$ is the minimum of the two sample sizes - 1.
 
 ## Code
 
@@ -163,8 +164,8 @@ We'll use $D_{obs}$ to represent the difference in means that we observe between
 sample2 <- c(46, 48, 49, 51)
 sample1 <- c(31, 32, 34, 47)
 
-df <- tibble('Sample 1'=c(sample1, paste('Mean:',mean(sample1))), 
-             'Sample 2'=c(sample2, paste('Mean:',mean(sample2)))) %>% t()
+df <- tibble('Sample A'=c(sample1, paste('Mean:',mean(sample1))), 
+             'Sample B'=c(sample2, paste('Mean:',mean(sample2)))) %>% t()
 kbl(df) %>% 
   column_spec(1, bold = T, border_right = T) %>%
   column_spec(5, border_right = T) %>%
@@ -187,7 +188,7 @@ kbl(t(df), escape=F, align='c') %>%
   column_spec(1, bold = T, border_right = T)
 ```
 
-Now we'll create as many permutations as we can, reassigning the "Sample 1" and "Sample 2" labels across all the observations. There are $\binom {m+n}{m} = \binom {8}{4} = 70$ possible permutations. We'll calculate a distribution of test statistics by finding what $D^*$ is for each permutation:
+Now we'll create as many permutations as we can, reassigning the "Sample A" and "Sample B   " labels across all the observations. There are $\binom {m+n}{m} = \binom {8}{4} = 70$ possible permutations. We'll calculate a distribution of test statistics by finding what $D^*$ is for each permutation:
 
 ```{r,  echo=F, eval=T, results=T}
 sample1 <- c(31, 32, 34, 47)
@@ -204,10 +205,10 @@ sample2.3 <- c(31, 32, 34, 46)
 
 sample.x <- rep('...', 4)
 
-df <- tibble('S. 1*'=sample1.1, 'S. 2*'=sample2.1,
-             'S. 1**'=sample1.2, 'S. 2**'=sample2.2,
+df <- tibble('A*'=sample1.1, 'B*'=sample2.1,
+             'A**'=sample1.2, 'B**'=sample2.2,
              'etc'=sample.x, 
-             'S. 1***'=sample1.3, 'S. 2***'=sample2.3,
+             'A***'=sample1.3, 'B***'=sample2.3,
              )
 row.names(df) <- NULL
 
@@ -219,14 +220,20 @@ kbl(df, escape=F, align='c') %>%
   column_spec(c(1,3,6), color = col1, border_right = F) %>%
   column_spec(1, border_left=T) %>%
   add_header_above(c("Permutation 1" = 2, "Permutation 2" = 2, "..." = 1, "Permutation 70" = 2))
+```
 
 
+```{r, echo=F, eval=T, results=T}
 d.1 <- mean(sample1.1) - mean(sample2.1)
 d.2 <- mean(sample1.2) - mean(sample2.2)
 d.3 <- mean(sample1.3) - mean(sample2.3)
 
-df2 <- tibble('D*'=d.1,'D**'=d.2,'etc'='...', 'D***'=d.3,)
+df2 <- tibble('D*'  =paste('D*=',d.1),
+              'D**' =paste('D*=',d.2),
+              'etc' ='...', 
+              'D***'=paste('D*=',d.3))
 row.names(df2) <- NULL
+colnames(df2) <- NULL
 kbl(df2, escape=F, align='c') %>% 
   kable_styling(full_width = F, position='center', 
                 html_font = '"Karla", calibri, sans-serif') %>%
@@ -234,10 +241,7 @@ kbl(df2, escape=F, align='c') %>%
   add_header_above(c("Permutation 1 " = 1, "Permutation 2" = 1, "..." = 1, " Permutation 70" = 1))
 ```
 
-
-More on those permutations: If sample 1 has $m$ observations, and sample 2 has $n$ observations, there are $\binom {m+n}{m} = \frac {(m+n)!}{m!n!}$ permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic $D^*$ for each one of these permutations.
-
-So, our p-value is then just the *fraction of permutations* that have a test statistic $D^*$ as or more extreme than what was observed $D_{obs}$.
+From our calculated $D^*$'s, we find that there are only 4 permutations that yield a test statistic greater than $D_{obs}$. So, our p-value is simply $\frac{4}{70}= 0.057$. 
 
 <details><summary> Formal Definitions </summary>
 <p>
@@ -269,7 +273,7 @@ $$
 </details>
 
 
-Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.
+**Interpretation**: Given a p-value of 0.057, there is a 5.7% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.
 
 ## Code 
 ::: {.tab}
@@ -279,10 +283,10 @@ Interpretation: Given a p-value of 0.06, there is a 6% chance of observing a dif
 ::: {#R .tabcontent}
 
 ```{r}
-source('https://raw.githubusercontent.com/ishaandey/nonparametric/main/helper.R')
+source('https://raw.githubusercontent.com/ishaandey/nonparametric/master/helper.R')
 
-sample1 <- c(31, 32, 34, 47)
-sample2 <- c(46, 48, 49, 51)
+sample1 <- c(46, 48, 49, 51)
+sample2 <- c(31, 32, 34, 47)
 
 permutation_test(sample1, sample2, method='mean')
 
@@ -367,25 +371,42 @@ Let's make that idea a little more quantitative: If sample 1 has $m$ observation
 
 Our p-value is then just the *fraction of permutations* that have a test statistic $W$ as or more extreme than what was observed $W_{obs}$:
 
-Going back to our example,
+In our example, there are $\binom {8}{4}=70$ possible ways we could've obtained the four observations in sample 1 from a total of eight values. We could look up the significance from a table, or read off the p-value from the test output.
 
-Here are 
 
-<details><summary> P-value Formula </summary>
+<details><summary> Formal Definitions </summary>
 <p>
 
-$p-val_{two\ sided} = \frac{\text{# of W's more extreme than } W_{obs} \text{ across both tails}}{\binom {m+n}{m}}$
-<br>    $p-val_{lower} = \frac{\text{# of }W\geq W_{obs}}{\binom {m+n}{m}}$
-<br>    $p-val_{upper} = \frac{\text{# of }W\leq W_{obs}}{\binom {m+n}{m}}$
+For a double sided test:
+$$
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \neq  F_2(x) \\
+~ \\
+p\text{-value}_{two\ sided} = \frac{\text{# of W's more extreme than } W_{obs} \text{ across both tails}}{\binom {m+n}{m}}
+$$
+For an upper tail test:
+$$
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \leq  F_2(x) \\
+~ \\
+p\text{-value}_{upper} = \frac{\text{# of }W\leq W_{obs}}{\binom {m+n}{m}}
+$$
+
+For a lower tail test:
+$$
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \geq  F_2(x) \\
+~ \\
+p\text{-value}_{lower} = \frac{\text{# of }W\geq W_{obs}}{\binom {m+n}{m}}
+$$
 
 </p>
 </details>
 
-In our example, there are $\binom {8}{4}=70$ possible ways we could've obtained the four observations in sample 1 from a total of eight values. We could lookup the significance from a table, or read off the p-value from the test output
 
 **Interpretation**: Given a p-value of 0.028, there is a 2.8% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution. 
 
-Because it's less than our confidence threshold $\alpha$ of $0.05$, we reject the null hypothesis that $F_1(x) = F_2(x)$, and conclude that the location of population 1 is lower than population 2.
+Because our p-value is less than our confidence threshold $\alpha$ of $0.05$, we reject the null hypothesis that $F_1(x) = F_2(x)$, and conclude that the location of population 1 is lower than population 2.
 
 ## Code 
 
@@ -492,47 +513,50 @@ Our test statistic $U_{obs}$ is the number of pairs where $X_i < Y_j$, indicated
 
 If we were to randomly permute the observations across both labels, we'd need to see that our observed test statistic is far more extreme that the rest of the U statistics before concluding that the null hypothesis doesn't apply. Why? The null hypothesis suggests that the observations from both samples are derived from the same distribution, so we need sufficient evidence that this isn't the case in order to reject it.
 
-Our observed sample assignment is just one of $\binom{8}{4}=70$ possible permutations of the values between the two sample labels. Let's go ahead and find the corresponding test statistic $U^*$ for each of the other permutations:
-
 ```{r,echo=F, eval=T, results=T}
-perm.num <- c(1, fa('ellipsis-v', fill='black'), 68:70)
-U.stat <- c(0, fa('ellipsis-v', fill='black'), 15, 15, 16)
+perm.num <- c(1:3, fa('ellipsis-v', fill='black'), 70)
+U.stat <- c(0:1,1, fa('ellipsis-v', fill='black'), 16)
 df <- data.frame('Permutation'=perm.num, 'U'=U.stat) 
 kbl(df, format='html', escape=F, align='c') %>% 
   kable_styling(full_width = F, html_font = '"Karla", calibri, sans-serif',
                 position='float_right')
 ```
 
+Our observed sample assignment is just one of $\binom{8}{4}=70$ possible permutations of the values between the two sample labels. Let's go ahead and find the corresponding test statistic $U^*$ for each of the other permutations:
+
 So, the probability that we observe $U_{obs}=2$ is then the number of $U$'s less than $U_{obs}$. Since there are 4 of 70 possible permutations with $U^* \leq U_{obs}$, we get a p-value of $\frac{4}{70}=0.057$.
 
-The intuition here is fairly straightforward: We expect to see a test statistic $U$ as or more extreme than $2$ 5.7% of the time when we assume that there is no difference in the null hypothesis.
+The intuition here is fairly straightforward: We expect to see a test statistic $U$ as or more extreme than $U_{obs}$ 5.7% of the time when we assume that there is no difference in the null hypothesis.
 
-### Formal Hypothesis Tests {-}
-
-<details><summary> Formal Hypothesis Test </summary>
+<details><summary> Formal Definitions </summary>
 <p>
 
-Hypothesis Test:
+For a double sided test:
 $$
-\begin{aligned}
-H_0 &: F_1(x) = F_2(x) \\
-H_a &: F_1(x) \geq F_2(x) \\
-& \text{with a strict inequality for at least one }x
-\end{aligned}
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \neq  F_2(x) \\
+~ \\
+p\text{-value}_{two\ sided} = \frac{\text{# of U's farther from  } \frac{mn}{2}}{\binom {m+n}{m}} \\
 $$
-
-P-Value:
+For an upper tail test:
 $$
-\begin{aligned}
-p\text{-value}_{two\ sided} &= \frac{\text{# of U's farther from  } \frac{mn}{2}}{\binom {m+n}{m}} \\
-p\text{-value}_{lower} &= \frac{\text{# of }U\geq U_{obs}}{\binom {m+n}{m}} \\
-p\text{-value}_{upper} &= \frac{\text{# of }U\leq U_{obs}}{\binom {m+n}{m}}
-\end{aligned}
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \leq  F_2(x) \\
+~ \\
+p\text{-value}_{upper} = \frac{\text{# of }U\leq U_{obs}}{\binom {m+n}{m}}
 $$
 
+For a lower tail test:
+$$
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \geq  F_2(x) \\
+~ \\
+p\text{-value}_{lower} = \frac{\text{# of }U\geq U_{obs}}{\binom {m+n}{m}}
+$$
 
 </p>
 </details>
+
 
 ## Code 
 

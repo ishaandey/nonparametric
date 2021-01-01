@@ -185,13 +185,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-you"><i class="fa fa-check"></i>Who Are You?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#testing-basics"><i class="fa fa-check"></i>Testing Basics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#math-notation"><i class="fa fa-check"></i>Math Notation</a></li>
 </ul></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation"><i class="fa fa-check"></i>Notation</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a><ul>
@@ -211,9 +211,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a></li>
 <li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
 <li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
 </ul></li>
@@ -450,7 +448,6 @@ Is Sample 1 &gt; Sample 2?
 <hr style="height:1px; width:60%;">
 </hr>
 <p>If we were to randomly permute the observations across both labels, we’d need to see that our observed test statistic is far more extreme that the rest of the U statistics before concluding that the null hypothesis doesn’t apply. Why? The null hypothesis suggests that the observations from both samples are derived from the same distribution, so we need sufficient evidence that this isn’t the case in order to reject it.</p>
-<p>Our observed sample assignment is just one of <span class="math inline">\(\binom{8}{4}=70\)</span> possible permutations of the values between the two sample labels. Let’s go ahead and find the corresponding test statistic <span class="math inline">\(U^*\)</span> for each of the other permutations:</p>
 <table class="table" style='font-family: "Karla", calibri, sans-serif; width: auto !important; float: right; margin-left: 10px;'>
 <thead>
 <tr>
@@ -473,6 +470,22 @@ U
 </tr>
 <tr>
 <td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
 <svg style="height:0.8em;top:.04em;position:relative;fill:black;" viewbox="0 0 192 512">
 <path d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path>
 </svg>
@@ -481,22 +494,6 @@ U
 <svg style="height:0.8em;top:.04em;position:relative;fill:black;" viewbox="0 0 192 512">
 <path d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"></path>
 </svg>
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-68
-</td>
-<td style="text-align:center;">
-15
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-69
-</td>
-<td style="text-align:center;">
-15
 </td>
 </tr>
 <tr>
@@ -509,32 +506,35 @@ U
 </tr>
 </tbody>
 </table>
+<p>Our observed sample assignment is just one of <span class="math inline">\(\binom{8}{4}=70\)</span> possible permutations of the values between the two sample labels. Let’s go ahead and find the corresponding test statistic <span class="math inline">\(U^*\)</span> for each of the other permutations:</p>
 <p>So, the probability that we observe <span class="math inline">\(U_{obs}=2\)</span> is then the number of <span class="math inline">\(U\)</span>’s less than <span class="math inline">\(U_{obs}\)</span>. Since there are 4 of 70 possible permutations with <span class="math inline">\(U^* \leq U_{obs}\)</span>, we get a p-value of <span class="math inline">\(\frac{4}{70}=0.057\)</span>.</p>
-<p>The intuition here is fairly straightforward: We expect to see a test statistic <span class="math inline">\(U\)</span> as or more extreme than <span class="math inline">\(2\)</span> 5.7% of the time when we assume that there is no difference in the null hypothesis.</p>
-<div id="formal-hypothesis-tests" class="section level3 unnumbered">
-<h3>Formal Hypothesis Tests</h3>
+<p>The intuition here is fairly straightforward: We expect to see a test statistic <span class="math inline">\(U\)</span> as or more extreme than <span class="math inline">\(U_{obs}\)</span> 5.7% of the time when we assume that there is no difference in the null hypothesis.</p>
 <details>
-<summary> Formal Hypothesis Test </summary>
+<summary> Formal Definitions </summary>
 <p>
-<p>Hypothesis Test:
+<p>For a double sided test:
 <span class="math display">\[
-\begin{aligned}
-H_0 &amp;: F_1(x) = F_2(x) \\
-H_a &amp;: F_1(x) \geq F_2(x) \\
-&amp; \text{with a strict inequality for at least one }x
-\end{aligned}
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \neq  F_2(x) \\
+~ \\
+p\text{-value}_{two\ sided} = \frac{\text{# of U&#39;s farther from  } \frac{mn}{2}}{\binom {m+n}{m}} \\
+\]</span>
+For an upper tail test:
+<span class="math display">\[
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \leq  F_2(x) \\
+~ \\
+p\text{-value}_{upper} = \frac{\text{# of }U\leq U_{obs}}{\binom {m+n}{m}}
 \]</span></p>
-<p>P-Value:
+<p>For a lower tail test:
 <span class="math display">\[
-\begin{aligned}
-p\text{-value}_{two\ sided} &amp;= \frac{\text{# of U&#39;s farther from  } \frac{mn}{2}}{\binom {m+n}{m}} \\
-p\text{-value}_{lower} &amp;= \frac{\text{# of }U\geq U_{obs}}{\binom {m+n}{m}} \\
-p\text{-value}_{upper} &amp;= \frac{\text{# of }U\leq U_{obs}}{\binom {m+n}{m}}
-\end{aligned}
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \geq  F_2(x) \\
+~ \\
+p\text{-value}_{lower} = \frac{\text{# of }U\geq U_{obs}}{\binom {m+n}{m}}
 \]</span></p>
 </p>
 </details>
-</div>
 </div>
 <div id="code-3" class="section level2">
 <h2><span class="header-section-number">4.2</span> Code</h2>
@@ -571,9 +571,7 @@ W_{2} \\
 <hr>
 <center> 
   <div class="footer">
-      All illustrations <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>: You can download them by <a href="shared-illos.zip">clicking here</a>
-      <br>
-      All other materials <a href= "https://creativecommons.org/licenses/by/2.0/"> CC-BY </a> unless noted otherwise.
+      All content here is licensed by l <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>.
   </div>
 </center>
             </section>

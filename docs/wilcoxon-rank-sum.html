@@ -185,13 +185,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-you"><i class="fa fa-check"></i>Who Are You?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#testing-basics"><i class="fa fa-check"></i>Testing Basics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#math-notation"><i class="fa fa-check"></i>Math Notation</a></li>
 </ul></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation"><i class="fa fa-check"></i>Notation</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a><ul>
@@ -211,9 +211,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a></li>
 <li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
 <li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
 </ul></li>
@@ -415,19 +413,35 @@ Ranks
 <p>Under the null hypothesis, we’d expect our observations to have no difference in ranks. So, if we were to randomly switch around (permute) the observations across the samples, we’d expect our observed test statistic <span class="math inline">\(W_{obs}\)</span> to not be anything unusual, according to <span class="math inline">\(H_0\)</span>. In otherwords, random chance could have just as easily produced <span class="math inline">\(W_{obs}\)</span> as the treatment we gave.</p>
 <p>Let’s make that idea a little more quantitative: If sample 1 has <span class="math inline">\(m\)</span> observations, and sample 2 has <span class="math inline">\(n\)</span> observations, there are <span class="math inline">\(\binom {m+n}{m} = \frac {(m+n)!}{m!n!}\)</span> permutations when we pool together our observations and reassign them to a group. We can calculate a test statistic <span class="math inline">\(W^*\)</span> for each one of these permutations.</p>
 <p>Our p-value is then just the <em>fraction of permutations</em> that have a test statistic <span class="math inline">\(W\)</span> as or more extreme than what was observed <span class="math inline">\(W_{obs}\)</span>:</p>
-<p>Going back to our example,</p>
-<p>Here are</p>
+<p>In our example, there are <span class="math inline">\(\binom {8}{4}=70\)</span> possible ways we could’ve obtained the four observations in sample 1 from a total of eight values. We could look up the significance from a table, or read off the p-value from the test output.</p>
 <details>
-<summary> P-value Formula </summary>
+<summary> Formal Definitions </summary>
 <p>
-<p><span class="math inline">\(p-val_{two\ sided} = \frac{\text{# of W&#39;s more extreme than } W_{obs} \text{ across both tails}}{\binom {m+n}{m}}\)</span>
-<br> <span class="math inline">\(p-val_{lower} = \frac{\text{# of }W\geq W_{obs}}{\binom {m+n}{m}}\)</span>
-<br> <span class="math inline">\(p-val_{upper} = \frac{\text{# of }W\leq W_{obs}}{\binom {m+n}{m}}\)</span></p>
+<p>For a double sided test:
+<span class="math display">\[
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \neq  F_2(x) \\
+~ \\
+p\text{-value}_{two\ sided} = \frac{\text{# of W&#39;s more extreme than } W_{obs} \text{ across both tails}}{\binom {m+n}{m}}
+\]</span>
+For an upper tail test:
+<span class="math display">\[
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \leq  F_2(x) \\
+~ \\
+p\text{-value}_{upper} = \frac{\text{# of }W\leq W_{obs}}{\binom {m+n}{m}}
+\]</span></p>
+<p>For a lower tail test:
+<span class="math display">\[
+H_0: F_1(x) = F_2(x) \\
+H_a: F_1(x) \geq  F_2(x) \\
+~ \\
+p\text{-value}_{lower} = \frac{\text{# of }W\geq W_{obs}}{\binom {m+n}{m}}
+\]</span></p>
 </p>
 </details>
-<p>In our example, there are <span class="math inline">\(\binom {8}{4}=70\)</span> possible ways we could’ve obtained the four observations in sample 1 from a total of eight values. We could lookup the significance from a table, or read off the p-value from the test output</p>
 <p><strong>Interpretation</strong>: Given a p-value of 0.028, there is a 2.8% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.</p>
-<p>Because it’s less than our confidence threshold <span class="math inline">\(\alpha\)</span> of <span class="math inline">\(0.05\)</span>, we reject the null hypothesis that <span class="math inline">\(F_1(x) = F_2(x)\)</span>, and conclude that the location of population 1 is lower than population 2.</p>
+<p>Because our p-value is less than our confidence threshold <span class="math inline">\(\alpha\)</span> of <span class="math inline">\(0.05\)</span>, we reject the null hypothesis that <span class="math inline">\(F_1(x) = F_2(x)\)</span>, and conclude that the location of population 1 is lower than population 2.</p>
 </div>
 <div id="code-2" class="section level2">
 <h2><span class="header-section-number">3.2</span> Code</h2>
@@ -466,9 +480,7 @@ Python
 <hr>
 <center> 
   <div class="footer">
-      All illustrations <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>: You can download them by <a href="shared-illos.zip">clicking here</a>
-      <br>
-      All other materials <a href= "https://creativecommons.org/licenses/by/2.0/"> CC-BY </a> unless noted otherwise.
+      All content here is licensed by l <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>.
   </div>
 </center>
             </section>

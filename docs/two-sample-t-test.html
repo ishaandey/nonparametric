@@ -185,13 +185,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-you"><i class="fa fa-check"></i>Who Are You?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#testing-basics"><i class="fa fa-check"></i>Testing Basics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#math-notation"><i class="fa fa-check"></i>Math Notation</a></li>
 </ul></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation"><i class="fa fa-check"></i>Notation</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a><ul>
@@ -211,9 +211,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a></li>
 <li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
 <li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
 </ul></li>
@@ -310,10 +308,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: By the Central Limit Theorem, we can assume that the sample means will start looking normal at large sample sizes (<span class="math inline">\(n \geq 40\)</span>).</p>
 <div id="how-it-works" class="section level2">
 <h2><span class="header-section-number">1.1</span> How It Works</h2>
-<ul>
-<li>Do we know the population variance <span class="math inline">\(\sigma^2\)</span>? If so, we’ll use the <span class="math inline">\(z\)</span> distribution: <span class="math inline">\(z\sim N(0,1)\)</span></li>
-<li>Is the population variance <span class="math inline">\(\sigma^2\)</span> unknown? If not, we’ll then use the <span class="math inline">\(t\)</span> distribution, <span class="math inline">\(t\sim t(df)\)</span>, where <span class="math inline">\(df\)</span> is the minimum of the two sample sizes - 1.</li>
-</ul>
+<p>Do we know the population variance <span class="math inline">\(\sigma^2\)</span>?
+- If so, we’ll use the <span class="math inline">\(z\)</span> distribution: <span class="math inline">\(z\sim N(0,1)\)</span>
+- Otherwise, we’ll use the <span class="math inline">\(t\)</span> distribution, <span class="math inline">\(t\sim t(df)\)</span>, where <span class="math inline">\(df\)</span> is the minimum of the two sample sizes - 1.</p>
 </div>
 <div id="code" class="section level2">
 <h2><span class="header-section-number">1.2</span> Code</h2>
@@ -346,9 +343,7 @@ Python
 <hr>
 <center> 
   <div class="footer">
-      All illustrations <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>: You can download them by <a href="shared-illos.zip">clicking here</a>
-      <br>
-      All other materials <a href= "https://creativecommons.org/licenses/by/2.0/"> CC-BY </a> unless noted otherwise.
+      All content here is licensed by l <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>.
   </div>
 </center>
             </section>

@@ -185,13 +185,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-you"><i class="fa fa-check"></i>Who Are You?</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#who-are-we"><i class="fa fa-check"></i>Who Are We?</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#testing-basics"><i class="fa fa-check"></i>Testing Basics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#math-notation"><i class="fa fa-check"></i>Math Notation</a></li>
 </ul></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation"><i class="fa fa-check"></i>Notation</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a><ul>
@@ -211,9 +211,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a></li>
 <li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
 <li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
 </ul></li>
@@ -308,12 +306,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Comparing differences in means is one of the most commonly used procedures in statistics. Take the following use case: Does Product A have better ratings than than Product B? Sure, we could compare averages (i.e. Product A’s mean is <span class="math inline">\(4.83\)</span>, better than Product B’s <span class="math inline">\(4.79\)</span>), but it fails to answer the question: Are the <em>population</em> ratings for A better than B? We only have data from a sample of reviews, so we’ve got to somehow <em>estimate</em> the population differences in ratings.</p>
 <p>Any student of introductory statistics knows the remedy: take into account the spread of the data using a two-sample t-test. But the t-test makes a few strong assumptions about the data, mainly the assumption of normality. This chapter describes alternative tests we can use instead.</p>
 </div>
-<div id="notation-1" class="section level2 unnumbered">
+<div id="notation" class="section level2 unnumbered">
 <h2>Notation</h2>
 <p>Say you’re expecting population 1 to be <em>lower</em> than population 2. You’ll use a <em>lower-tail</em> test, and use a set of hypotheses like so:
 <span class="math display">\[
-H_0: \mu_1 = \mu_2 \\
-H_a: \mu_1 \leq \mu_2
+Null Hypothesis H_0: \mu_1 = \mu_2 \\
+Alternate Hypothesis H_a: \mu_1 \leq \mu_2
 \]</span></p>
 <p>In this section, we don’t necessarily know the distribution of our data, but we’re testing that the <em>distributions</em>, not necessarily means, are equal.</p>
 <p>As such, our hypotheses will look something like:</p>
@@ -324,7 +322,7 @@ H_a: F_1(x) \geq F_2(x) \\
 \]</span></p>
 <p><span class="math inline">\(F(x)\)</span> here refers to the empirical CDF, or the <em>probability of seeing a value less than or below</em> <span class="math inline">\(x\)</span>.</p>
 <p>If the location of population 1 is below population 2, we’d expect that at a certain point <span class="math inline">\(x\)</span>, the probability of seeing a value at or below <span class="math inline">\(x\)</span> should be higher for population 1 than it is for population 2. Here’s a visual:</p>
-<p><img src="nonparametric_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="nonparametric_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>From the first plot we see <span class="math inline">\(\mu_1 &lt; \mu_2\)</span>, and from the second, <span class="math inline">\(F_1(x) \geq F_2(x)\)</span>. Both correspond to the “less than” hypothesis.</p>
 </div>
 <div id="diagnostics" class="section level2 unnumbered">
@@ -338,9 +336,7 @@ H_a: F_1(x) \geq F_2(x) \\
 <hr>
 <center> 
   <div class="footer">
-      All illustrations <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>: You can download them by <a href="shared-illos.zip">clicking here</a>
-      <br>
-      All other materials <a href= "https://creativecommons.org/licenses/by/2.0/"> CC-BY </a> unless noted otherwise.
+      All content here is licensed by l <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>.
   </div>
 </center>
             </section>

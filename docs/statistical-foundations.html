@@ -50,8 +50,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <!-- 
 Header 
   - included at the top (head) of every page
@@ -99,69 +97,6 @@ function unrolltab(evt, tabName) {
 </center>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  background-color: #f8f8f8; }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
@@ -188,97 +123,80 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="cheat-sheet.html"><a href="cheat-sheet.html"><i class="fa fa-check"></i>Cheat Sheet</a></li>
 <li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html"><i class="fa fa-check"></i>Statistical Foundations</a><ul>
-<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
-<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#testing-basics"><i class="fa fa-check"></i>Testing Basics</a></li>
+<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#math-notation"><i class="fa fa-check"></i>Math Notation</a></li>
 </ul></li>
 <li class="part"><span><b>I Two Sample Inference</b></span></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation"><i class="fa fa-check"></i>Notation</a></li>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a><ul>
-<li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html#power"><i class="fa fa-check"></i>Power</a></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html"><i class="fa fa-check"></i><b>1</b> Two Sample t-Test</a><ul>
-<li class="chapter" data-level="1.1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#how-it-works"><i class="fa fa-check"></i><b>1.1</b> How It Works</a></li>
-<li class="chapter" data-level="1.2" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#code"><i class="fa fa-check"></i><b>1.2</b> Code</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html"><i class="fa fa-check"></i><b>2</b> Permutation Test</a><ul>
-<li class="chapter" data-level="2.1" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#how-it-works-1"><i class="fa fa-check"></i><b>2.1</b> How It Works</a></li>
-<li class="chapter" data-level="2.2" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#code-1"><i class="fa fa-check"></i><b>2.2</b> Code</a></li>
-<li class="chapter" data-level="2.3" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#variants"><i class="fa fa-check"></i><b>2.3</b> Variants</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html"><i class="fa fa-check"></i><b>3</b> Wilcoxon Rank-Sum</a><ul>
-<li class="chapter" data-level="3.1" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#how-it-works-2"><i class="fa fa-check"></i><b>3.1</b> How It Works</a></li>
-<li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
-<li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#power"><i class="fa fa-check"></i>Power</a></li>
+<li class="chapter" data-level="0.1" data-path="introduction.html"><a href="introduction.html#how-it-works"><i class="fa fa-check"></i><b>0.1</b> How It Works</a></li>
+<li class="chapter" data-level="0.2" data-path="introduction.html"><a href="introduction.html#code"><i class="fa fa-check"></i><b>0.2</b> Code</a></li>
+<li class="chapter" data-level="0.3" data-path="introduction.html"><a href="introduction.html#how-it-works-1"><i class="fa fa-check"></i><b>0.3</b> How It Works</a></li>
+<li class="chapter" data-level="0.4" data-path="introduction.html"><a href="introduction.html#code-1"><i class="fa fa-check"></i><b>0.4</b> Code</a></li>
+<li class="chapter" data-level="0.5" data-path="introduction.html"><a href="introduction.html#variants"><i class="fa fa-check"></i><b>0.5</b> Variants</a></li>
+<li class="chapter" data-level="0.6" data-path="introduction.html"><a href="introduction.html#how-it-works-2"><i class="fa fa-check"></i><b>0.6</b> How It Works</a></li>
+<li class="chapter" data-level="0.7" data-path="introduction.html"><a href="introduction.html#code-2"><i class="fa fa-check"></i><b>0.7</b> Code</a></li>
+<li class="chapter" data-level="0.8" data-path="introduction.html"><a href="introduction.html#how-it-works-3"><i class="fa fa-check"></i><b>0.8</b> How It Works</a></li>
+<li class="chapter" data-level="0.9" data-path="introduction.html"><a href="introduction.html#code-3"><i class="fa fa-check"></i><b>0.9</b> Code</a></li>
+<li class="chapter" data-level="0.10" data-path="introduction.html"><a href="introduction.html#note"><i class="fa fa-check"></i><b>0.10</b> Note</a></li>
 </ul></li>
 <li class="part"><span><b>II Matched Pairs</b></span></li>
-<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a></li>
-<li class="chapter" data-level="5" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html"><i class="fa fa-check"></i><b>5</b> Parametric Paired T-Test</a><ul>
-<li class="chapter" data-level="5.1" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#usage"><i class="fa fa-check"></i><b>5.1</b> Usage</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#assumptions"><i class="fa fa-check"></i><b>5.1.1</b> Assumptions</a></li>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a><ul>
+<li class="chapter" data-level="0.11" data-path="summary.html"><a href="summary.html#usage"><i class="fa fa-check"></i><b>0.11</b> Usage</a><ul>
+<li class="chapter" data-level="0.11.1" data-path="summary.html"><a href="summary.html#assumptions"><i class="fa fa-check"></i><b>0.11.1</b> Assumptions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#procedure"><i class="fa fa-check"></i><b>5.2</b> Procedure</a></li>
-<li class="chapter" data-level="5.3" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#code-4"><i class="fa fa-check"></i><b>5.3</b> Code</a></li>
+<li class="chapter" data-level="0.12" data-path="summary.html"><a href="summary.html#procedure"><i class="fa fa-check"></i><b>0.12</b> Procedure</a></li>
+<li class="chapter" data-level="0.13" data-path="summary.html"><a href="summary.html#code-4"><i class="fa fa-check"></i><b>0.13</b> Code</a><ul>
+<li class="chapter" data-level="0.13.1" data-path="summary.html"><a href="summary.html#r"><i class="fa fa-check"></i><b>0.13.1</b> R</a></li>
+<li class="chapter" data-level="0.13.2" data-path="summary.html"><a href="summary.html#python"><i class="fa fa-check"></i><b>0.13.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html"><i class="fa fa-check"></i><b>6</b> Paired Permutation Test</a><ul>
-<li class="chapter" data-level="6.1" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html#usage-1"><i class="fa fa-check"></i><b>6.1</b> Usage</a></li>
-<li class="chapter" data-level="6.2" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html#procedure-1"><i class="fa fa-check"></i><b>6.2</b> Procedure</a></li>
-<li class="chapter" data-level="6.3" data-path="paired-permutation-test.html"><a href="paired-permutation-test.html#code-5"><i class="fa fa-check"></i><b>6.3</b> Code</a></li>
+<li class="chapter" data-level="0.14" data-path="summary.html"><a href="summary.html#usage-1"><i class="fa fa-check"></i><b>0.14</b> Usage</a></li>
+<li class="chapter" data-level="0.15" data-path="summary.html"><a href="summary.html#procedure-1"><i class="fa fa-check"></i><b>0.15</b> Procedure</a></li>
+<li class="chapter" data-level="0.16" data-path="summary.html"><a href="summary.html#code-5"><i class="fa fa-check"></i><b>0.16</b> Code</a><ul>
+<li class="chapter" data-level="0.16.1" data-path="summary.html"><a href="summary.html#r-1"><i class="fa fa-check"></i><b>0.16.1</b> R</a></li>
+<li class="chapter" data-level="0.16.2" data-path="summary.html"><a href="summary.html#python-1"><i class="fa fa-check"></i><b>0.16.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html"><i class="fa fa-check"></i><b>7</b> Wilcoxon Signed-Rank Test</a><ul>
-<li class="chapter" data-level="7.1" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html#usage-2"><i class="fa fa-check"></i><b>7.1</b> Usage</a></li>
-<li class="chapter" data-level="7.2" data-path="wilcoxon-signed-rank-test.html"><a href="wilcoxon-signed-rank-test.html#procedure-2"><i class="fa fa-check"></i><b>7.2</b> Procedure</a></li>
+<li class="chapter" data-level="0.17" data-path="summary.html"><a href="summary.html#usage-2"><i class="fa fa-check"></i><b>0.17</b> Usage</a></li>
+<li class="chapter" data-level="0.18" data-path="summary.html"><a href="summary.html#procedure-2"><i class="fa fa-check"></i><b>0.18</b> Procedure</a><ul>
+<li class="chapter" data-level="0.18.1" data-path="summary.html"><a href="summary.html#r-2"><i class="fa fa-check"></i><b>0.18.1</b> R</a></li>
+<li class="chapter" data-level="0.18.2" data-path="summary.html"><a href="summary.html#python-2"><i class="fa fa-check"></i><b>0.18.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sign-test.html"><a href="sign-test.html"><i class="fa fa-check"></i><b>8</b> Sign Test</a><ul>
-<li class="chapter" data-level="8.1" data-path="sign-test.html"><a href="sign-test.html#usage-3"><i class="fa fa-check"></i><b>8.1</b> Usage</a></li>
-<li class="chapter" data-level="8.2" data-path="sign-test.html"><a href="sign-test.html#procedure-3"><i class="fa fa-check"></i><b>8.2</b> Procedure</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="sign-test.html"><a href="sign-test.html#hypothesis"><i class="fa fa-check"></i><b>8.2.1</b> Hypothesis</a></li>
-<li class="chapter" data-level="8.2.2" data-path="sign-test.html"><a href="sign-test.html#test-statistic"><i class="fa fa-check"></i><b>8.2.2</b> Test statistic</a></li>
-<li class="chapter" data-level="8.2.3" data-path="sign-test.html"><a href="sign-test.html#p-value"><i class="fa fa-check"></i><b>8.2.3</b> p value</a></li>
+<li class="chapter" data-level="0.19" data-path="summary.html"><a href="summary.html#usage-3"><i class="fa fa-check"></i><b>0.19</b> Usage</a></li>
+<li class="chapter" data-level="0.20" data-path="summary.html"><a href="summary.html#procedure-3"><i class="fa fa-check"></i><b>0.20</b> Procedure</a><ul>
+<li class="chapter" data-level="0.20.1" data-path="summary.html"><a href="summary.html#hypothesis"><i class="fa fa-check"></i><b>0.20.1</b> Hypothesis</a></li>
+<li class="chapter" data-level="0.20.2" data-path="summary.html"><a href="summary.html#test-statistic"><i class="fa fa-check"></i><b>0.20.2</b> Test statistic</a></li>
+<li class="chapter" data-level="0.20.3" data-path="summary.html"><a href="summary.html#p-value"><i class="fa fa-check"></i><b>0.20.3</b> p value</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="sign-test.html"><a href="sign-test.html#code-6"><i class="fa fa-check"></i><b>8.3</b> Code</a></li>
+<li class="chapter" data-level="0.21" data-path="summary.html"><a href="summary.html#code-6"><i class="fa fa-check"></i><b>0.21</b> Code</a><ul>
+<li class="chapter" data-level="0.21.1" data-path="summary.html"><a href="summary.html#r-3"><i class="fa fa-check"></i><b>0.21.1</b> R</a></li>
+<li class="chapter" data-level="0.21.2" data-path="summary.html"><a href="summary.html#python-3"><i class="fa fa-check"></i><b>0.21.2</b> Python</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="choosing-which-test.html"><a href="choosing-which-test.html"><i class="fa fa-check"></i><b>9</b> Choosing Which Test</a></li>
+</ul></li>
 <li class="part"><span><b>III Correlation</b></span></li>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html"><i class="fa fa-check"></i>Summary Sheet</a><ul>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#background-1"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#when-to-use-what"><i class="fa fa-check"></i>When To Use What</a></li>
+<li class="chapter" data-level="0.22" data-path="summary-sheet.html"><a href="summary-sheet.html#usage-4"><i class="fa fa-check"></i><b>0.22</b> Usage</a><ul>
+<li class="chapter" data-level="0.22.1" data-path="summary-sheet.html"><a href="summary-sheet.html#assumption"><i class="fa fa-check"></i><b>0.22.1</b> Assumption</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="parametric-ols.html"><a href="parametric-ols.html"><i class="fa fa-check"></i><b>10</b> Parametric OLS</a><ul>
-<li class="chapter" data-level="10.1" data-path="parametric-ols.html"><a href="parametric-ols.html#usage-4"><i class="fa fa-check"></i><b>10.1</b> Usage</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="parametric-ols.html"><a href="parametric-ols.html#assumption"><i class="fa fa-check"></i><b>10.1.1</b> Assumption</a></li>
+<li class="chapter" data-level="0.23" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-4"><i class="fa fa-check"></i><b>0.23</b> How It Works</a></li>
+<li class="chapter" data-level="0.24" data-path="summary-sheet.html"><a href="summary-sheet.html#code-7"><i class="fa fa-check"></i><b>0.24</b> Code</a></li>
+<li class="chapter" data-level="0.25" data-path="summary-sheet.html"><a href="summary-sheet.html#note-1"><i class="fa fa-check"></i><b>0.25</b> Note</a></li>
+<li class="chapter" data-level="0.26" data-path="summary-sheet.html"><a href="summary-sheet.html#usage-5"><i class="fa fa-check"></i><b>0.26</b> Usage</a><ul>
+<li class="chapter" data-level="0.26.1" data-path="summary-sheet.html"><a href="summary-sheet.html#assumptions-1"><i class="fa fa-check"></i><b>0.26.1</b> Assumptions</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="parametric-ols.html"><a href="parametric-ols.html#how-it-works-4"><i class="fa fa-check"></i><b>10.2</b> How It Works</a></li>
-<li class="chapter" data-level="10.3" data-path="parametric-ols.html"><a href="parametric-ols.html#code-7"><i class="fa fa-check"></i><b>10.3</b> Code</a></li>
-<li class="chapter" data-level="10.4" data-path="parametric-ols.html"><a href="parametric-ols.html#note-1"><i class="fa fa-check"></i><b>10.4</b> Note</a></li>
+<li class="chapter" data-level="0.27" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-5"><i class="fa fa-check"></i><b>0.27</b> How it Works</a><ul>
+<li class="chapter" data-level="0.27.1" data-path="summary-sheet.html"><a href="summary-sheet.html#p-value-1"><i class="fa fa-check"></i><b>0.27.1</b> p-value</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html"><i class="fa fa-check"></i><b>11</b> Permutation Test for Slope</a><ul>
-<li class="chapter" data-level="11.1" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#usage-5"><i class="fa fa-check"></i><b>11.1</b> Usage</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#assumptions-1"><i class="fa fa-check"></i><b>11.1.1</b> Assumptions</a></li>
+<li class="chapter" data-level="0.28" data-path="summary-sheet.html"><a href="summary-sheet.html#usage-6"><i class="fa fa-check"></i><b>0.28</b> Usage</a><ul>
+<li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#assumptions-2"><i class="fa fa-check"></i>Assumptions</a></li>
+<li class="chapter" data-level="0.28.1" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-6"><i class="fa fa-check"></i><b>0.28.1</b> How it Works</a></li>
+<li class="chapter" data-level="0.28.2" data-path="summary-sheet.html"><a href="summary-sheet.html#p-value-2"><i class="fa fa-check"></i><b>0.28.2</b> p-value</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#how-it-works-5"><i class="fa fa-check"></i><b>11.2</b> How it Works</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="permutation-test-for-slope.html"><a href="permutation-test-for-slope.html#p-value-1"><i class="fa fa-check"></i><b>11.2.1</b> p-value</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html"><i class="fa fa-check"></i><b>12</b> Spearman’s Rank Correlation</a><ul>
-<li class="chapter" data-level="12.1" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#usage-6"><i class="fa fa-check"></i><b>12.1</b> Usage</a><ul>
-<li class="chapter" data-level="" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#assumptions-2"><i class="fa fa-check"></i>Assumptions</a></li>
-<li class="chapter" data-level="12.1.1" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#how-it-works-6"><i class="fa fa-check"></i><b>12.1.1</b> How it Works</a></li>
-<li class="chapter" data-level="12.1.2" data-path="spearmans-rank-correlation.html"><a href="spearmans-rank-correlation.html#p-value-2"><i class="fa fa-check"></i><b>12.1.2</b> p-value</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="kendalls-tau.html"><a href="kendalls-tau.html"><i class="fa fa-check"></i><b>13</b> Kendall’s Tau</a><ul>
-<li class="chapter" data-level="13.1" data-path="kendalls-tau.html"><a href="kendalls-tau.html#how-it-works-7"><i class="fa fa-check"></i><b>13.1</b> How it Works</a></li>
-<li class="chapter" data-level="13.2" data-path="kendalls-tau.html"><a href="kendalls-tau.html#limitations"><i class="fa fa-check"></i><b>13.2</b> Limitations</a></li>
+<li class="chapter" data-level="0.29" data-path="summary-sheet.html"><a href="summary-sheet.html#how-it-works-7"><i class="fa fa-check"></i><b>0.29</b> How it Works</a></li>
+<li class="chapter" data-level="0.30" data-path="summary-sheet.html"><a href="summary-sheet.html#limitations"><i class="fa fa-check"></i><b>0.30</b> Limitations</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/ishaandey/nonparametric" target="blank">Published with Bookdown on GitHub</a></li>
@@ -308,20 +226,50 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </head>
 <div id="statistical-foundations" class="section level1 unnumbered">
 <h1>Statistical Foundations</h1>
-<div id="the-basics" class="section level2 unnumbered">
-<h2>The Basics</h2>
-<p>This book assumes knowledge of basic statistical testing, ideas such as p-values and simple probability distributions (i.e. Normal, Binomial).</p>
-<p><strong>Resources</strong>:</p>
+<div id="testing-basics" class="section level2 unnumbered">
+<h2>Testing Basics</h2>
+<p>This handbook assumes knowledge of basic statistical testing, ideas such as p-values and hypothesis testing. Here’s a quick refresher:</p>
+<div id="samples-and-populations" class="section level4 unnumbered">
+<h4>Samples and Populations</h4>
+<p>Say you and your buddy get in a disagreement: You claim to shoot over 50% from the free-throw line, your friend thinks otherwise. Since we don’t actually know what your true ability is, or the proportion of shots you can make, we have to estimate it somehow. Let’s denote the true ability as <span class="math inline">\(p\)</span>. This is a <strong>population parameter</strong>, the value we’re trying to estimate.</p>
+<p>The both of you hit the courts, and shoot 30 balls. We can take the proportion of shots you make as <span class="math inline">\(\hat{p}\)</span>, called a <strong>test statistic</strong>. These 30 shots are a <strong>sample</strong> of all the shots you’ve ever taken. The fundamental idea behind statistical testing is that we can estimate <span class="math inline">\(p\)</span> from <span class="math inline">\(\hat{p}\)</span>.</p>
 </div>
-<div id="notation" class="section level2 unnumbered">
-<h2>Notation</h2>
-<p>In this section, you’ll may across some notation rooted in probability. For the large part, <em>don’t be intimidated</em>. Everyone has their own comfort level with math. Instead of omitting it entirely, we’ve kept in the formulas as expandable details for the curious. Here’s some basic pointers, but if there’s something you don’t understand, you can probably skip it without too many issues</p>
+<div id="hypotheses" class="section level4 unnumbered">
+<h4>Hypotheses</h4>
+<p>The first step is to <em>develop a set of hypotheses</em>. The <strong>Null Hypothesis</strong>, <span class="math inline">\(H_0\)</span>, indicates our <em>default belief</em>. These are typically structured where the population parameter equals some value, i.e. <span class="math inline">\(p=0.5\)</span>. We could write this succinctly as <span class="math inline">\(H_0: p=0.5\)</span>. Why is it incorrect to say <span class="math inline">\(H_0: \hat{p}=0.5\)</span>? As you recall, <span class="math inline">\(\hat{p}\)</span> is the test statistic we’ve generated from our sample, so it’s fairly obvious if it differs from <span class="math inline">\(0.5\)</span>.</p>
+<p>Only if there is sufficiently evidence to overturn the null, we can reject it in favor of the <strong>Alternative Hypothesis</strong>, <span class="math inline">\(H_a\)</span>. This can have a range of values that reflects our expectations. If the argument is that your ability is greater than 50%, you’ll use a “greater than” hypothesis, i.e. <span class="math inline">\(H_a: p &gt; 0.5\)</span>. Similarly, we can have a “less than” direction with <span class="math inline">\(H_a: p &lt; 0.5\)</span>. If we don’t have a specified direction, simply that your ability is <em>not</em> 50%, we can use a “two sided” hypothesis, <span class="math inline">\(H_a: p \neq 0.5\)</span>. This also works if we’re just looking for significance in either direction, without presupposing which.</p>
+<p>For the time being, let’s use the following hypotheses:</p>
+<p><span class="math display">\[
+H_0: p = 0.5 \\
+H_a: p &gt; 0.5 
+\]</span></p>
+</div>
+<div id="confidence-level" class="section level4 unnumbered">
+<h4>Confidence Level</h4>
+<p>Say you shoot 16 of 30 shots, so <span class="math inline">\(\hat{p}=0.53\)</span>. There’s some evidence that you shoot better than 50%, but its not as convincing as if you were to make 21 of 30 shots <span class="math inline">\(\hat{p}=0.67\)</span>.</p>
+<p>We could conclude your true ability is above 50% in either case, but it’s far more likely you’re making an incorrect conclusion in the first scenario. Let’s set our tolerance for errors at a certain level, <span class="math inline">\(\alpha\)</span>.</p>
+<p><span class="math inline">\(\alpha\)</span> is known as the false positive rate, or probability of making a Type I error. All that says is when <span class="math inline">\(H_0\)</span> is true (i.e. <span class="math inline">\(p\)</span> really does <span class="math inline">\(=0.5\)</span>), we expect to <em>incorrectly reject</em> <span class="math inline">\(H_a\)</span> about <span class="math inline">\(\alpha\)</span>% of the time. By convention, we set <span class="math inline">\(\alpha=0.05\)</span>, but other values may be appropriate given the context. As an aside, <span class="math inline">\(\alpha=0.05\)</span> implies a <strong>confidence level</strong> of <span class="math inline">\(100-\alpha = 95\%\)</span>.</p>
+</div>
+<div id="testing" class="section level4 unnumbered">
+<h4>Testing</h4>
+<p>A recap of our process so far: We are testing the hypothesis that <span class="math inline">\(p &gt; 0.5\)</span>, against the null <span class="math inline">\(p=0\)</span>. We took a sample of $n=$30 shots, and made 21 of them. Our test statistic is <span class="math inline">\(\hat{p}=\)</span><span class="math inline">\(\frac{21}{30}=\)</span><span class="math inline">\(0.70\)</span>. We specified a confidence level of 95%, so we get <span class="math inline">\(\alpha=0.05\)</span>.</p>
+<p>In order to reject the null in favor of the alternative, we’re looking for sufficient evidence from our test statistic. Consider this: if the test statistic did indeed come from a distribution where the true parameter is <span class="math inline">\(p=0.5\)</span>, how likely is it that we’d get <span class="math inline">\(\hat{p}\)</span> of <span class="math inline">\(0.70\)</span> or greater?</p>
+<p>By the distribution specified by the null hypothesis (<span class="math inline">\(\hat{p} \sim Binomial(n=30, p=0.5)\)</span>), the probability of getting a test statistic as or more extreme than 0.70 is 0.014. That’s a pretty low number, meaning it’s very unusual to be making 21 of 30 shots when we’re expecting to hit 15. This evidence against the null is called the <strong>p-value</strong>, and was generated from the test statistic.</p>
+<p><img src="nonparametric_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Because our p-value was less than alpha, we see that there is sufficient evidence to <strong>reject the null</strong> hypothesis, that <span class="math inline">\(p=0.5\)</span>. We thus conclude that <span class="math inline">\(p\)</span> must be <span class="math inline">\(&gt;0.50\)</span>.</p>
+<p>That’s it! If you were able to follow along thus far, you’ve got the necessary background for the rest of the handbook. If not, give this section another look over, or check out some great online resources at <a href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample/more-significance-testing-videos/v/hypothesis-testing-and-p-values">Khan Academy</a>.</p>
+</div>
+</div>
+<div id="math-notation" class="section level2 unnumbered">
+<h2>Math Notation</h2>
+<p>In this section, you’ll may across some notation rooted in probability. <em>Don’t be intimidated</em>. Everyone has their own comfort level with math. Instead of omitting it entirely, we’ve kept in the formulas as details for the curious. Here’s some basic pointers, but if there’s something you don’t understand, you can probably skip it without concern.</p>
 <p><strong>Indices</strong>. Counters like <span class="math inline">\(i\)</span> or <span class="math inline">\(j\)</span> just refer to a particular observation in a set. For example, <span class="math inline">\((x_i,y_j)\)</span> can be read as “some pair from two sets”, where <span class="math inline">\(x_i\)</span> is a part of <span class="math inline">\(X\)</span>, and <span class="math inline">\(y_j\)</span> is a part of <span class="math inline">\(Y\)</span>.</p>
 <p><strong>Sums</strong>. Something like <span class="math inline">\(\sum_{i=1}^n x_i\)</span> can be read as “add together each observation <span class="math inline">\(x_i\)</span> in the set <span class="math inline">\(X\)</span>”.</p>
+<p><strong>Ranks</strong>: <span class="math inline">\(R(X_i)\)</span> can be read as the rank of observation <span class="math inline">\(i\)</span> in sample <span class="math inline">\(X\)</span>. If we have <span class="math inline">\(n\)</span> observations, the ranks go in ascending order, <span class="math inline">\(1 \dots n\)</span>.</p>
 <p><strong>Combinations</strong>. Something like <span class="math inline">\(\binom{5}{2}\)</span> is read as “Five choose two”, or the probability of selecting a combination of 2 items out of 5 possibilities. More generally: <span class="math inline">\(\binom{n}{k} = \frac{n!}{k!(n-k)!}\)</span></p>
 <p><strong>Probability Distribution Function (PDF)</strong>. <span class="math inline">\(f_x(x)\)</span> describes the relative likelihood (<em>not probability</em>) of seeing the value <span class="math inline">\(x\)</span>, when <span class="math inline">\(x\)</span> is continuous. It is always <span class="math inline">\(\geq0\)</span>, and the integral across all values <span class="math inline">\(\int_{-\infty}^{\infty}f_x(x)dx\)</span> must <span class="math inline">\(=1\)</span>.</p>
-<p><strong>Cumulative Distribution Function (CDF)</strong>. <span class="math inline">\(F_x(x)\)</span> describes the <em>probability</em> of seeing a value less than or equal to <span class="math inline">\(x\)</span>. In other words, <span class="math inline">\(F_x(x) = Pr(X\leq x)\)</span>. Mathematically, it is the integral of the pdf <span class="math inline">\(f_x(x)\)</span> for each point <span class="math inline">\(x\)</span>: <span class="math inline">\(F_x(x) = \int_{-\infty}^{x}f_t(t)dt\)</span>. To visualize that relationship:</p>
-<p><img src="nonparametric_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Cumulative Distribution Function (CDF)</strong>. <span class="math inline">\(F_x(x)\)</span> describes the <em>probability</em> of seeing a value less than or equal to <span class="math inline">\(x\)</span>, <span class="math inline">\(F_x(x) = Pr(X\leq x)\)</span>. Mathematically, it is the integral of the pdf <span class="math inline">\(f_x(x)\)</span> for each point <span class="math inline">\(x\)</span>: <span class="math inline">\(F_x(x) = \int_{-\infty}^{x}f_t(t)dt\)</span>. To visualize that relationship:</p>
+<p><img src="nonparametric_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -331,9 +279,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 <center> 
   <div class="footer">
-      All illustrations <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>: You can download them by <a href="shared-illos.zip">clicking here</a>
-      <br>
-      All other materials <a href= "https://creativecommons.org/licenses/by/2.0/"> CC-BY </a> unless noted otherwise.
+      All content here is licensed by l <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>.
   </div>
 </center>
             </section>
