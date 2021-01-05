@@ -1,10 +1,5 @@
 two-sample-t-test
-how-it-works
-code
 two-sample-permutation
-how-it-works-1
-code-1
-variants
 wilcoxon-rank-sum
 how-it-works-2
 code-2
@@ -50,13 +45,3 @@ p-value-2
 kendalls-tau
 how-it-works-7
 limitations
-r
-python
-r-1
-python-1
-r-2
-python-2
-r-3
-python-3
-samples-and-populations
-confidence

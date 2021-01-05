@@ -15,7 +15,7 @@ Any student of introductory statistics knows the remedy: take into account the s
 
 Say you're expecting population 1 to be *lower* than population 2. You'll use a *lower-tail* test, and use a set of hypotheses like so: 
 $$
-Null Hypothesis H_0: \mu_1 = \mu_2 \\
+\text{Null Hypothesis }H_0: \mu_1 = \mu_2 \\
 Alternate Hypothesis H_a: \mu_1 \leq \mu_2
 $$
 
@@ -105,13 +105,13 @@ The two-sample t-test is by far the most powerful test when the assumptions are 
 
 Note: By the Central Limit Theorem, we can assume that the sample means will start looking normal at large sample sizes ($n \geq 40$).
 
-## How It Works 
+## How It Works {-}
 
 Do we know the population variance $\sigma^2$? 
 - If so, we'll use the $z$ distribution: $z\sim N(0,1)$
 - Otherwise, we'll use the $t$ distribution, $t\sim t(df)$, where $df$ is the minimum of the two sample sizes - 1.
 
-## Code
+## Code {-}
 
 ::: {.tab}
 <button class="tablinks" onclick="unrolltab(event, 'R')">R</button>
@@ -143,6 +143,9 @@ ttest_ind(a=sample1, b=sample2)
 
 :::
 :::
+<script> unrolltab(event, 'R') </script>
+
+
 
 # Permutation Test {#two-sample-permutation}
 
@@ -156,7 +159,7 @@ Use the permutation test if the normality assumption is violated, and you're int
 
 Note: We no longer need the assumption of normality, nor equal variances
 
-## How It Works 
+## How It Works {-}
 
 We'll use $D_{obs}$ to represent the difference in means that we observe between our samples. For the following samples, we find $D_{obs}=12.5$.
 
@@ -275,7 +278,7 @@ $$
 
 **Interpretation**: Given a p-value of 0.057, there is a 5.7% chance of observing a difference as extreme as we did under the hypothesis that these samples come from populations with the same distribution.
 
-## Code 
+## Code {-}
 ::: {.tab}
 <button class="tablinks" onclick="unrolltab(event, 'R')">R</button>
 <button class="tablinks" onclick="unrolltab(event, 'Python')">Python</button>
@@ -310,7 +313,7 @@ permutation_test(sample1, sample2, method='mean')
 :::
 
 
-## Variants 
+## Variants {-}
 
 Instead of difference in means, we could use either (1) sums, (2) trimmed means, or (3) medians:
 

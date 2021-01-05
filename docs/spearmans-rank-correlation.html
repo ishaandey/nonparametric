@@ -52,51 +52,6 @@
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<!-- 
-Header 
-  - included at the top (head) of every page
-  - EDAV logo back to index.html
-  - smiles on hover :)
--->
-
-<!-- Free Font Awesome Stylesheet -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
-<!-- JS -->
-<script>
-document.getElementsByClassName('tablinks')[0].click()
-
-function hover(element) {
-  element.setAttribute('src', 'images/icons/edav_resource_url.png');
-}
-
-function unhover(element) {
-  element.setAttribute('src', 'images/icons/edav_resource_url_no_smile.png');
-}
-
-function unrolltab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>
-
-<!-- Anchor point for scroll-top button -->
-<a id="top"></a>
-
-<!-- URL Logo -->
-<center>
-<br><br>
-<a href="index.html"><img src="images/icons/edav_resource_url_no_smile.png" onmouseover="hover(this);" onmouseout="unhover(this);" /></a>
-</center>
 
 
 <style type="text/css">
@@ -179,7 +134,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="toc-logo"><a href="./"><img src="images/favicon/android-chrome-512x512.png"></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="part"><span><b>I Preface</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-this-book"><i class="fa fa-check"></i>Why This Book?</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-does-it-cover"><i class="fa fa-check"></i>What Does It Cover</a></li>
 </ul></li>
@@ -188,39 +144,37 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="cheat-sheet.html"><a href="cheat-sheet.html"><i class="fa fa-check"></i>Cheat Sheet</a></li>
 <li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html"><i class="fa fa-check"></i>Statistical Foundations</a><ul>
-<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#the-basics"><i class="fa fa-check"></i>The Basics</a></li>
-<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#testing-basics"><i class="fa fa-check"></i>Testing Basics</a></li>
+<li class="chapter" data-level="" data-path="statistical-foundations.html"><a href="statistical-foundations.html#math-notation"><i class="fa fa-check"></i>Math Notation</a></li>
 </ul></li>
-<li class="part"><span><b>I Two Sample Inference</b></span></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#background"><i class="fa fa-check"></i>Background</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
+<li class="part"><span><b>II Two Sample Inference</b></span></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html#background"><i class="fa fa-check"></i>Background</a></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="" data-path="introduction-1.html"><a href="introduction-1.html#diagnostics"><i class="fa fa-check"></i>Diagnostics</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html"><i class="fa fa-check"></i>Choosing a Test</a><ul>
 <li class="chapter" data-level="" data-path="choosing-a-test.html"><a href="choosing-a-test.html#power"><i class="fa fa-check"></i>Power</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html"><i class="fa fa-check"></i><b>1</b> Two Sample t-Test</a><ul>
-<li class="chapter" data-level="1.1" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#how-it-works"><i class="fa fa-check"></i><b>1.1</b> How It Works</a></li>
-<li class="chapter" data-level="1.2" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#code"><i class="fa fa-check"></i><b>1.2</b> Code</a></li>
+<li class="chapter" data-level="" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#how-it-works"><i class="fa fa-check"></i>How It Works</a></li>
+<li class="chapter" data-level="" data-path="two-sample-t-test.html"><a href="two-sample-t-test.html#code"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html"><i class="fa fa-check"></i><b>2</b> Permutation Test</a><ul>
-<li class="chapter" data-level="2.1" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#how-it-works-1"><i class="fa fa-check"></i><b>2.1</b> How It Works</a></li>
-<li class="chapter" data-level="2.2" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#code-1"><i class="fa fa-check"></i><b>2.2</b> Code</a></li>
-<li class="chapter" data-level="2.3" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#variants"><i class="fa fa-check"></i><b>2.3</b> Variants</a></li>
+<li class="chapter" data-level="" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#how-it-works-1"><i class="fa fa-check"></i>How It Works</a></li>
+<li class="chapter" data-level="" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#code-1"><i class="fa fa-check"></i>Code</a></li>
+<li class="chapter" data-level="" data-path="two-sample-permutation.html"><a href="two-sample-permutation.html#variants"><i class="fa fa-check"></i>Variants</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html"><i class="fa fa-check"></i><b>3</b> Wilcoxon Rank-Sum</a><ul>
 <li class="chapter" data-level="3.1" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#how-it-works-2"><i class="fa fa-check"></i><b>3.1</b> How It Works</a></li>
 <li class="chapter" data-level="3.2" data-path="wilcoxon-rank-sum.html"><a href="wilcoxon-rank-sum.html#code-2"><i class="fa fa-check"></i><b>3.2</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="mann-whitney.html"><a href="mann-whitney.html"><i class="fa fa-check"></i><b>4</b> Mann-Whitney</a><ul>
-<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a><ul>
-<li class="chapter" data-level="" data-path="mann-whitney.html"><a href="mann-whitney.html#formal-hypothesis-tests"><i class="fa fa-check"></i>Formal Hypothesis Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="mann-whitney.html"><a href="mann-whitney.html#how-it-works-3"><i class="fa fa-check"></i><b>4.1</b> How It Works</a></li>
 <li class="chapter" data-level="4.2" data-path="mann-whitney.html"><a href="mann-whitney.html#code-3"><i class="fa fa-check"></i><b>4.2</b> Code</a></li>
 <li class="chapter" data-level="4.3" data-path="mann-whitney.html"><a href="mann-whitney.html#note"><i class="fa fa-check"></i><b>4.3</b> Note</a></li>
 </ul></li>
-<li class="part"><span><b>II Matched Pairs</b></span></li>
+<li class="part"><span><b>III Matched Pairs</b></span></li>
 <li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a></li>
 <li class="chapter" data-level="5" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html"><i class="fa fa-check"></i><b>5</b> Parametric Paired T-Test</a><ul>
 <li class="chapter" data-level="5.1" data-path="parametric-paired-t-test.html"><a href="parametric-paired-t-test.html#usage"><i class="fa fa-check"></i><b>5.1</b> Usage</a><ul>
@@ -248,7 +202,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="sign-test.html"><a href="sign-test.html#code-6"><i class="fa fa-check"></i><b>8.3</b> Code</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="choosing-which-test.html"><a href="choosing-which-test.html"><i class="fa fa-check"></i><b>9</b> Choosing Which Test</a></li>
-<li class="part"><span><b>III Correlation</b></span></li>
+<li class="part"><span><b>IV Correlation</b></span></li>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html"><i class="fa fa-check"></i>Summary Sheet</a><ul>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#background-1"><i class="fa fa-check"></i>Background</a></li>
 <li class="chapter" data-level="" data-path="summary-sheet.html"><a href="summary-sheet.html#when-to-use-what"><i class="fa fa-check"></i>When To Use What</a></li>
@@ -362,9 +316,7 @@ p_{\text {two sided}}=\frac{\# |r_{s}^{*}| \geq |r_{s, obs}|}{n !}
 <hr>
 <center> 
   <div class="footer">
-      All illustrations <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>: You can download them by <a href="shared-illos.zip">clicking here</a>
-      <br>
-      All other materials <a href= "https://creativecommons.org/licenses/by/2.0/"> CC-BY </a> unless noted otherwise.
+      All content is licensed under <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC-BY-NC </a>.
   </div>
 </center>
             </section>

@@ -9,12 +9,12 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: ishaandey/nonparametric
+github-repo: "ishaandey/nonparametric"
 description: "Data Analyst's Guide to Statistical Testing"
-cover-image: images/favicon/android-chrome-512x512.png
-favicon: images/favicon/favicon.ico
+cover-image: "images/favicon/android-chrome-512x512.png"
+favicon: "images/favicon/favicon.ico"
 always_allow_html: yes
-url: https\://ishaandey.com/nonparametric/
+url: 'https\://ishaandey.com/nonparametric/'
 ---
 
 ```{r setup, include=FALSE}
@@ -26,14 +26,16 @@ library(knitr)
 library(kableExtra)
 library(fontawesome)
 
-col1 <- '#14366e' #royalblue
-col2 <- '#6e1f14' #olivegreen
-col3 <- '#636e14' #crimsonred
-colX <- '#79759d' #themepurple
+col1 <- '#14366e' #royal blue
+col2 <- '#6e1f14' #olive green
+col3 <- '#636e14' #crimson red
+colX <- '#79759d' #theme purple
+colx <- '#a4a2bd' #theme purple light
 ```
 
+# (PART) Preface {-}
 
-# Preface {-}
+# Introduction {-}
 
 ## Why This Book? {-} 
 
@@ -44,6 +46,8 @@ colX <- '#79759d' #themepurple
 ## Who Are We? {-}
 
 # Cheat Sheet {-}
+
+add flowchart
 
 # Statistical Foundations {-}
 
@@ -80,7 +84,7 @@ $\alpha$ is known as the false positive rate, or probability of making a Type I 
 
 #### Testing {-}
 
-A recap of our process so far: We are testing the hypothesis that $p > 0.5$, against the null $p=0$. We took a sample of $n=$30 shots, and made 21 of them. Our test statistic is $\hat{p}=$$\frac{21}{30}=$$0.70$. We specified a confidence level of 95%, so we get $\alpha=0.05$.
+A recap of our process so far: We are testing the hypothesis that $p > 0.5$, against the null $p=0$. We took a sample of $n=$ 30 shots, and made 21 of them. Our test statistic is $\hat{p}=$$\frac{21}{30}=$$0.70$. We specified a confidence level of 95%, so we get $\alpha=0.05$.
 
 In order to reject the null in favor of the alternative, we're looking for sufficient evidence from our test statistic. Consider this: if the test statistic did indeed come from a distribution where the true parameter is $p=0.5$, how likely is it that we'd get $\hat{p}$ of $0.70$ or greater?
 
