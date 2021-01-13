@@ -1,21 +1,36 @@
 # (PART) Matched Pairs {-}
 
-# Summary {-}
+# Introduction {-}
 
-> Goal: some
+> Goal: How can we determine if a treatment changes an outcome for each unit?
+
+## Background {-}
+
+Take the following question: Does a topical treatment lower a patient's rating of pain? Suppose we have before and after ratings for each user. Since each user may have a different level of pain going in, taking the overall difference of means may not show any significant change. Instead, we can look at differences *per-patient*, and see what that looks like.
+
+As before, the parametric solution (paired t-test) makes a few strong assumptions about the data, mainly the assumption of normality. This chapter describes alternative tests we can use instead. 
 
 
-# Parametric Paired T-Test
+# Cheatsheet {-}
 
-## Usage
+Look at **distribution of differences**:
 
-### Assumptions
+- If *light-tailed and symmetric* $\implies$ Use paired permutation test
+- If *skewed or heavy tailed* $\implies$ Use wilcoxon signed-rank test
+  - Sign test also is efficient, but generally has low power for smaller $n$
+- If *normal looking* $\implies$ Use sign test
+
+# Paired t-Test {#paired-t-test}
+
+The paired t-test is by far the most powerful test when the assumptions are met for comparing means between two samples. Here are the **assumptions**:
+
 1. Paired observations are a random sample (independent) from population of all possible pairs
 2. The *differences* are normally distributed
 
-Note: We can assume the sample mean will approach a normal distribution when $n_d \geq 40$  
+Note: By the Central Limit Theorem, we can assume that the sample means will start looking normal at large sample sizes ($n \geq 40$).
 
-## Procedure
+
+## How It Works
 
 Paired t-test statistic: 
 $$
@@ -37,9 +52,7 @@ $$
 
 ## Code 
 
-:::: {.panelset}
-::: {.panel}
-### R {.panel-name}
+### R 
 
 ```{r}
 library(stats)
@@ -49,10 +62,8 @@ samp.after  <- c(3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3)
 
 t.test(x=samp.before, y=samp.after, alternative='two.sided', paired=T)
 ```
-:::
 
-::: {.panel}
-### Python {.panel-name}
+### Python 
 
 ```{r engine='python'}
 from scipi.stats import ttest_rel
@@ -63,29 +74,46 @@ samp_after = [3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3]
 ttest_rel(samp_before, samp_after)
 ```
 
-:::
-::::
 
---------
+# Paired Permutation Test {#paired-permutation-test}
 
-# Paired Permutation Test
+We can use the permutation test if we violate the normality assumption of the paired t-test. However, as we're still using an average of differences, our test statistic is still subject to outliers.
 
-## Usage
-By convention, differences are defined as $\text{treatment} - \text{control}$.
+## How It Works
 
-We can use this test if we violate the normality assumption of the paired t-test. However, as we're still using an average of differences, our test statistic is still subject to outliers.
+By convention, differences are defined as $\text{treatment} - \text{control}$, or $\text{after} - \text{before}$.
 
 
-## Procedure
+```{r, echo=F, eval=T, results=T}
+sampleA <- c(9.1, 6.2, 4.2, 5.9)
+sampleB <- c(7.3, 4.8, 4.1, 4.7)
+diff <- sampleB - sampleA
 
-We'll define $D_{obs}$ as the average of differences between our samples
+df <- tibble('Pre'=sampleA, 
+             'Post'=sampleB,
+             'Diff'=diff) %>% t()
+kbl(df) %>% 
+  column_spec(1, bold = T, border_right = T) %>%
+  row_spec(1, color=col1) %>%
+  row_spec(2, color=col3, hline_after=F) %>%
+  row_spec(3, color='black') %>%
+  kable_styling(full_width = F, html_font = '"Karla", calibri, sans-serif')
+```
+
+We'll define our test statistic $D_{obs}$ as the *average of differences*:
 $$
-\bar{D}_{obs}=\frac{\sum_{i=1}^{n} D_{i}}{n}
+\bar{D}=\frac{1}{n}\sum_{i=1}^{n} D_{i}
 $$
+With that formula, we'll get $D_{obs}=$ `r mean(diff)`. 
 
-Under the null hypothesis, we'd expect that if we were to randomly switch around (permute) the observed within the pair, we'd see the same test statistic.
+`r show_hr()`
 
-Since we have $n$ pairs, there are $2^n$ possible arrangements where we swap around the values across the treatment and control group. For each permutation, we'll find $\bar{D}^*$, the mean of differences for that particular permutation.
+How likely is it that we see $D_{obs}=$`r mean(diff)` by random chance?
+
+
+Under the null hypothesis, we'd expect that if we were to randomly switch around (permute) the observations within the pair, we'd see the same test statistic.
+
+Since we have $n$ pairs, there are $2^n=16$ possible arrangements where we swap around the values across the treatment and control group. For each permutation, we'll find $\bar{D}^*$, the mean of differences for that particular permutation.
 
 More visually:
 
@@ -114,45 +142,35 @@ but not across pairs, because we're using a *matched pairs* design.
 
 So, our p-value is then just the *fraction of permutations* that have a test statistic $D$ as or more extreme than what was observed $D_{obs}$.
 
-<details><summary> P-value Formula </summary>
+<details><summary> Formal Definitions </summary>
 <p>
 
-$$
-\begin{aligned}
-P_{\text {upper tail}} &= \frac{\text {number of } \bar{D}^{\prime} s \geq \bar{D}_{obs}}{2^{n}} \\ 
-P_{\text {lower tail}} &= \frac{\text {number of } \bar{D}^{\prime} s \leq \bar{D}_{obs}}{2^{n}}
-\end{aligned}
-$$ 
 </p>
 </details>
 
 ## Code 
 
-:::: {.panelset}
-::: {.panel}
-### R {.panel-name}
+::: {.tab}
+<button class="tablinks" onclick="unrolltab(event, 'R')">R</button>
+<button class="tablinks" onclick="unrolltab(event, 'Python')">Python</button>
+
+::: {#R .tabcontent}
 
 ```{r}
-library(stats)
-
-samp.before <- c(1.1, 2.1, 4.2, 3.2, 1.7, 2.2, 2.7)
-samp.after  <- c(3.9, 2.9, 3.8, 1.8, 3.3, 2.8, 2.3)
-
-t.test(x=samp.before, y=samp.after, alternative='two.sided', paired=T)
+#add code
 ```
+
 :::
 
-::: {.panel}
-### Python {.panel-name}
+::: {#Python .tabcontent}
 
 ```{r engine='python'}
-# under construction
+#add code 2
 ```
 
 :::
-::::
+:::
 
------
 
 # Wilcoxon Signed-Rank Test
 
@@ -292,14 +310,3 @@ SN <- length(diff[diff > 0])
 
 :::
 ::::
-
-
-
-# Choosing Which Test
-
-Look at **distribution of differences**:
-
-- If *light-tailed and symmetric* $\implies$ Use paired permutation test
-- If *skewed or heavy tailed* $\implies$ Use wilcoxon signed-rank test
-  - Sign test also is efficient, but generally has low power for smaller $n$
-- If *normal looking* $\implies$ Use sign test

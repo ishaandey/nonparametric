@@ -26,6 +26,8 @@ library(knitr)
 library(kableExtra)
 library(fontawesome)
 
+source('helper.R')
+
 col1 <- '#14366e' #royal blue
 col2 <- '#6e1f14' #olive green
 col3 <- '#636e14' #crimson red

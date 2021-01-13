@@ -7,7 +7,7 @@
 
 ## Background {-}
 
-Comparing differences in means is one of the most commonly used procedures in statistics. Take the following use case: Does Product A have better ratings than than Product B? Sure, we could compare averages (i.e. Product A's mean is $4.83$, better than Product B's  $4.79$), but it fails to answer the question: Are the *population* ratings for A better than B? We only have data from a sample of reviews, so we've got to somehow *estimate* the population differences in ratings.
+Comparing differences in means is one of the most commonly used procedures in statistics. Take the following use case: Does Product A have better ratings than than Product B? Sure, we could compare averages (i.e. Product A's mean rating is $4.83$, better than Product B's  $4.79$), but it fails to answer the question: Are the *population* ratings for A better than B? We only have data from a sample of reviews, so we've got to somehow *estimate* the population differences in ratings.
 
 Any student of introductory statistics knows the remedy: take into account the spread of the data using a two-sample t-test. But the t-test makes a few strong assumptions about the data, mainly the assumption of normality. This chapter describes alternative tests we can use instead. 
 
@@ -15,8 +15,10 @@ Any student of introductory statistics knows the remedy: take into account the s
 
 Say you're expecting population 1 to be *lower* than population 2. You'll use a *lower-tail* test, and use a set of hypotheses like so: 
 $$
-\text{Null Hypothesis }H_0: \mu_1 = \mu_2 \\
-Alternate Hypothesis H_a: \mu_1 \leq \mu_2
+\begin{aligned}
+\text{Null Hypothesis }H_0 &: \mu_1 = \mu_2 \\
+\text{Alternate Hypothesis }H_a &: \mu_1 < \mu_2
+\end{aligned}
 $$
 
 In this section, we don't necessarily know the distribution of our data, but we're testing that the *distributions*, not necessarily means, are equal.
@@ -143,7 +145,7 @@ ttest_ind(a=sample1, b=sample2)
 
 :::
 :::
-<script> unrolltab(event, 'R') </script>
+<script> document.getElementsByClassName('tablinks')[0].click() </script>
 
 
 
@@ -366,7 +368,7 @@ $W_{obs}$ is simply the *sum of ranks* of sample 1 observations: $W_{obs}=$ <spa
 
 Why use this instead of comparing mean ranks? Turns out, the sum of ranks of one sample is a linear function of the mean, so there's a 1:1 correspondence between the two. The sum of ranks just simplifies the computation.
 
-<hr style="height:1px; width:60%;"></hr>
+`r show_hr()`
 
 Under the null hypothesis, we'd expect our observations to have no difference in ranks. So, if we were to randomly switch around (permute) the observations across the samples, we'd expect our observed test statistic $W_{obs}$ to not be anything unusual, according to $H_0$. In otherwords, random chance could have just as easily produced $W_{obs}$ as the treatment we gave.
 
@@ -512,7 +514,7 @@ kbl(df2, format='html', escape=F) %>%
 
 Our test statistic $U_{obs}$ is the number of pairs where $X_i < Y_j$, indicated by the **Y**'s in the matrix. So,  $U_{obs}=2$.
 
-<hr style="height:1px; width:60%;"></hr>
+`r show_hr()`
 
 If we were to randomly permute the observations across both labels, we'd need to see that our observed test statistic is far more extreme that the rest of the U statistics before concluding that the null hypothesis doesn't apply. Why? The null hypothesis suggests that the observations from both samples are derived from the same distribution, so we need sufficient evidence that this isn't the case in order to reject it.
 

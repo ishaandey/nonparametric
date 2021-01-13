@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Paired Permutation Test | Nonparametric Handbook</title>
+  <title>Cheatsheet | Nonparametric Handbook</title>
   <meta name="description" content="Data Analyst’s Guide to Statistical Testing" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Paired Permutation Test | Nonparametric Handbook" />
+  <meta property="og:title" content="Cheatsheet | Nonparametric Handbook" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ishaandey.com/nonparametric/" />
   <meta property="og:image" content="https://ishaandey.com/nonparametric/images/favicon/android-chrome-512x512.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ishaandey/nonparametric" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Paired Permutation Test | Nonparametric Handbook" />
+  <meta name="twitter:title" content="Cheatsheet | Nonparametric Handbook" />
   
   <meta name="twitter:description" content="Data Analyst’s Guide to Statistical Testing" />
   <meta name="twitter:image" content="https://ishaandey.com/nonparametric/images/favicon/android-chrome-512x512.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="paired-t-test.html"/>
-<link rel="next" href="wilcoxon-signed-rank-test.html"/>
+<link rel="prev" href="introduction-2.html"/>
+<link rel="next" href="paired-t-test.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -239,109 +239,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <script src="assets/hideOutput.js"></script>
   <link href="assets/style.css" rel="stylesheet">
 </head>
-<div id="paired-permutation-test" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Paired Permutation Test</h1>
-<p>We can use the permutation test if we violate the normality assumption of the paired t-test. However, as we’re still using an average of differences, our test statistic is still subject to outliers.</p>
-<div id="how-it-works-5" class="section level2">
-<h2><span class="header-section-number">2.1</span> How It Works</h2>
-<p>By convention, differences are defined as <span class="math inline">\(\text{treatment} - \text{control}\)</span>, or <span class="math inline">\(\text{after} - \text{before}\)</span>.</p>
-<table class="table" style='font-family: "Karla", calibri, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;border-right:1px solid;color: #14366e !important;">
-Pre
-</td>
-<td style="text-align:right;color: #14366e !important;">
-9.1
-</td>
-<td style="text-align:right;color: #14366e !important;">
-6.2
-</td>
-<td style="text-align:right;color: #14366e !important;">
-4.2
-</td>
-<td style="text-align:right;color: #14366e !important;">
-5.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;border-right:1px solid;color: #636e14 !important;">
-Post
-</td>
-<td style="text-align:right;color: #636e14 !important;">
-7.3
-</td>
-<td style="text-align:right;color: #636e14 !important;">
-4.8
-</td>
-<td style="text-align:right;color: #636e14 !important;">
-4.1
-</td>
-<td style="text-align:right;color: #636e14 !important;">
-4.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;border-right:1px solid;color: black !important;">
-Diff
-</td>
-<td style="text-align:right;color: black !important;">
--1.8
-</td>
-<td style="text-align:right;color: black !important;">
--1.4
-</td>
-<td style="text-align:right;color: black !important;">
--0.1
-</td>
-<td style="text-align:right;color: black !important;">
--1.2
-</td>
-</tr>
-</tbody>
-</table>
-<p>We’ll define our test statistic <span class="math inline">\(D_{obs}\)</span> as the <em>average of differences</em>:
-<span class="math display">\[
-\bar{D}=\frac{1}{n}\sum_{i=1}^{n} D_{i}
-\]</span>
-With that formula, we’ll get <span class="math inline">\(D_{obs}=\)</span> -1.125.</p>
-<hr style="height:1px; width:60%;"></hr>
-<p>How likely is it that we see <span class="math inline">\(D_{obs}=\)</span>-1.125 by random chance?</p>
-<p>Under the null hypothesis, we’d expect that if we were to randomly switch around (permute) the observations within the pair, we’d see the same test statistic.</p>
-<p>Since we have <span class="math inline">\(n\)</span> pairs, there are <span class="math inline">\(2^n=16\)</span> possible arrangements where we swap around the values across the treatment and control group. For each permutation, we’ll find <span class="math inline">\(\bar{D}^*\)</span>, the mean of differences for that particular permutation.</p>
-<p>More visually:</p>
-<pre><code>       Obs 1 Obs 2 Obs 3 Obs 4 Obs 5
-before    31    38    46    54    43
-after     39    49    55    57    44</code></pre>
-<p>can be permuted within pairs, with one permutation looking like:</p>
-<pre><code>        Obs * Obs 2 Obs * Obs 4 Obs 5
-before*    39    38    55    54    43
-after*     31    49    46    57    44</code></pre>
-<p>but not across pairs, because we’re using a <em>matched pairs</em> design.</p>
-<p>So, our p-value is then just the <em>fraction of permutations</em> that have a test statistic <span class="math inline">\(D\)</span> as or more extreme than what was observed <span class="math inline">\(D_{obs}\)</span>.</p>
-<details>
-<summary> Formal Definitions </summary>
-<p>
-</p>
-</details>
-</div>
-<div id="code-5" class="section level2">
-<h2><span class="header-section-number">2.2</span> Code</h2>
-<div class="tab">
-<button class="tablinks" onclick="unrolltab(event, &#39;R&#39;)">
-R
-</button>
-<button class="tablinks" onclick="unrolltab(event, &#39;Python&#39;)">
-Python
-</button>
-<div id="R" class="tabcontent">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="paired-permutation-test.html#cb5-1"></a><span class="co">#add code</span></span></code></pre></div>
-</div>
-<div id="Python" class="tabcontent">
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="paired-permutation-test.html#cb6-1"></a><span class="co">#add code 2</span></span></code></pre></div>
-</div>
-</div>
-</div>
+<div id="cheatsheet" class="section level1 unnumbered">
+<h1>Cheatsheet</h1>
+<p>Look at <strong>distribution of differences</strong>:</p>
+<ul>
+<li>If <em>light-tailed and symmetric</em> <span class="math inline">\(\implies\)</span> Use paired permutation test</li>
+<li>If <em>skewed or heavy tailed</em> <span class="math inline">\(\implies\)</span> Use wilcoxon signed-rank test
+<ul>
+<li>Sign test also is efficient, but generally has low power for smaller <span class="math inline">\(n\)</span></li>
+</ul></li>
+<li>If <em>normal looking</em> <span class="math inline">\(\implies\)</span> Use sign test</li>
+</ul>
 </div>
 <hr>
 <script>
@@ -373,8 +281,8 @@ document.getElementsByClassName('tablinks')[0].click()
           </div>
         </div>
       </div>
-<a href="paired-t-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="wilcoxon-signed-rank-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="paired-t-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

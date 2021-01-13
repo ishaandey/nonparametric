@@ -4,7 +4,7 @@
 > How do we test for non-linear association?
 
 ## Background {-}
-Sometimes the data is strongly correlated, but there is a *non-linear* pattern. Take the following example:
+Sometimes data is strongly correlated, but there is a *non-linear* pattern. Take the following example:
 
 ```{r, eval=T, echo=F}
 x <- 1:6
